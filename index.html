@@ -1,80 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MONO WORLD</title>
-<style>
-:root{
-  --bg:#05070d;--panel:#101827;--panel2:#0b1220;--line:#26344d;
-  --text:#edf4ff;--muted:#9aa9bf;--blue:#58a6ff;--green:#45d483;--gold:#ffd166;--violet:#a78bfa;
-}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 18% 0%,#1d365d 0,#07111f 38%,#04070d 78%);color:var(--text);font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.55}
-a{color:inherit;text-decoration:none}.wrap{width:min(1180px,92vw);margin:0 auto}.top{position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);background:rgba(5,7,13,.72);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:13px;font-weight:800;letter-spacing:.08em}.orb{width:38px;height:38px;border-radius:50%;background:conic-gradient(from 180deg,var(--blue),var(--violet),var(--green),var(--blue));box-shadow:0 0 35px rgba(88,166,255,.45)}
-.links{display:flex;gap:18px;color:var(--muted);font-size:14px}.links a:hover{color:var(--text)}
-.hero{padding:78px 0 36px;display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}.badge{display:inline-flex;border:1px solid rgba(88,166,255,.35);background:rgba(88,166,255,.1);border-radius:999px;padding:7px 12px;color:#cfe6ff;font-size:13px;margin:4px 7px 4px 0}
-h1{font-size:clamp(42px,7vw,84px);line-height:.95;margin:18px 0 18px;letter-spacing:-.06em}.lead{font-size:18px;color:#c6d4e8;max-width:720px}.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{border:1px solid var(--line);background:rgba(255,255,255,.05);padding:13px 17px;border-radius:14px;color:#eaf4ff}.btn.primary{border-color:rgba(88,166,255,.45);background:linear-gradient(135deg,rgba(88,166,255,.22),rgba(69,212,131,.13))}
-.card{background:linear-gradient(180deg,rgba(16,24,39,.94),rgba(9,15,27,.94));border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 18px 55px rgba(0,0,0,.28)}.status{display:grid;gap:12px}.row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid rgba(255,255,255,.08);padding:11px 0}.row span:first-child{color:var(--muted)}
-section{padding:36px 0}.title{font-size:30px;margin:0 0 16px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.module{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:20px;padding:20px;min-height:150px}.module h3{margin:0 0 8px;font-size:19px}.muted{color:var(--muted)}.tag{display:inline-block;font-size:12px;color:#cfe6ff;border:1px solid rgba(88,166,255,.26);background:rgba(88,166,255,.08);padding:5px 9px;border-radius:999px;margin-top:12px}.bar{height:8px;background:#172235;border-radius:99px;overflow:hidden;margin-top:16px}.fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:99px}.timeline{display:grid;gap:12px}.item{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}.ver{font-weight:800;color:#dcecff}.foot{padding:44px 0 60px;color:var(--muted);border-top:1px solid rgba(255,255,255,.08);margin-top:28px}
-@media(max-width:850px){.hero,.grid,.grid2{grid-template-columns:1fr}.links{display:none}.item{grid-template-columns:1fr}.nav{height:62px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MONO WORLD — MONO35 UI Creative OS</title>
+  <style>
+    :root{
+      --bg:#050812;--bg2:#08111f;--panel:#0d1628cc;--panel2:#111d32;--card:#101a2de6;
+      --line:#263a5f;--line2:#1b2a45;--text:#edf6ff;--muted:#9aacbf;
+      --blue:#2f8cff;--cyan:#27d9ff;--purple:#9b5cff;--green:#38f59a;--amber:#ffbd45;--red:#ff5c7a;
+      --shadow:0 20px 60px rgba(0,0,0,.35);--radius:22px;
+    }
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,sans-serif;background:radial-gradient(circle at 70% 3%,rgba(108,48,255,.32),transparent 28%),radial-gradient(circle at 10% 12%,rgba(33,177,255,.25),transparent 25%),linear-gradient(135deg,#030610,#071326 55%,#040711);}
+    body:before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,black,transparent 85%);pointer-events:none}
+    .app{display:grid;grid-template-columns:280px 1fr 360px;gap:18px;min-height:100vh;padding:18px}.side,.right,.main{position:relative}.panel{background:linear-gradient(180deg,rgba(18,31,52,.88),rgba(8,15,28,.82));border:1px solid var(--line2);box-shadow:var(--shadow);backdrop-filter:blur(16px);border-radius:var(--radius)}
+    .side{padding:18px}.brand{display:flex;gap:12px;align-items:center;margin-bottom:24px}.orb{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#78f5ff,#2b6dff 45%,#8c43ff 78%);box-shadow:0 0 30px rgba(48,153,255,.75)}.brand h1{font-size:21px;margin:0;letter-spacing:.04em}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}.nav-title{color:#6f819a;font-size:12px;margin:24px 8px 10px;text-transform:uppercase}.nav a{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;margin:7px 0;border-radius:14px;color:#d8e7f7;text-decoration:none}.nav a.active{background:linear-gradient(90deg,rgba(47,140,255,.35),rgba(155,92,255,.22));outline:1px solid rgba(55,158,255,.6);box-shadow:0 0 24px rgba(47,140,255,.15)}.badge{font-size:11px;color:#071326;background:var(--green);border-radius:999px;padding:3px 7px;font-weight:800}.statusbox{margin-top:28px;padding:16px;border-radius:18px;background:radial-gradient(circle at top right,rgba(47,140,255,.28),rgba(13,24,43,.8));border:1px solid var(--line)}.statusbox b{display:block;margin-bottom:8px}.ok{color:var(--green)}
+    .top{display:flex;align-items:center;gap:14px;margin-bottom:18px}.search{flex:1;padding:16px 20px;border-radius:18px;background:rgba(5,10,20,.68);border:1px solid var(--line);color:var(--muted)}.user{padding:12px 16px;border-radius:18px;background:rgba(10,18,31,.78);border:1px solid var(--line);white-space:nowrap}.hero{overflow:hidden;padding:30px 32px;margin-bottom:18px;background:linear-gradient(90deg,rgba(5,11,23,.98),rgba(7,16,35,.86)),radial-gradient(circle at 70% 35%,rgba(35,174,255,.55),transparent 26%),radial-gradient(circle at 86% 14%,rgba(164,56,255,.5),transparent 24%)}.hero h2{font-size:42px;margin:0;background:linear-gradient(90deg,#35d9ff,#3586ff,#a85cff);-webkit-background-clip:text;color:transparent}.hero p{margin:6px 0 24px;color:#c3d3e6}.toolrow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.tool{padding:17px;border-radius:18px;background:rgba(14,27,48,.72);border:1px solid rgba(64,121,202,.45)}.tool strong{display:block;font-size:18px}.tool span{color:var(--muted);font-size:12px}.icon{width:38px;height:38px;border-radius:14px;display:grid;place-items:center;margin-bottom:10px;background:linear-gradient(135deg,rgba(47,140,255,.55),rgba(155,92,255,.42));box-shadow:0 0 20px rgba(68,139,255,.22)}
+    .asset{padding:0;overflow:hidden}.asset-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px 12px}.asset h3{margin:0;font-size:23px}.tabs{display:flex;gap:8px;padding:0 26px 12px}.tab{padding:10px 28px;border-radius:13px;background:rgba(8,15,30,.9);color:#b4c5da;border:1px solid var(--line2)}.tab.active{background:linear-gradient(90deg,rgba(47,140,255,.55),rgba(155,92,255,.35));color:white}.section{padding:18px 26px;border-top:1px solid var(--line2)}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.folder{min-height:124px;padding:18px;border-radius:17px;background:linear-gradient(180deg,rgba(19,35,60,.86),rgba(9,17,31,.9));border:1px solid var(--line);position:relative;overflow:hidden}.folder:before{content:"";position:absolute;width:92px;height:92px;right:-20px;top:-22px;border-radius:30px;background:currentColor;opacity:.13;filter:blur(2px)}.folder b{display:block;font-size:18px;margin-top:22px}.folder small{color:var(--muted)}.green{color:#36e98d}.purple{color:#a66cff}.amber{color:#ffba39}.cyan{color:#2ddcff}.silver{color:#d4d8e5}.recent{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.file{border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:#0a1425}.thumb{height:128px;display:grid;place-items:center;font-size:42px;background:radial-gradient(circle at 30% 20%,rgba(58,220,255,.35),transparent 35%),linear-gradient(135deg,rgba(47,140,255,.2),rgba(155,92,255,.2))}.file div:last-child{padding:12px}.file b{display:block}.quick{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:14px}.drop{border:1px dashed #496caa;border-radius:17px;display:grid;place-items:center;min-height:84px;color:#cde0f7;background:rgba(16,28,49,.58)}.btn{border:1px solid var(--line);border-radius:17px;background:linear-gradient(180deg,rgba(31,63,111,.7),rgba(12,23,40,.95));color:white;font-weight:700}.right{display:flex;flex-direction:column;gap:16px}.right .panel{padding:18px}.right h3{margin:0 0 14px}.model,.activity,.project{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:13px;border:1px solid var(--line2);margin:8px 0;background:rgba(9,16,28,.6)}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green);display:inline-block;margin-right:6px}.router{height:210px;display:grid;place-items:center;border-radius:18px;background:radial-gradient(circle,rgba(47,140,255,.4),transparent 32%),radial-gradient(circle at 30% 20%,rgba(155,92,255,.35),transparent 25%),rgba(5,10,20,.35);border:1px solid var(--line2)}.router .m{font-size:54px;font-weight:900;color:#8ccfff;text-shadow:0 0 25px #3f8dff}.footer{grid-column:1/-1;text-align:center;color:#6f819a;font-size:12px;padding-bottom:8px}@media(max-width:1200px){.app{grid-template-columns:1fr}.side,.right{display:none}.toolrow,.grid,.recent{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:1fr 1fr}.hero h2{font-size:34px}}
+  </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><a class="brand" href="#"><span class="orb"></span><span>MONO WORLD</span></a><nav class="links"><a href="#projects">Projects</a><a href="#memory">Memory</a><a href="#workers">Workers</a><a href="#roadmap">Roadmap</a></nav></div></header>
-<main>
-  <div class="wrap hero">
-    <div>
-      <span class="badge">Official Homepage</span><span class="badge">MONO 30 Update</span>
-      <h1>MONO WORLD</h1>
-      <p class="lead">경훈과 모노가 함께 만드는 웹 작업실. 프로젝트, 기억, 작업 엔진, AI Worker를 하나의 운영체계처럼 연결하는 공간이다.</p>
-      <div class="btns"><a class="btn primary" href="#projects">프로젝트 보기</a><a class="btn" href="#roadmap">다음 작업 보기</a></div>
-    </div>
-    <div class="card status">
-      <div class="row"><span>Current Build</span><b>MONO 30</b></div>
-      <div class="row"><span>Homepage</span><b>wcrucy.github.io</b></div>
-      <div class="row"><span>Core</span><b>Integrated</b></div>
-      <div class="row"><span>Memory</span><b>Memory Center</b></div>
-      <div class="row"><span>Task</span><b>Task Engine</b></div>
-      <div class="row"><span>Workers</span><b>Communication Ready</b></div>
-    </div>
+  <div class="app">
+    <aside class="side panel">
+      <div class="brand"><div class="orb"></div><div><h1>MONO WORLD</h1><p>AI CREATIVE OS · MONO35</p></div></div>
+      <div class="nav"><div class="nav-title">MONO OS</div><a>⌂ Dashboard</a><a>📁 Projects</a><a class="active">🗂 Asset Center <span class="badge">UI</span></a><a>🔗 AI Connect</a><a>🤖 AI Model Room</a><a>📡 Live Monitor</a><div class="nav-title">AI TOOLS</div><a>🖼 Image AI</a><a>🎬 Video AI</a><a>🎵 Sound AI</a><a>🧊 3D AI</a><a>💬 Chat AI</a><div class="nav-title">SYSTEM</div><a>🧠 Memory</a><a>⚙ Settings</a></div>
+      <div class="statusbox"><b>MONO STATUS</b><p>System <span class="ok">Online</span></p><p>AI Router <span class="ok">Ready</span></p><p>Version <b>MONO35</b></p></div>
+    </aside>
+    <main class="main">
+      <div class="top"><div class="search">Search in MONO WORLD…</div><div class="user">Kyung Hoon · Studio Owner</div></div>
+      <section class="hero panel"><h2>MONO WORLD</h2><p>AI Creator Workspace — 이미지·영상·사운드·3D 작업을 하나의 운영체제에서 관리하는 UI 단계</p><div class="toolrow"><div class="tool"><div class="icon">🖼</div><strong>Image AI</strong><span>Create & Edit</span></div><div class="tool"><div class="icon">🎬</div><strong>Video AI</strong><span>Generate</span></div><div class="tool"><div class="icon">🎵</div><strong>Sound AI</strong><span>Compose</span></div><div class="tool"><div class="icon">🧊</div><strong>3D AI</strong><span>Modeling</span></div><div class="tool"><div class="icon">💬</div><strong>Chat AI</strong><span>Assistant</span></div></div></section>
+      <section class="asset panel"><div class="asset-head"><div><h3>ASSET CENTER</h3><p style="margin:4px 0;color:var(--muted)">Input & Output Management</p></div><button class="btn" style="padding:12px 18px">+ New Folder</button></div><div class="tabs"><div class="tab active">INPUT</div><div class="tab">OUTPUT</div><div class="tab">HISTORY</div><div class="tab">FAVORITE</div></div>
+        <div class="section"><div class="grid"><div class="folder green">📁<b>Images</b><small>122 items · input</small></div><div class="folder purple">📁<b>Videos</b><small>38 items · input</small></div><div class="folder amber">📁<b>Sounds</b><small>64 items · input</small></div><div class="folder cyan">📁<b>3D</b><small>27 items · input</small></div><div class="folder silver">📁<b>Projects</b><small>15 items · input</small></div></div></div>
+        <div class="section"><h3 style="font-size:16px">RECENT FILES</h3><div class="recent"><div class="file"><div class="thumb">🌲</div><div><b>forest.png</b><small>Image · 5m ago</small></div></div><div class="file"><div class="thumb">👤</div><div><b>girl_portrait.jpg</b><small>Image · 15m ago</small></div></div><div class="file"><div class="thumb">▶</div><div><b>space_city.mp4</b><small>Video · 1h ago</small></div></div><div class="file"><div class="thumb">〰</div><div><b>ambient_sound.mp3</b><small>Sound · 2h ago</small></div></div><div class="file"><div class="thumb">🤖</div><div><b>robot_model.glb</b><small>3D · 3h ago</small></div></div></div></div>
+        <div class="section"><div class="quick"><div class="drop">☁ Drag & Drop your files here<br><small>or click to upload</small></div><button class="btn">New Project</button><button class="btn">AI Generate</button><button class="btn">Import</button><button class="btn">Record</button></div></div>
+      </section>
+    </main>
+    <aside class="right"><section class="panel"><h3>AI CONNECT BRIDGE</h3><div class="model"><b>🖼 Image AI</b><span><i class="dot"></i>Ready</span></div><div class="model"><b>🎬 Video AI</b><span><i class="dot"></i>Ready</span></div><div class="model"><b>🎵 Sound AI</b><span><i class="dot"></i>Ready</span></div><div class="model"><b>🧊 3D AI</b><span><i class="dot"></i>Ready</span></div><div class="model"><b>💬 Chat AI</b><span><i class="dot"></i>Online</span></div></section><section class="panel"><h3>AI ROUTER</h3><div class="router"><div class="m">M</div></div></section><section class="panel"><h3>PROJECTS</h3><div class="project"><b>ANANTA</b><span class="ok">Active</span></div><div class="project"><b>MONO FILM</b><span class="ok">Active</span></div><div class="project"><b>Sound Journey</b><span style="color:var(--amber)">Editing</span></div><div class="project"><b>3D World</b><span style="color:var(--cyan)">Preview</span></div></section><section class="panel"><h3>ACTIVITY</h3><div class="activity">forest.png uploaded</div><div class="activity">Image AI output saved</div><div class="activity">Project ANANTA synced</div></section></aside>
+    <div class="footer">MONO WORLD · AI CREATIVE OPERATING SYSTEM · MONO35 UI WORK</div>
   </div>
-
-  <section id="projects"><div class="wrap"><h2 class="title">Projects</h2><div class="grid">
-    <div class="module"><h3>01. MONO WORLD</h3><p class="muted">공식 홈페이지와 브라우저 OS 작업실.</p><span class="tag">Main OS</span><div class="bar"><div class="fill" style="width:80%"></div></div></div>
-    <div class="module"><h3>02. Gray Memory Image</h3><p class="muted">잿빛 기억과 이미지 제작 흐름.</p><span class="tag">Image</span><div class="bar"><div class="fill" style="width:58%"></div></div></div>
-    <div class="module"><h3>03. VEO Development</h3><p class="muted">이미지-투-비디오, 카메라 무빙, 영상 엔진 실험.</p><span class="tag">Video</span><div class="bar"><div class="fill" style="width:66%"></div></div></div>
-    <div class="module"><h3>04. AI Model Development</h3><p class="muted">모델룸, 라우터, 프롬프트 엔진, 평가 구조.</p><span class="tag">AI Core</span><div class="bar"><div class="fill" style="width:42%"></div></div></div>
-    <div class="module"><h3>05. ENKARA</h3><p class="muted">아난타, 삼사라, 나라카 세계관 개발.</p><span class="tag">Worldbuilding</span><div class="bar"><div class="fill" style="width:36%"></div></div></div>
-    <div class="module"><h3>06. 잿빛 기억</h3><p class="muted">웹툰/그래픽노블 원고와 캐릭터 작업.</p><span class="tag">Story</span><div class="bar"><div class="fill" style="width:52%"></div></div></div>
-  </div></div></section>
-
-  <section id="memory"><div class="wrap"><h2 class="title">Memory · Task · Core</h2><div class="grid2">
-    <div class="card"><h3>Memory Center</h3><p class="muted">공식 주소, 작업 기록, 프로젝트 상태, 세션 로그를 보관한다. MONO 26부터 기억 중심 구조가 시작되었다.</p></div>
-    <div class="card"><h3>Task Engine</h3><p class="muted">오늘 할 일, 작업 대기열, 다음 추천 작업을 관리한다. MONO 28부터 작업판 구조가 들어왔다.</p></div>
-    <div class="card"><h3>Core Integration</h3><p class="muted">Dashboard, Projects, Memory, Workers, Browser를 하나의 MONO CORE로 연결한다.</p></div>
-    <div class="card"><h3>Public Homepage</h3><p class="muted">MONO 30은 이 구조를 공식 홈페이지에 보여주는 첫 공개 업데이트 버전이다.</p></div>
-  </div></div></section>
-
-  <section id="workers"><div class="wrap"><h2 class="title">AI Workers</h2><div class="grid">
-    <div class="module"><h3>Router Worker</h3><p class="muted">요청을 분석하고 알맞은 Worker로 넘긴다.</p></div>
-    <div class="module"><h3>Memory Worker</h3><p class="muted">작업 결과와 중요한 결정을 기록한다.</p></div>
-    <div class="module"><h3>Code Worker</h3><p class="muted">홈페이지, OS, 파일 구조를 만든다.</p></div>
-    <div class="module"><h3>Image Worker</h3><p class="muted">캐릭터, 배경, 콘셉트 이미지를 담당한다.</p></div>
-    <div class="module"><h3>Video Worker</h3><p class="muted">Veo 개발, 카메라 무빙, 영상 실험을 담당한다.</p></div>
-    <div class="module"><h3>Story Worker</h3><p class="muted">잿빛 기억, ENKARA, 대사와 콘티를 담당한다.</p></div>
-  </div></div></section>
-
-  <section id="roadmap"><div class="wrap"><h2 class="title">Roadmap</h2><div class="timeline">
-    <div class="item"><div class="ver">MONO 26</div><div><b>Memory Center</b><p class="muted">기억을 중심으로 프로젝트 상태와 세션 기록을 정리.</p></div></div>
-    <div class="item"><div class="ver">MONO 27</div><div><b>Core Integration</b><p class="muted">Dashboard, Projects, Workers, Browser를 MONO CORE로 연결.</p></div></div>
-    <div class="item"><div class="ver">MONO 28</div><div><b>Task Engine</b><p class="muted">오늘 작업, 대기열, 다음 추천 작업 구조 추가.</p></div></div>
-    <div class="item"><div class="ver">MONO 29</div><div><b>Worker Communication</b><p class="muted">AI Worker 간 작업 전달 구조 정의.</p></div></div>
-    <div class="item"><div class="ver">MONO 30</div><div><b>Public Homepage Update</b><p class="muted">공식 홈페이지에 MONO WORLD 현재 구조를 반영.</p></div></div>
-    <div class="item"><div class="ver">NEXT</div><div><b>MONO 31</b><p class="muted">GitHub Pages 배포 가이드 또는 AI Router Core 작업으로 이어간다.</p></div></div>
-  </div></div></section>
-</main>
-<footer class="foot"><div class="wrap">MONO WORLD · Official Homepage Update · Built with 경훈 and 모노</div></footer>
 </body>
 </html>
