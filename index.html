@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MONO 20 · Browser Functions</title>
+<style>
+:root{--bg:#05070d;--panel:#0e1626;--panel2:#111c31;--line:#2a3f5f;--text:#f3f7ff;--muted:#a7b4c7;--accent:#5ed9ff;--green:#35e985;--blue:#6aa7ff;--yellow:#ffd166;--red:#ff6f91;--purple:#b794ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d335a,#05070d 58%);color:var(--text);font-family:Arial,'Malgun Gothic',sans-serif}.wrap{display:grid;grid-template-columns:300px 1fr;min-height:100vh}.side{border-right:1px solid var(--line);background:rgba(6,11,20,.96);padding:24px;position:sticky;top:0;height:100vh}.brand{font-size:25px;font-weight:900;margin-bottom:8px}.sub{color:var(--muted);line-height:1.6;font-size:14px}.nav{margin-top:24px;display:grid;gap:9px}.nav button{width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#0b1322;color:var(--text);cursor:pointer;font-weight:700}.nav button.active,.nav button:hover{border-color:var(--accent);box-shadow:0 0 0 1px rgba(94,217,255,.25) inset}.main{padding:28px}.hero{padding:24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#101d33,#0b1322)}h1{margin:0 0 8px;font-size:34px}h2{margin:0 0 14px}.section{display:none;margin-top:18px}.section.active{display:block}.grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:16px;min-height:148px}.card.click{cursor:pointer}.card.click:hover{border-color:var(--accent)}.name{font-weight:900;font-size:18px}.status{margin:10px 0;padding:7px 10px;border-radius:999px;display:inline-block;font-size:13px}.idle{background:rgba(53,233,133,.16);color:var(--green)}.work{background:rgba(106,167,255,.16);color:var(--blue)}.review{background:rgba(255,209,102,.16);color:var(--yellow)}.done{background:rgba(53,233,133,.16);color:var(--green)}.desc{color:var(--muted);line-height:1.5}.panel{border:1px solid var(--line);border-radius:18px;background:#0b1322;padding:18px;margin-top:14px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}input,select,textarea{background:#07101f;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:11px;font-family:inherit}textarea{width:100%;min-height:110px;resize:vertical}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:11px 14px;cursor:pointer;font-weight:800}.btn:hover{border-color:var(--accent)}.btn.primary{background:linear-gradient(135deg,#1a5d78,#173657);border-color:var(--accent)}.queue{display:grid;gap:10px;margin-top:12px}.job{border:1px solid var(--line);border-radius:14px;background:#07101f;padding:12px;display:grid;grid-template-columns:90px 1fr 120px;gap:10px;align-items:center}.tag{font-size:12px;color:var(--accent);border:1px solid rgba(94,217,255,.4);border-radius:999px;padding:5px 8px;display:inline-block}.log{background:#030813;border:1px solid var(--line);border-radius:14px;padding:14px;min-height:180px;white-space:pre-wrap;color:#dbe8ff;line-height:1.55}.project{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center}.meter{height:9px;background:#07101f;border-radius:99px;overflow:hidden;border:1px solid var(--line)}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--purple))}.small{font-size:13px;color:var(--muted)}.kbd{background:#07101f;border:1px solid var(--line);border-radius:8px;padding:2px 6px;color:#dbe8ff}@media(max-width:980px){.wrap{grid-template-columns:1fr}.side{position:relative;height:auto}.grid{grid-template-columns:repeat(2,1fr)}.job,.project{grid-template-columns:1fr}}@media(max-width:560px){.grid{grid-template-columns:1fr}.main{padding:16px}.side{padding:18px}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside class="side">
+  <div class="brand">🌎 MONO OS</div>
+  <div class="sub">Version 20<br>Browser Functions<br><br>브라우저에서 Worker, Queue, Project, Prompt, Memory를 직접 눌러보는 기능형 대시보드.</div>
+  <div class="nav">
+    <button class="active" onclick="show('dash',this)">🏠 Dashboard</button>
+    <button onclick="show('workers',this)">👷 Worker Manager</button>
+    <button onclick="show('queue',this)">📋 Job Queue</button>
+    <button onclick="show('projects',this)">📁 Projects</button>
+    <button onclick="show('prompt',this)">🧠 Prompt Builder</button>
+    <button onclick="show('memory',this)">💾 Memory Log</button>
+  </div>
+</aside>
+<main class="main">
+  <section class="hero">
+    <h1>MONO 20 · Browser Functions</h1>
+    <div class="sub">MONO 19의 Worker Manager를 브라우저 기능으로 확장했다. 이제 버튼 클릭으로 Worker 상태 변경, Queue 추가, 프로젝트 선택, 프롬프트 생성, 메모리 로그 기록을 시험할 수 있다.</div>
+  </section>
+
+  <section id="dash" class="section active">
+    <div class="grid">
+      <div class="card"><div class="name">Router</div><div class="status work">🔵 연결됨</div><div class="desc">요청을 분석해 알맞은 Worker와 Project로 보낸다.</div></div>
+      <div class="card"><div class="name">Worker Manager</div><div class="status work">🔵 작동</div><div class="desc">Image, Video, Sound, Code, Story, Web Worker 상태를 관리한다.</div></div>
+      <div class="card"><div class="name">Job Queue</div><div class="status review">🟡 시험판</div><div class="desc">작업을 순서대로 쌓고 완료 상태를 기록한다.</div></div>
+      <div class="card"><div class="name">Memory Log</div><div class="status idle">🟢 대기</div><div class="desc">브라우저 안에서 오늘 작업 기록을 남긴다.</div></div>
+    </div>
+    <div class="panel"><h2>오늘의 운영 흐름</h2><div class="log">User Request → AI Router → Worker Manager → Job Queue → Project Brain → Memory Engine
+
+다음 권장: Queue를 실제 파일 기록과 연결하는 MONO 21.</div></div>
+  </section>
+
+  <section id="workers" class="section">
+    <div class="grid" id="workerGrid"></div>
+    <div class="panel"><div class="small">Worker 카드를 누르면 상태가 대기 → 작업중 → 검토 → 완료 순서로 바뀐다.</div></div>
+  </section>
+
+  <section id="queue" class="section">
+    <div class="panel">
+      <h2>새 작업 추가</h2>
+      <div class="row">
+        <select id="jobProject"><option>Project1 · Mono World</option><option>Project3 · Veo Development</option><option>Project4 · AI Model Development</option><option>Project5 · ENKARA</option><option>Project6 · 잿빛 기억</option><option>Project7 · Sound AI</option><option>Project8 · Game</option></select>
+        <select id="jobWorker"><option>Image Worker</option><option>Video Worker</option><option>Sound Worker</option><option>Code Worker</option><option>Story Worker</option><option>Web Worker</option><option>Memory Worker</option><option>Review Worker</option></select>
+        <input id="jobText" placeholder="예: 아난타 5초 영상 준비" />
+        <button class="btn primary" onclick="addJob()">Queue 추가</button>
+      </div>
+      <div class="queue" id="jobList"></div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="panel"><h2>Project Brain</h2><div id="projectList" class="queue"></div></div>
+  </section>
+
+  <section id="prompt" class="section">
+    <div class="panel">
+      <h2>Prompt Builder</h2>
+      <div class="row"><select id="promptPreset" onchange="loadPreset()"><option value="ananta">ENKARA · Ananta</option><option value="gray">잿빛 기억</option><option value="veo">Mono Veo Engine</option><option value="world">Mono World</option></select><button class="btn" onclick="copyPrompt()">프롬프트 복사</button></div>
+      <textarea id="promptBox"></textarea>
+      <div class="small">브라우저 보안상 복사가 막히면 <span class="kbd">Ctrl + A</span> 후 <span class="kbd">Ctrl + C</span>로 복사하면 된다.</div>
+    </div>
+  </section>
+
+  <section id="memory" class="section">
+    <div class="panel">
+      <h2>Memory Log</h2>
+      <textarea id="memoryInput" placeholder="오늘 작업한 내용 기록"></textarea>
+      <div class="row"><button class="btn primary" onclick="saveMemory()">기록 추가</button><button class="btn" onclick="clearMemory()">화면 기록 지우기</button></div>
+      <div class="log" id="memoryLog"></div>
+    </div>
+  </section>
+</main>
+</div>
+<script>
+const workers=[['Image Worker','이미지, 컨셉아트, 키프레임, 스타일락 담당'],['Video Worker','5초 클립, 카메라 무빙, 장면 연결 담당'],['Sound Worker','음악, 효과음, 성우, 영상 싱크 담당'],['Code Worker','MONO OS 구조, 파일, 브라우저 UI 담당'],['Story Worker','잿빛 기억, ENKARA, MONO ALICE 콘티 담당'],['Web Worker','index.html, 대시보드, 작업실 화면 담당'],['Memory Worker','MONO_STATE, MEMORY, CHANGELOG 기록 담당'],['Review Worker','오류 점검, 개선안, 다음 버전 제안 담당']];
+const states=[['idle','🟢 대기'],['work','🔵 작업중'],['review','🟡 검토'],['done','✅ 완료']];
+let workerState=JSON.parse(localStorage.getItem('mono20_workerState')||'{}');
+let jobs=JSON.parse(localStorage.getItem('mono20_jobs')||'[]');
+const projects=[['P1','Mono World','브라우저 작업실 / index.html / 모노 OS','72'],['P3','Veo Development','카메라 무빙 / 5초 영상 / 이미지-투-비디오','47'],['P4','AI Model Development','AI Router / Worker / Workflow / Memory','64'],['P5','ENKARA','아난타 / 니란 / 삼사라 / 나라카','28'],['P6','잿빛 기억','웹툰 콘티 / 캐릭터 / 심연 / 드레그','35'],['P7','Sound AI','BGM / SFX / Voice / Lipsync','18'],['P8','Game','장기 MMORPG 후보 / 구조 대기','8']];
+const presets={ananta:'A divine Ananta scene above endless clouds, sacred golden architecture, calm unreadable expression, long silver-white hair, flowing white robes, warm sunset light, cinematic fantasy atmosphere, realistic global illumination, volumetric clouds, slow camera push-in.',gray:'Winter village of Winterfall, gray abyss opening silently, hunters standing tense, black-and-white webtoon tone with a small cold color accent, clean panel layout, readable Korean dialogue boxes, dramatic silence.',veo:'Image-to-video test, 5 seconds, natural camera movement, stable character identity, subtle cloth and hair motion, no tearing, smooth background inpainting, cinematic motion planning.',world:'MONO OS browser dashboard, dark futuristic interface, project rooms, memory engine, AI router, worker manager, job queue, friendly virtual workspace for Kyunghoon and Mono.'};
+function show(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+function renderWorkers(){const g=document.getElementById('workerGrid');g.innerHTML='';workers.forEach((w,i)=>{let si=workerState[w[0]]??0;let s=states[si];g.innerHTML+=`<div class="card click" onclick="cycleWorker('${w[0]}')"><div class="name">${w[0]}</div><div class="status ${s[0]}">${s[1]}</div><div class="desc">${w[1]}</div></div>`})}
+function cycleWorker(name){workerState[name]=((workerState[name]??0)+1)%states.length;localStorage.setItem('mono20_workerState',JSON.stringify(workerState));renderWorkers()}
+function addJob(){const text=document.getElementById('jobText').value.trim();if(!text)return;const job={project:jobProject.value,worker:jobWorker.value,text,done:false,time:new Date().toLocaleString()};jobs.unshift(job);localStorage.setItem('mono20_jobs',JSON.stringify(jobs));document.getElementById('jobText').value='';renderJobs()}
+function toggleJob(i){jobs[i].done=!jobs[i].done;localStorage.setItem('mono20_jobs',JSON.stringify(jobs));renderJobs()}
+function renderJobs(){const el=document.getElementById('jobList');if(jobs.length===0){el.innerHTML='<div class="small">아직 Queue가 비어 있다.</div>';return}el.innerHTML=jobs.map((j,i)=>`<div class="job"><span class="tag">${j.done?'완료':'대기'}</span><div><b>${j.text}</b><br><span class="small">${j.project} · ${j.worker} · ${j.time}</span></div><button class="btn" onclick="toggleJob(${i})">상태 변경</button></div>`).join('')}
+function renderProjects(){projectList.innerHTML=projects.map(p=>`<div class="project"><span class="tag">${p[0]}</span><div><b>${p[1]}</b><br><span class="small">${p[2]}</span><div class="meter"><span style="width:${p[3]}%"></span></div></div><span class="small">${p[3]}%</span></div>`).join('')}
+function loadPreset(){promptBox.value=presets[promptPreset.value]}
+function copyPrompt(){promptBox.select();document.execCommand('copy')}
+function saveMemory(){let text=memoryInput.value.trim();if(!text)return;let old=localStorage.getItem('mono20_memory')||'';let line=`[${new Date().toLocaleString()}] ${text}\n`+old;localStorage.setItem('mono20_memory',line);memoryInput.value='';renderMemory()}
+function clearMemory(){localStorage.removeItem('mono20_memory');renderMemory()}
+function renderMemory(){memoryLog.textContent=localStorage.getItem('mono20_memory')||'아직 브라우저 기록이 없다.'}
+renderWorkers();renderJobs();renderProjects();loadPreset();renderMemory();
+</script>
+</body>
+</html>
