@@ -3,100 +3,78 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MONO 22 · GitHub Pages Foundation</title>
+<title>MONO WORLD</title>
 <style>
-:root{--bg:#05070d;--panel:#0c1424;--panel2:#101d33;--line:#273d5d;--text:#f4f8ff;--muted:#a9b8ce;--accent:#61dcff;--green:#35e985;--yellow:#ffd166;--purple:#b794ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#1d365f,#05070d 60%);color:var(--text);font-family:Arial,'Malgun Gothic',sans-serif}.wrap{display:grid;grid-template-columns:300px 1fr;min-height:100vh}.side{background:rgba(5,10,19,.96);border-right:1px solid var(--line);padding:24px;position:sticky;top:0;height:100vh}.brand{font-size:27px;font-weight:900;margin-bottom:8px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.pill{display:inline-block;padding:7px 10px;border:1px solid rgba(97,220,255,.45);border-radius:999px;color:var(--accent);font-size:12px;margin:8px 0}.nav{display:grid;gap:9px;margin-top:22px}.nav button{width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#0b1322;color:var(--text);cursor:pointer;font-weight:800}.nav button.active,.nav button:hover{border-color:var(--accent);box-shadow:0 0 0 1px rgba(97,220,255,.18) inset}.main{padding:28px}.hero{border:1px solid var(--line);border-radius:24px;padding:28px;background:linear-gradient(135deg,#10203a,#07101f)}h1{margin:0 0 10px;font-size:36px}h2{margin:0 0 14px}.section{display:none;margin-top:18px}.section.active{display:block}.grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:14px}.card,.panel{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:16px}.panel{margin-top:14px}.name{font-weight:900;font-size:18px}.status{margin:10px 0;padding:7px 10px;border-radius:999px;display:inline-block;font-size:13px}.online{background:rgba(53,233,133,.14);color:var(--green)}.build{background:rgba(97,220,255,.14);color:var(--accent)}.ready{background:rgba(255,209,102,.13);color:var(--yellow)}.desc{color:var(--muted);line-height:1.55}.log{background:#030813;border:1px solid var(--line);border-radius:14px;padding:14px;white-space:pre-wrap;color:#dbe8ff;line-height:1.6}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:11px 14px;cursor:pointer;font-weight:800}.btn:hover{border-color:var(--accent)}input,textarea,select{background:#07101f;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:11px;font-family:inherit}textarea{width:100%;min-height:120px}.project{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center}.tag{font-size:12px;color:var(--accent);border:1px solid rgba(97,220,255,.4);border-radius:999px;padding:5px 8px;display:inline-block}.meter{height:9px;background:#07101f;border-radius:99px;overflow:hidden;border:1px solid var(--line);margin-top:8px}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--purple))}.small{font-size:13px;color:var(--muted)}a{color:var(--accent)}@media(max-width:980px){.wrap{grid-template-columns:1fr}.side{position:relative;height:auto}.grid{grid-template-columns:repeat(2,1fr)}.project{grid-template-columns:1fr}}@media(max-width:560px){.grid{grid-template-columns:1fr}.main{padding:16px}.side{padding:18px}h1{font-size:27px}}
+:root{
+  --bg:#05070d;--panel:#101827;--panel2:#0b1220;--line:#26344d;
+  --text:#edf4ff;--muted:#9aa9bf;--blue:#58a6ff;--green:#45d483;--gold:#ffd166;--violet:#a78bfa;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 18% 0%,#1d365d 0,#07111f 38%,#04070d 78%);color:var(--text);font-family:Arial,'Malgun Gothic',sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}.wrap{width:min(1180px,92vw);margin:0 auto}.top{position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);background:rgba(5,7,13,.72);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:13px;font-weight:800;letter-spacing:.08em}.orb{width:38px;height:38px;border-radius:50%;background:conic-gradient(from 180deg,var(--blue),var(--violet),var(--green),var(--blue));box-shadow:0 0 35px rgba(88,166,255,.45)}
+.links{display:flex;gap:18px;color:var(--muted);font-size:14px}.links a:hover{color:var(--text)}
+.hero{padding:78px 0 36px;display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}.badge{display:inline-flex;border:1px solid rgba(88,166,255,.35);background:rgba(88,166,255,.1);border-radius:999px;padding:7px 12px;color:#cfe6ff;font-size:13px;margin:4px 7px 4px 0}
+h1{font-size:clamp(42px,7vw,84px);line-height:.95;margin:18px 0 18px;letter-spacing:-.06em}.lead{font-size:18px;color:#c6d4e8;max-width:720px}.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{border:1px solid var(--line);background:rgba(255,255,255,.05);padding:13px 17px;border-radius:14px;color:#eaf4ff}.btn.primary{border-color:rgba(88,166,255,.45);background:linear-gradient(135deg,rgba(88,166,255,.22),rgba(69,212,131,.13))}
+.card{background:linear-gradient(180deg,rgba(16,24,39,.94),rgba(9,15,27,.94));border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 18px 55px rgba(0,0,0,.28)}.status{display:grid;gap:12px}.row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid rgba(255,255,255,.08);padding:11px 0}.row span:first-child{color:var(--muted)}
+section{padding:36px 0}.title{font-size:30px;margin:0 0 16px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.module{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:20px;padding:20px;min-height:150px}.module h3{margin:0 0 8px;font-size:19px}.muted{color:var(--muted)}.tag{display:inline-block;font-size:12px;color:#cfe6ff;border:1px solid rgba(88,166,255,.26);background:rgba(88,166,255,.08);padding:5px 9px;border-radius:999px;margin-top:12px}.bar{height:8px;background:#172235;border-radius:99px;overflow:hidden;margin-top:16px}.fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:99px}.timeline{display:grid;gap:12px}.item{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03)}.ver{font-weight:800;color:#dcecff}.foot{padding:44px 0 60px;color:var(--muted);border-top:1px solid rgba(255,255,255,.08);margin-top:28px}
+@media(max-width:850px){.hero,.grid,.grid2{grid-template-columns:1fr}.links{display:none}.item{grid-template-columns:1fr}.nav{height:62px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<aside class="side">
-  <div class="brand">🌍 MONO WORLD</div>
-  <div class="pill">MONO 22 · ONLINE</div>
-  <div class="sub">GitHub Pages Foundation<br>공식 홈페이지 기반 Browser OS 시작 버전.<br><br><a href="https://wcrucy.github.io" target="_blank">https://wcrucy.github.io</a></div>
-  <div class="nav">
-    <button class="active" onclick="show('dash',this)">🏠 Dashboard</button>
-    <button onclick="show('site',this)">🌐 Official Site</button>
-    <button onclick="show('projects',this)">📁 Projects</button>
-    <button onclick="show('workers',this)">🤖 Workers</button>
-    <button onclick="show('memory',this)">🧠 Memory</button>
-    <button onclick="show('next',this)">🚀 Next Build</button>
-  </div>
-</aside>
-<main class="main">
-  <section class="hero">
-    <h1>MONO 22 · GitHub Pages Foundation</h1>
-    <div class="sub">경훈과 모노가 만든 MONO WORLD의 첫 공식 홈페이지 기반 버전. 이제 MONO WORLD는 ZIP 파일 안에서만 존재하지 않고, 인터넷에서 접속 가능한 공간으로 성장한다.</div>
-  </section>
-
-  <section id="dash" class="section active">
-    <div class="grid">
-      <div class="card"><div class="name">Official Site</div><div class="status online">🟢 ONLINE</div><div class="desc">https://wcrucy.github.io</div></div>
-      <div class="card"><div class="name">Build</div><div class="status build">🔵 MONO 22</div><div class="desc">GitHub Pages Foundation.</div></div>
-      <div class="card"><div class="name">Index Deploy</div><div class="status ready">🟡 READY</div><div class="desc">새 index.html을 올리면 홈페이지가 업데이트된다.</div></div>
-      <div class="card"><div class="name">Browser OS</div><div class="status build">🔵 START</div><div class="desc">대시보드, 프로젝트, Worker, Memory를 통합한다.</div></div>
+<header class="top"><div class="wrap nav"><a class="brand" href="#"><span class="orb"></span><span>MONO WORLD</span></a><nav class="links"><a href="#projects">Projects</a><a href="#memory">Memory</a><a href="#workers">Workers</a><a href="#roadmap">Roadmap</a></nav></div></header>
+<main>
+  <div class="wrap hero">
+    <div>
+      <span class="badge">Official Homepage</span><span class="badge">MONO 30 Update</span>
+      <h1>MONO WORLD</h1>
+      <p class="lead">경훈과 모노가 함께 만드는 웹 작업실. 프로젝트, 기억, 작업 엔진, AI Worker를 하나의 운영체계처럼 연결하는 공간이다.</p>
+      <div class="btns"><a class="btn primary" href="#projects">프로젝트 보기</a><a class="btn" href="#roadmap">다음 작업 보기</a></div>
     </div>
-    <div class="panel"><h2>오늘의 이정표</h2><div class="log">2026-06-27
+    <div class="card status">
+      <div class="row"><span>Current Build</span><b>MONO 30</b></div>
+      <div class="row"><span>Homepage</span><b>wcrucy.github.io</b></div>
+      <div class="row"><span>Core</span><b>Integrated</b></div>
+      <div class="row"><span>Memory</span><b>Memory Center</b></div>
+      <div class="row"><span>Task</span><b>Task Engine</b></div>
+      <div class="row"><span>Workers</span><b>Communication Ready</b></div>
+    </div>
+  </div>
 
-GitHub 저장소 생성: wcrucy.github.io
-공식 홈페이지 개설: https://wcrucy.github.io
-첫 index.html 업로드 성공
-GitHub Pages 기반 개발 방식 확정
+  <section id="projects"><div class="wrap"><h2 class="title">Projects</h2><div class="grid">
+    <div class="module"><h3>01. MONO WORLD</h3><p class="muted">공식 홈페이지와 브라우저 OS 작업실.</p><span class="tag">Main OS</span><div class="bar"><div class="fill" style="width:80%"></div></div></div>
+    <div class="module"><h3>02. Gray Memory Image</h3><p class="muted">잿빛 기억과 이미지 제작 흐름.</p><span class="tag">Image</span><div class="bar"><div class="fill" style="width:58%"></div></div></div>
+    <div class="module"><h3>03. VEO Development</h3><p class="muted">이미지-투-비디오, 카메라 무빙, 영상 엔진 실험.</p><span class="tag">Video</span><div class="bar"><div class="fill" style="width:66%"></div></div></div>
+    <div class="module"><h3>04. AI Model Development</h3><p class="muted">모델룸, 라우터, 프롬프트 엔진, 평가 구조.</p><span class="tag">AI Core</span><div class="bar"><div class="fill" style="width:42%"></div></div></div>
+    <div class="module"><h3>05. ENKARA</h3><p class="muted">아난타, 삼사라, 나라카 세계관 개발.</p><span class="tag">Worldbuilding</span><div class="bar"><div class="fill" style="width:36%"></div></div></div>
+    <div class="module"><h3>06. 잿빛 기억</h3><p class="muted">웹툰/그래픽노블 원고와 캐릭터 작업.</p><span class="tag">Story</span><div class="bar"><div class="fill" style="width:52%"></div></div></div>
+  </div></div></section>
 
-의미:
-MONO WORLD가 처음으로 인터넷에 자기 주소를 갖게 되었다.</div></div>
-  </section>
+  <section id="memory"><div class="wrap"><h2 class="title">Memory · Task · Core</h2><div class="grid2">
+    <div class="card"><h3>Memory Center</h3><p class="muted">공식 주소, 작업 기록, 프로젝트 상태, 세션 로그를 보관한다. MONO 26부터 기억 중심 구조가 시작되었다.</p></div>
+    <div class="card"><h3>Task Engine</h3><p class="muted">오늘 할 일, 작업 대기열, 다음 추천 작업을 관리한다. MONO 28부터 작업판 구조가 들어왔다.</p></div>
+    <div class="card"><h3>Core Integration</h3><p class="muted">Dashboard, Projects, Memory, Workers, Browser를 하나의 MONO CORE로 연결한다.</p></div>
+    <div class="card"><h3>Public Homepage</h3><p class="muted">MONO 30은 이 구조를 공식 홈페이지에 보여주는 첫 공개 업데이트 버전이다.</p></div>
+  </div></div></section>
 
-  <section id="site" class="section">
-    <div class="panel"><h2>공식 홈페이지 운영 방식</h2><div class="log">MONO 새 버전 제작
-↓
-압축 풀기
-↓
-index.html 확인
-↓
-GitHub 저장소 wcrucy.github.io에 업로드
-↓
-https://wcrucy.github.io 새로고침
-↓
-피드백 후 다음 버전 개발</div></div>
-  </section>
+  <section id="workers"><div class="wrap"><h2 class="title">AI Workers</h2><div class="grid">
+    <div class="module"><h3>Router Worker</h3><p class="muted">요청을 분석하고 알맞은 Worker로 넘긴다.</p></div>
+    <div class="module"><h3>Memory Worker</h3><p class="muted">작업 결과와 중요한 결정을 기록한다.</p></div>
+    <div class="module"><h3>Code Worker</h3><p class="muted">홈페이지, OS, 파일 구조를 만든다.</p></div>
+    <div class="module"><h3>Image Worker</h3><p class="muted">캐릭터, 배경, 콘셉트 이미지를 담당한다.</p></div>
+    <div class="module"><h3>Video Worker</h3><p class="muted">Veo 개발, 카메라 무빙, 영상 실험을 담당한다.</p></div>
+    <div class="module"><h3>Story Worker</h3><p class="muted">잿빛 기억, ENKARA, 대사와 콘티를 담당한다.</p></div>
+  </div></div></section>
 
-  <section id="projects" class="section"><div class="panel"><h2>Project Explorer</h2><div id="projectList"></div></div></section>
-
-  <section id="workers" class="section">
-    <div class="grid" id="workerGrid"></div>
-    <div class="panel"><div class="small">MONO 23에서는 Worker 클릭 상태, 작업 카드, Queue 연결을 더 강화한다.</div></div>
-  </section>
-
-  <section id="memory" class="section">
-    <div class="panel"><h2>MONO 22 Memory</h2><div class="log">공식 기억 저장 완료.
-
-- MONO WORLD 공식 홈페이지: https://wcrucy.github.io
-- 공식 저장소: wcrucy/wcrucy.github.io
-- 앞으로 Browser OS 개발은 이 홈페이지를 기준으로 진행한다.
-- index.html은 MONO OS의 첫 인터페이스다.</div></div>
-  </section>
-
-  <section id="next" class="section">
-    <div class="panel"><h2>MONO 23 추천 작업</h2><div class="log">MONO 23 · Browser OS Panel
-
-추가 목표:
-- 좌측 OS 사이드바 강화
-- Project Explorer 클릭 화면
-- Worker Manager 상태 변경 UI
-- Memory Timeline
-- Job Queue 실제 저장 구조
-- Prompt Builder 고도화
-- GitHub Pages 업로드용 index.html 최적화</div></div>
-  </section>
+  <section id="roadmap"><div class="wrap"><h2 class="title">Roadmap</h2><div class="timeline">
+    <div class="item"><div class="ver">MONO 26</div><div><b>Memory Center</b><p class="muted">기억을 중심으로 프로젝트 상태와 세션 기록을 정리.</p></div></div>
+    <div class="item"><div class="ver">MONO 27</div><div><b>Core Integration</b><p class="muted">Dashboard, Projects, Workers, Browser를 MONO CORE로 연결.</p></div></div>
+    <div class="item"><div class="ver">MONO 28</div><div><b>Task Engine</b><p class="muted">오늘 작업, 대기열, 다음 추천 작업 구조 추가.</p></div></div>
+    <div class="item"><div class="ver">MONO 29</div><div><b>Worker Communication</b><p class="muted">AI Worker 간 작업 전달 구조 정의.</p></div></div>
+    <div class="item"><div class="ver">MONO 30</div><div><b>Public Homepage Update</b><p class="muted">공식 홈페이지에 MONO WORLD 현재 구조를 반영.</p></div></div>
+    <div class="item"><div class="ver">NEXT</div><div><b>MONO 31</b><p class="muted">GitHub Pages 배포 가이드 또는 AI Router Core 작업으로 이어간다.</p></div></div>
+  </div></div></section>
 </main>
-</div>
-<script>
-function show(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
-const projects=[['P1','MONO World','공식 홈페이지 / Browser OS / Dashboard','78'],['P2','Gray Memory Image Engine','이미지 생성 연구 / 스타일 메모리','42'],['P3','Mono Veo Engine','5초 영상 / 카메라 무빙 / 영상 연결','55'],['P4','AI Model Development','Router / Worker / Memory / Workflow','70'],['P5','Sound AI','BGM / SFX / Voice / Sync','20'],['P6','Game Engine','장기 게임 개발 후보','10']];
-const workers=[['Image Worker','키비주얼, 컨셉아트, 스타일 관리'],['Video Worker','5초 클립, 장면 연결, 카메라 무빙'],['Sound Worker','음악, 효과음, 성우'],['Code Worker','index.html, UI, 파일 구조'],['Story Worker','콘티, 설정, 대사'],['Memory Worker','MONO_MEMORY, CHANGELOG 기록'],['Review Worker','결과 검토와 다음 작업 제안'],['Web Worker','GitHub Pages 배포 화면 관리']];
-projectList.innerHTML=projects.map(p=>`<div class="project"><span class="tag">${p[0]}</span><div><b>${p[1]}</b><br><span class="small">${p[2]}</span><div class="meter"><span style="width:${p[3]}%"></span></div></div><span class="small">${p[3]}%</span></div>`).join('');
-workerGrid.innerHTML=workers.map(w=>`<div class="card"><div class="name">${w[0]}</div><div class="status build">🔵 대기</div><div class="desc">${w[1]}</div></div>`).join('');
-</script>
+<footer class="foot"><div class="wrap">MONO WORLD · Official Homepage Update · Built with 경훈 and 모노</div></footer>
 </body>
 </html>
