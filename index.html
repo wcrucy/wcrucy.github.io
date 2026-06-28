@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-<header class="top"><div class="brand">MONO WORLD<small>MONO54 · Test Loop 01</small></div><div class="pill" id="topStatus">서버 확인 중...</div></header>
+<header class="top"><div class="brand">MONO WORLD<small>MONO54 · Debug Build 02</small></div><div class="pill" id="topStatus">서버 확인 중...</div></header>
 <div class="wrap">
   <aside class="side"><h2>IMAGE STUDIO</h2><p>첫 번째 목표: Generate 버튼으로 실제 이미지 한 장 생성.</p><div class="menu"><div class="active">🪄 AI 이미지 생성</div><div>🖼 Gallery</div><div>📦 Asset Library</div><div>🎬 Scene Composer</div><div>⚙ Connection</div></div><p style="margin-top:24px" class="muted">UI는 MONO51을 유지하고, MONO54는 실제 이미지 생성 완료에 집중한다.</p></aside>
   <main class="grid">
@@ -36,15 +36,30 @@
     <section class="card"><b>생성 결과 Gallery</b><div class="gallery" id="gallery" style="margin-top:12px"><div class="image">아직 생성 전</div><div class="image">첫 이미지 대기</div></div></section>
   </main>
   <aside class="grid">
-    <section class="card"><b>MONO Director</b><p class="muted" id="director">테스트 루프 1차: 서버/키/네트워크/생성 요청을 순서대로 확인한다.</p></section>
+    <section class="card"><b>MONO Director</b><p class="muted" id="director">Debug Build 02: index.html을 파일로 열어도 localhost:8787 서버로 연결한다.</p></section>
     <section class="card"><b>Diagnostics</b><pre class="json" id="diag">loading...</pre></section>
     <section class="card"><b>Workspace JSON</b><pre class="json" id="stateBox"></pre></section>
   </aside>
 </div>
 <div class="toast" id="toast">MONO54</div>
 <script>
-const state={version:'MONO54',build:'Test Loop 01',goal:'Generate → Real Image → Gallery',server:null,gallery:[],lastError:null,status:'checking'};
+const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? '' : 'http://localhost:8787';
+const state={version:'MONO54',build:'Debug Build 02',goal:'Generate → Real Image → Gallery',apiBase:API_BASE||'same-origin',server:null,gallery:[],lastError:null,status:'checking'};
 const $=id=>document.getElementById(id);
+async function fetchJson(path, options){
+ const url = API_BASE + path;
+ const r = await fetch(url, options);
+ const text = await r.text();
+ let data;
+ try { data = JSON.parse(text); }
+ catch(e) {
+  throw new Error(`서버가 JSON이 아니라 HTML/텍스트를 반환함. URL=${url} / 응답 앞부분=${text.slice(0,80)}`);
+ }
+ if(!r.ok || data.ok===false) {
+  throw new Error(data.error || data.message || ('HTTP '+r.status));
+ }
+ return data;
+}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
 function render(){
  $('stateBox').textContent=JSON.stringify(state,null,2);
@@ -59,26 +74,24 @@ function render(){
  if(state.gallery.length){g.innerHTML=state.gallery.map(img=>`<div><div class="image"><img src="${img.url}" alt="generated"></div><p class="muted">${img.id}</p></div>`).join('')}
 }
 async function health(){
- try{const r=await fetch('/api/mono/health');state.server=await r.json();state.status='health_ok';$('diag').textContent=JSON.stringify(state.server,null,2)}
- catch(e){state.server=null;state.lastError=e.message;state.status='server_offline';$('diag').textContent='서버 연결 실패: '+e.message}
+ try{state.server=await fetchJson('/api/mono/health');state.status='health_ok';$('diag').textContent=JSON.stringify(state.server,null,2)}
+ catch(e){state.server=null;state.lastError=e.message;state.status='server_offline';$('diag').textContent='서버 연결 실패: '+e.message+'\n\n먼저 start_mono54.bat 실행 후 http://localhost:8787 로 열어봐.'}
  render();
 }
 async function diagnostics(){
- try{const r=await fetch('/api/mono/diagnostics');const d=await r.json();$('diag').textContent=JSON.stringify(d,null,2)}catch(e){$('diag').textContent='진단 실패: '+e.message}
+ try{const d=await fetchJson('/api/mono/diagnostics');$('diag').textContent=JSON.stringify(d,null,2)}catch(e){$('diag').textContent='진단 실패: '+e.message}
 }
 async function generate(){
  state.status='generating';state.lastError=null;render();toast('이미지 생성 요청 중...');
  const payload={prompt:$('prompt').value,style:$('style').value,ratio:$('ratio').value,count:Number($('count').value)};
  try{
-  const r=await fetch('/api/mono/image-generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  const d=await r.json();
-  if(!r.ok||!d.ok) throw new Error(d.error||('HTTP '+r.status));
+  const d=await fetchJson('/api/mono/image-generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
   state.status='generated';state.gallery.unshift(...(d.images||[]));$('diag').textContent=JSON.stringify(d,null,2);toast('MONO WORLD 첫 이미지 생성 완료');
  }catch(e){state.status='error';state.lastError=e.message;toast('생성 실패: '+e.message);$('diag').textContent='생성 실패: '+e.message+'\n\n/api/mono/diagnostics를 확인하세요.'}
  render();
 }
 async function selfTest(){
- try{const r=await fetch('/api/mono/self-test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:$('prompt').value,style:$('style').value,ratio:$('ratio').value,count:Number($('count').value)})});const d=await r.json();$('diag').textContent=JSON.stringify(d,null,2);toast(d.ok?'연결 테스트 통과':'연결 테스트 실패');}
+ try{const d=await fetchJson('/api/mono/self-test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:$('prompt').value,style:$('style').value,ratio:$('ratio').value,count:Number($('count').value)})});$('diag').textContent=JSON.stringify(d,null,2);toast(d.ok?'연결 테스트 통과':'연결 테스트 실패');}
  catch(e){$('diag').textContent='연결 테스트 실패: '+e.message;toast('연결 테스트 실패')}
 }
 $('healthBtn').onclick=health;$('diagBtn').onclick=diagnostics;$('generateBtn').onclick=generate;$('selfTestBtn').onclick=selfTest;health();
