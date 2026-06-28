@@ -1,100 +1,27 @@
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MONO54 — Test Loop 01</title>
-<style>
-:root{--bg:#070b14;--panel:#0e1624;--line:#223149;--text:#eef4ff;--muted:#9fb0c8;--blue:#2f7cff;--violet:#8b3dff;--green:#29d17d;--red:#ff5d6c;--orange:#ffb13b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% -10%,#152a4a 0,#070b14 45%,#050810 100%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.top{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;background:rgba(5,9,17,.88);position:sticky;top:0;z-index:3}.brand{font-size:24px;font-weight:900}.brand small{display:block;font-size:12px;color:#76b5ff}.pill{margin-left:auto;border:1px solid var(--line);background:#101a2a;border-radius:999px;padding:9px 13px;color:#cbd8eb}.wrap{display:grid;grid-template-columns:260px 1fr 430px;gap:20px;padding:22px}.side,.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(17,28,45,.96),rgba(10,17,30,.94));border-radius:16px;padding:18px}.side h2{margin:0 0 5px}.side p,.muted{color:var(--muted);line-height:1.6}.menu{display:grid;gap:9px;margin-top:22px}.menu div{padding:12px;border-radius:10px;background:#101a2a}.menu div.active{background:linear-gradient(135deg,#2350b8,#6130cc)}.grid{display:grid;gap:16px}.title h1{margin:0;font-size:30px}.title p{margin:8px 0 0;color:#b7c6da}.textarea{width:100%;min-height:130px;resize:vertical;background:#111b2a;border:1px solid #2a3a54;border-radius:12px;padding:15px;color:var(--text);line-height:1.55}.row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.field{display:grid;gap:7px}.field label{font-size:13px;color:#c9d7e8}.field select,.field input{background:#101a2a;border:1px solid #2a3a54;border-radius:10px;padding:11px}.btn{border:0;border-radius:12px;padding:15px 18px;font-weight:900;background:linear-gradient(90deg,#1974ff,#9a35ff);color:white;cursor:pointer}.btn.secondary{background:#162237;border:1px solid #2a3b57}.btn:disabled{opacity:.55;cursor:not-allowed}.status{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #263854;border-radius:12px;padding:12px;background:#0f1828}.stat b{display:block;font-size:13px;color:#c9d7e8}.ok{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--orange)}.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}.image{aspect-ratio:1/1;border:1px solid #2a3b57;border-radius:14px;background:#101827 center/cover no-repeat;display:grid;place-items:center;color:#8fa2bd;overflow:hidden}.image img{width:100%;height:100%;object-fit:cover}.json{font-family:ui-monospace,Consolas,monospace;font-size:12px;white-space:pre-wrap;color:#a7f0b4;background:#07101b;border:1px solid #203147;border-radius:12px;padding:12px;max-height:320px;overflow:auto}.toast{position:fixed;right:22px;bottom:22px;background:#10243c;border:1px solid #3677d8;border-radius:12px;padding:14px 16px;opacity:0;transform:translateY(8px);transition:.25s}.toast.show{opacity:1;transform:translateY(0)}@media(max-width:1100px){.wrap{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}.side{display:none}}
-</style>
-</head>
-<body>
-<header class="top"><div class="brand">MONO WORLD<small>MONO54 · Debug Build 02</small></div><div class="pill" id="topStatus">서버 확인 중...</div></header>
-<div class="wrap">
-  <aside class="side"><h2>IMAGE STUDIO</h2><p>첫 번째 목표: Generate 버튼으로 실제 이미지 한 장 생성.</p><div class="menu"><div class="active">🪄 AI 이미지 생성</div><div>🖼 Gallery</div><div>📦 Asset Library</div><div>🎬 Scene Composer</div><div>⚙ Connection</div></div><p style="margin-top:24px" class="muted">UI는 MONO51을 유지하고, MONO54는 실제 이미지 생성 완료에 집중한다.</p></aside>
-  <main class="grid">
-    <section class="title"><h1>AI Image Generator</h1><p>키만 연결되면 이 화면에서 MONO WORLD의 첫 이미지가 생성된다.</p></section>
-    <section class="card">
-      <div class="status">
-        <div class="stat"><b>Server</b><span id="serverStat">checking</span></div>
-        <div class="stat"><b>API Key</b><span id="keyStat">checking</span></div>
-        <div class="stat"><b>Ready</b><span id="readyStat">checking</span></div>
-      </div>
-    </section>
-    <section class="card">
-      <b>프롬프트</b>
-      <textarea class="textarea" id="prompt">밤하늘에 별이 빛나는 바닷가, 등대가 있는 풍경, 감성적인 애니메이션 뮤직비디오 키비주얼, 파도와 구름, 몽환적인 분위기, cinematic composition</textarea>
-      <div class="row">
-        <div class="field"><label>Style</label><select id="style"><option>Animation</option><option>Fantasy</option><option>Watercolor</option><option>Cinematic</option></select></div>
-        <div class="field"><label>Ratio</label><select id="ratio"><option>16:9</option><option>1:1</option><option>9:16</option></select></div>
-        <div class="field"><label>Count</label><select id="count"><option>1</option><option>2</option><option>4</option></select></div>
-        <div class="field"><label>Target</label><input value="10초 Animation MV" readonly></div>
-      </div>
-      <div style="display:flex;gap:10px;margin-top:16px"><button class="btn" id="generateBtn">✨ 이미지 생성</button><button class="btn secondary" id="healthBtn">서버 재확인</button><button class="btn secondary" id="diagBtn">진단 보기</button><button class="btn secondary" id="selfTestBtn">연결 테스트</button></div>
-      <p class="muted">실패하면 오른쪽 Diagnostics의 오류 메시지를 그대로 나에게 보내면 된다.</p>
-    </section>
-    <section class="card"><b>생성 결과 Gallery</b><div class="gallery" id="gallery" style="margin-top:12px"><div class="image">아직 생성 전</div><div class="image">첫 이미지 대기</div></div></section>
-  </main>
-  <aside class="grid">
-    <section class="card"><b>MONO Director</b><p class="muted" id="director">Debug Build 02: index.html을 파일로 열어도 localhost:8787 서버로 연결한다.</p></section>
-    <section class="card"><b>Diagnostics</b><pre class="json" id="diag">loading...</pre></section>
-    <section class="card"><b>Workspace JSON</b><pre class="json" id="stateBox"></pre></section>
-  </aside>
-</div>
-<div class="toast" id="toast">MONO54</div>
-<script>
-const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? '' : 'http://localhost:8787';
-const state={version:'MONO54',build:'Debug Build 02',goal:'Generate → Real Image → Gallery',apiBase:API_BASE||'same-origin',server:null,gallery:[],lastError:null,status:'checking'};
-const $=id=>document.getElementById(id);
-async function fetchJson(path, options){
- const url = API_BASE + path;
- const r = await fetch(url, options);
- const text = await r.text();
- let data;
- try { data = JSON.parse(text); }
- catch(e) {
-  throw new Error(`서버가 JSON이 아니라 HTML/텍스트를 반환함. URL=${url} / 응답 앞부분=${text.slice(0,80)}`);
- }
- if(!r.ok || data.ok===false) {
-  throw new Error(data.error || data.message || ('HTTP '+r.status));
- }
- return data;
-}
-function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-function render(){
- $('stateBox').textContent=JSON.stringify(state,null,2);
- const ready=state.server&&state.server.readyForGenerate;
- $('topStatus').textContent=ready?'READY · 첫 이미지 생성 가능':(state.server?'API KEY 필요':'서버 확인 필요');
- $('serverStat').innerHTML=state.server?'<span class="ok">online</span>':'<span class="bad">offline</span>';
- $('keyStat').innerHTML=state.server?.apiKeyLoaded?'<span class="ok">loaded</span>':'<span class="bad">missing</span>';
- $('readyStat').innerHTML=ready?'<span class="ok">true</span>':'<span class="warn">false</span>';
- $('generateBtn').disabled=!ready||state.status==='generating';
- $('director').textContent=ready?'경훈, 준비됐다. 프롬프트를 넣고 이미지 생성 버튼을 눌러봐.':(state.server?'경훈, .env에 API 키를 넣고 서버를 다시 시작해야 한다.':'경훈, start_mono54.bat로 서버부터 켜야 한다.');
- const g=$('gallery');
- if(state.gallery.length){g.innerHTML=state.gallery.map(img=>`<div><div class="image"><img src="${img.url}" alt="generated"></div><p class="muted">${img.id}</p></div>`).join('')}
-}
-async function health(){
- try{state.server=await fetchJson('/api/mono/health');state.status='health_ok';$('diag').textContent=JSON.stringify(state.server,null,2)}
- catch(e){state.server=null;state.lastError=e.message;state.status='server_offline';$('diag').textContent='서버 연결 실패: '+e.message+'\n\n먼저 start_mono54.bat 실행 후 http://localhost:8787 로 열어봐.'}
- render();
-}
-async function diagnostics(){
- try{const d=await fetchJson('/api/mono/diagnostics');$('diag').textContent=JSON.stringify(d,null,2)}catch(e){$('diag').textContent='진단 실패: '+e.message}
-}
-async function generate(){
- state.status='generating';state.lastError=null;render();toast('이미지 생성 요청 중...');
- const payload={prompt:$('prompt').value,style:$('style').value,ratio:$('ratio').value,count:Number($('count').value)};
- try{
-  const d=await fetchJson('/api/mono/image-generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  state.status='generated';state.gallery.unshift(...(d.images||[]));$('diag').textContent=JSON.stringify(d,null,2);toast('MONO WORLD 첫 이미지 생성 완료');
- }catch(e){state.status='error';state.lastError=e.message;toast('생성 실패: '+e.message);$('diag').textContent='생성 실패: '+e.message+'\n\n/api/mono/diagnostics를 확인하세요.'}
- render();
-}
-async function selfTest(){
- try{const d=await fetchJson('/api/mono/self-test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:$('prompt').value,style:$('style').value,ratio:$('ratio').value,count:Number($('count').value)})});$('diag').textContent=JSON.stringify(d,null,2);toast(d.ok?'연결 테스트 통과':'연결 테스트 실패');}
- catch(e){$('diag').textContent='연결 테스트 실패: '+e.message;toast('연결 테스트 실패')}
-}
-$('healthBtn').onclick=health;$('diagBtn').onclick=diagnostics;$('generateBtn').onclick=generate;$('selfTestBtn').onclick=selfTest;health();
-</script>
-</body>
-</html>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MONO58 WORLD - Image Generation Studio</title><style>
+:root{--bg:#070b13;--panel:#111827;--panel2:#0c1424;--line:#263244;--text:#e8eefc;--muted:#91a0b8;--accent:#84ccff;--ok:#7df2a8;--warn:#ffd166;--bad:#ff7a90}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#162342,#070b13 42%,#03050a);color:var(--text);font-family:Segoe UI,Arial,sans-serif}.top{position:sticky;top:0;z-index:10;background:rgba(7,11,19,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 24px;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;letter-spacing:.08em}.pill{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:#0b1220;color:var(--muted);font-size:12px}.wrap{display:grid;grid-template-columns:330px 1fr 340px;gap:18px;padding:18px}.card{background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(10,16,28,.96));border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 20px 80px rgba(0,0,0,.25)}h1,h2,h3{margin:0 0 12px}h1{font-size:24px}h2{font-size:17px}.small{font-size:12px}.muted{color:var(--muted)}.green{color:var(--ok)}.yellow{color:var(--warn)}.red{color:var(--bad)}label{display:block;margin:10px 0 6px;color:#c9d7ef;font-size:13px}input,textarea,select{width:100%;border:1px solid #344155;background:#07101e;color:var(--text);border-radius:12px;padding:10px;font:inherit}textarea{min-height:118px;resize:vertical}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}button{border:1px solid #38506d;background:#17253c;color:var(--text);border-radius:12px;padding:10px 12px;cursor:pointer;font-weight:700}button.primary{background:linear-gradient(135deg,#2563eb,#0ea5e9);border-color:#57b6ff}button.good{background:#123222;border-color:#2d8a52}button.warn{background:#372a10;border-color:#8f6b1b}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}.preview{border:1px dashed #3b4b66;border-radius:18px;min-height:340px;background:#06101d;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}.preview img{width:100%;height:100%;object-fit:contain}.progress{height:12px;border-radius:999px;background:#08111e;border:1px solid #25334a;overflow:hidden;margin-top:12px}.bar{height:100%;width:0%;background:linear-gradient(90deg,#2563eb,#84ccff);transition:width .25s}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.slot{background:#07101e;border:1px solid var(--line);border-radius:16px;overflow:hidden}.slot img{display:block;width:100%;height:150px;object-fit:cover;background:#03050a}.cap{padding:10px;font-size:12px;color:var(--muted)}.item{border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:#07101e}.mono{line-height:1.55;color:#dbe8ff;background:#091426;border:1px solid #203048;border-radius:14px;padding:12px}pre{white-space:pre-wrap;max-height:250px;overflow:auto;background:#050b13;border:1px solid var(--line);border-radius:12px;padding:10px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.flow div{text-align:center;border:1px solid var(--line);border-radius:12px;padding:10px;background:#07101e;font-size:12px}.timelineMini{height:92px;border:1px solid var(--line);border-radius:14px;background:#06101d;position:relative;overflow:hidden}.clip{position:absolute;top:28px;height:34px;border-radius:10px;background:#1d4ed8;border:1px solid #60a5fa;padding:8px;font-size:12px;overflow:hidden;white-space:nowrap}.tick{position:absolute;top:4px;font-size:10px;color:#8292aa;border-left:1px solid #334155;height:82px;padding-left:3px}@media(max-width:1150px){.wrap{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.top{position:static;align-items:flex-start;gap:12px;flex-direction:column}.flow{grid-template-columns:1fr 1fr}}
+</style></head><body><div class="top"><div><div class="brand">🌎 MONO WORLD</div><div class="muted small">MONO58 · Homepage Image Generation Update · Local AI First</div></div><div class="btnrow" style="margin:0"><span class="pill">Server <b id="serverState" class="yellow">checking</b></span><span class="pill">Engine <b id="engineState">auto</b></span><span class="pill">Images <b id="imageCount">0</b></span><span class="pill">Timeline <b id="timelineState">draft</b></span></div></div>
+<div class="wrap"><aside class="left"><section class="card"><h2>⚙ Image Engine</h2><label>Engine</label><select id="engine"><option value="auto">AUTO - Local First</option><option value="automatic1111">Automatic1111 Local AI</option><option value="local-demo">Demo Engine</option><option value="comfyui-placeholder">ComfyUI Placeholder</option></select><div class="btnrow"><button onclick="setEngine()">엔진 적용</button><button onclick="autoDetect()">로컬 AI 감지</button><button onclick="routerStatus()">Router 확인</button></div><p class="small muted">Automatic1111을 쓰려면 WebUI를 <b>--api</b>로 켜고 주소는 기본 <b>127.0.0.1:7860</b>이야. 없으면 Demo Engine이 Gallery 흐름을 유지한다.</p></section><section class="card"><h2>🎛 Generation Options</h2><div class="grid2"><div><label>Ratio</label><select id="ratio"><option>16:9</option><option>1:1</option><option>9:16</option></select></div><div><label>Count</label><select id="count"><option>1</option><option>2</option><option>3</option><option>4</option></select></div><div><label>Width</label><input id="width" value="1024"></div><div><label>Height</label><input id="height" value="576"></div><div><label>Steps</label><input id="steps" value="20"></div><div><label>CFG</label><input id="cfg" value="7"></div></div><label>Negative Prompt</label><textarea id="negative" style="min-height:70px">low quality, blurry, distorted, watermark, text, bad anatomy</textarea></section><section class="card"><h2>🔁 Pipeline</h2><div class="flow"><div>Prompt</div><div>Generate</div><div>Gallery</div><div>Asset</div><div>Scene</div></div></section></aside>
+<main><section class="card"><h1>🖼 Image Studio</h1><div class="hero"><div><label>Prompt</label><textarea id="prompt">Ananta style fantasy background, moonlit ocean, cinematic anime music video scene, glowing stars, soft watercolor atmosphere</textarea><div class="grid2"><div><label>Style</label><select id="style"><option>Animation MV</option><option>Watercolor Artbook</option><option>Cinematic Fantasy</option><option>Character Sheet</option><option>Background Concept</option></select></div><div><label>Target Project</label><select id="target"><option>10초 Animation MV</option><option>MONO WORLD</option><option>ENKARA</option><option>잿빛 기억</option><option>MONO ALICE</option></select></div></div><div class="btnrow"><button class="primary" onclick="generate()">Generate Image</button><button onclick="loadGallery()">최근 Gallery</button><button class="good" onclick="sendLatestToScene()">최근 이미지 Scene 1 등록</button></div><div class="progress"><div id="bar" class="bar"></div></div><div id="progressText" class="small muted" style="margin-top:8px">대기 중</div></div><div class="preview" id="preview"><div class="muted">생성된 이미지가 여기에 표시된다</div></div></div></section><section class="card" style="margin-top:18px"><h2>Gallery</h2><div id="gallery" class="gallery"><div class="slot"><div class="cap">아직 생성된 이미지 없음</div></div></div></section><section class="card" style="margin-top:18px"><h2>🎬 10초 Timeline Preview</h2><div class="grid2"><button onclick="rebuildShots()">Scene → Shot 재생성</button><button onclick="buildTimeline()">Shot → 10초 Timeline</button></div><div id="timeline" class="timelineMini" style="margin-top:12px"></div></section></main>
+<aside class="right"><section class="card"><h2>MONO Director</h2><div id="director" class="mono">경훈, 이번 MONO58은 홈페이지에서 이미지 생성 체감이 먼저 오도록 만든 버전이야. Generate를 누르면 Local AI 또는 Demo Engine으로 결과가 Gallery에 들어간다.</div></section><section class="card"><h2>Asset Library</h2><div id="assets" class="muted">대기 중...</div></section><section class="card"><h2>Scene Composer</h2><div id="scenes" class="muted">대기 중...</div></section><section class="card"><h2>Diagnostics</h2><pre id="diag">대기 중...</pre></section></aside></div><script>
+const $=id=>document.getElementById(id);const API_BASE=location.protocol==='file:'?'http://localhost:8787':'';let state={server:null,gallery:[],assets:null,scenes:null,timeline:null,router:null};
+async function fetchJson(path,opt){const r=await fetch(API_BASE+path,opt);const text=await r.text();let data;try{data=JSON.parse(text)}catch(e){throw new Error('JSON 아님: '+text.slice(0,160))}if(!r.ok)throw new Error(data.message||data.error||r.status);return data}
+function renderStatus(){ $('serverState').textContent=state.server?'online':'offline';$('serverState').className=state.server?'green':'red';$('engineState').textContent=state.server?.requestedEngine?`${state.server.requestedEngine} → ${state.server.resolvedEngine||state.server.engine}`:'auto';$('imageCount').textContent=state.gallery.length||0;$('timelineState').textContent=state.timeline?.version||'draft'}
+function progress(p,msg){$('bar').style.width=p+'%';$('progressText').textContent=msg||''}
+async function health(){try{state.server=await fetchJson('/api/mono/health');$('diag').textContent=JSON.stringify(state.server,null,2);$('director').textContent='서버 연결 성공. 이제 Image Studio에서 Generate를 눌러볼 수 있다.'}catch(e){state.server=null;$('diag').textContent='서버 연결 실패: '+e.message+'\n\nstart_mono_server.bat 실행 후 http://localhost:8787 로 열어줘.';$('director').textContent='서버가 꺼져 있으면 Generate가 안 된다. start_mono_server.bat 먼저 실행하면 된다.'}renderStatus()}
+async function setEngine(){try{const data=await fetchJson('/api/mono/set-engine',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({engine:$('engine').value})});$('diag').textContent=JSON.stringify(data,null,2);await health()}catch(e){$('diag').textContent='엔진 설정 실패: '+e.message}}
+async function autoDetect(){try{const data=await fetchJson('/api/mono/auto-detect');$('diag').textContent=JSON.stringify(data,null,2);$('director').textContent='자동 감지 결과: '+data.detected;await health()}catch(e){$('diag').textContent='자동 감지 실패: '+e.message}}
+async function routerStatus(){try{state.router=await fetchJson('/api/mono/router');$('diag').textContent=JSON.stringify(state.router,null,2);$('director').textContent='Local-first Router 선택: '+(state.router.selectedImageEngine||'none')}catch(e){$('diag').textContent='Router 실패: '+e.message}}
+function galleryHtml(images){return (images||[]).map((x,i)=>`<div class="slot"><img src="${x.url}" onclick="showPreview('${x.url}')"><div class="cap"><b>${x.engine||''}</b><br>${x.id||''}<br>${(x.prompt||'').slice(0,60)}</div><div class="btnrow" style="padding:0 10px 10px;margin-top:0"><button onclick="sendToScene('${x.id}','Scene 1')">Scene 1</button><button onclick="sendToScene('${x.id}','Scene 2')">Scene 2</button></div></div>`).join('')||'<div class="slot"><div class="cap">생성 없음</div></div>'}
+function showPreview(url){$('preview').innerHTML=`<img src="${url}">`}
+async function generate(){try{progress(8,'프롬프트 준비 중...');$('director').textContent='이미지 생성 중... 로컬 AI가 있으면 로컬 AI, 없으면 Demo Engine으로 간다.';let timer=setInterval(()=>{let w=parseInt($('bar').style.width)||8;if(w<88)progress(w+7,'Generating... '+(w+7)+'%')},450);const payload={prompt:$('prompt').value,style:$('style').value,ratio:$('ratio').value,count:Number($('count').value),target:$('target').value,negative_prompt:$('negative').value,width:Number($('width').value),height:Number($('height').value),steps:Number($('steps').value),cfg:Number($('cfg').value)};const res=await fetchJson('/api/mono/image-generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});clearInterval(timer);progress(100,'완료: '+res.message);state.gallery=res.images||[];$('gallery').innerHTML=galleryHtml(state.gallery);if(state.gallery[0])showPreview(state.gallery[0].url);$('diag').textContent=JSON.stringify(res,null,2);$('director').textContent='생성 완료. Gallery에 들어갔고 Asset Library에도 자동 등록됐다.';await loadAssets(false);renderStatus()}catch(e){progress(0,'실패');$('diag').textContent='생성 실패: '+e.message;$('director').textContent='생성이 실패했다. 로컬 AI가 꺼져 있어도 Demo fallback이 켜져 있으면 결과가 나와야 한다.'}}
+async function loadGallery(){try{const data=await fetchJson('/api/mono/gallery');state.gallery=data.images||[];$('gallery').innerHTML=galleryHtml(state.gallery);if(state.gallery[0])showPreview(state.gallery[0].url);$('diag').textContent=JSON.stringify(data,null,2);renderStatus()}catch(e){$('diag').textContent='Gallery 실패: '+e.message}}
+async function loadAssets(msg=true){try{state.assets=await fetchJson('/api/mono/assets');$('assets').innerHTML=(state.assets.assets||[]).slice(0,10).map(a=>`<div class="item"><b>${a.category||'Reference'} · ${a.id}</b><br><span class="small muted">${(a.tags||[]).slice(0,7).join(', ')}</span></div>`).join('')||'Asset 없음';if(msg)$('director').textContent='Asset Library 불러옴.'}catch(e){$('assets').textContent='Asset 실패: '+e.message}}
+async function loadScenes(msg=true){try{state.scenes=await fetchJson('/api/mono/scenes');$('scenes').innerHTML=(state.scenes.scenes||[]).map(s=>`<div class="item"><b>${s.name}</b><br><span class="small muted">assets: ${(s.assets||[]).length}</span></div>`).join('')||'Scene 없음';if(msg)$('director').textContent='Scene Composer 불러옴.'}catch(e){$('scenes').textContent='Scene 실패: '+e.message}}
+async function sendToScene(id,scene){try{const data=await fetchJson('/api/mono/send-to-scene',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({imageId:id,scene})});$('diag').textContent=JSON.stringify(data,null,2);$('director').textContent='Scene 등록 완료. 이제 Shot과 Timeline으로 이어질 수 있다.';await loadScenes(false)}catch(e){$('diag').textContent='Scene 전송 실패: '+e.message}}
+async function sendLatestToScene(){if(!state.gallery[0]){await loadGallery()} if(state.gallery[0]) await sendToScene(state.gallery[0].id,'Scene 1'); else $('director').textContent='먼저 이미지를 생성해야 한다.'}
+async function rebuildShots(){try{const data=await fetchJson('/api/mono/rebuild-shots',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});$('diag').textContent=JSON.stringify(data,null,2);$('director').textContent='Scene 기준 Shot 재생성 완료.'}catch(e){$('diag').textContent='Shot 실패: '+e.message}}
+function renderTimeline(){let t=state.timeline;if(!t){$('timeline').innerHTML='';return}let total=Number(t.totalDurationSec||10);let ticks='';for(let i=0;i<=total;i++){ticks+=`<div class="tick" style="left:${i/total*100}%">${i}s</div>`}let clips=(t.tracks?.video||[]).map(c=>`<div class="clip" style="left:${Number(c.start)/total*100}%;width:${Math.max(Number(c.duration)/total*100,8)}%">${c.scene} · ${c.duration}s</div>`).join('');$('timeline').innerHTML=ticks+clips;renderStatus()}
+async function buildTimeline(){try{const data=await fetchJson('/api/mono/build-timeline',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({totalDurationSec:10})});state.timeline=data;renderTimeline();$('diag').textContent=JSON.stringify(data,null,2);$('director').textContent='Shot을 10초 Timeline으로 변환했다.'}catch(e){$('diag').textContent='Timeline 실패: '+e.message}}
+health();routerStatus();loadGallery();loadAssets(false);loadScenes(false);buildTimeline();
+</script></body></html>
