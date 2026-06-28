@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MONO51 — Image Studio Generator</title>
+<title>MONO52 — Image AI Connection Engine</title>
 <style>
 :root{--bg:#070b14;--panel:#0e1624;--panel2:#111c2d;--line:#223149;--text:#eef4ff;--muted:#98a8bd;--blue:#2f7cff;--violet:#8b3dff;--green:#29d17d;--orange:#ffb13b}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#14233c 0,#070b14 42%,#050810 100%);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,select,input,textarea{font:inherit;color:inherit} .top{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:24px;padding:0 22px;background:rgba(5,9,17,.82);backdrop-filter:blur(12px);position:sticky;top:0;z-index:3}.brand{font-size:25px;font-weight:800;letter-spacing:-.5px}.brand small{display:block;font-size:12px;color:#66a7ff;font-weight:600}.nav{display:flex;gap:12px;flex:1;justify-content:center}.nav button{background:transparent;border:0;padding:11px 15px;border-radius:10px;color:#d8e3f4}.nav button.active{background:linear-gradient(135deg,#12376f,#391a78);box-shadow:0 0 22px rgba(72,115,255,.3)}.profile{display:flex;align-items:center;gap:10px;color:#dce8fa}.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#5bb7ff,#8d50ff);display:grid;place-items:center}.app{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 72px)}.side{border-right:1px solid var(--line);padding:22px 16px;background:rgba(10,17,29,.78)}.side h2{font-size:20px;margin:8px 6px 2px}.side p{margin:0 6px 26px;color:var(--muted)}.menu{display:grid;gap:10px}.menu button{border:0;background:transparent;padding:12px 14px;border-radius:9px;text-align:left;color:#dde8f8}.menu button.active{background:linear-gradient(135deg,#2350b8,#6130cc)}.guide,.quick{margin-top:28px;border:1px solid var(--line);background:rgba(14,24,39,.75);padding:16px;border-radius:12px;color:#c7d5e8}.guide h3,.quick h3{margin:0 0 10px;font-size:15px}.guide p,.quick p{font-size:13px;line-height:1.6;margin:0;color:#aebbd0}.version{position:absolute;bottom:18px;color:#8ca0bd;font-size:13px}.main{padding:24px 28px 28px;display:grid;grid-template-columns:minmax(620px,1fr) 520px;gap:22px}.title h1{margin:0;font-size:28px}.title p{margin:6px 0 18px;color:#b7c6da}.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(17,28,45,.96),rgba(10,17,30,.92));border-radius:14px;padding:16px;box-shadow:0 18px 60px rgba(0,0,0,.25)}.prompt textarea{width:100%;height:118px;resize:vertical;background:#111b2a;border:1px solid #2a3a54;border-radius:10px;padding:15px;line-height:1.55;outline:none}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-top:14px}.field{display:grid;gap:7px;min-width:150px;flex:1}.field label{font-size:13px;color:#c9d7e8}.field select,.field input{background:#101a2a;border:1px solid #2a3a54;border-radius:9px;padding:11px 12px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tag{font-size:13px;padding:7px 11px;border-radius:8px;background:#182437;color:#c5d3e6}.counts button{background:#121c2d;border:1px solid #2b3e5c;padding:11px 16px;border-radius:9px}.counts button.active{border-color:#4f8bff;background:#152e63}.styles{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:14px 0}.style{height:92px;border:1px solid #253550;border-radius:10px;background:linear-gradient(135deg,#14315e,#3a204f);display:flex;align-items:end;justify-content:center;padding:8px;font-size:12px;color:#eef4ff}.style:nth-child(2){background:linear-gradient(135deg,#2c1721,#61527d)}.style:nth-child(3){background:linear-gradient(135deg,#1b442b,#c58b43)}.style:nth-child(4){background:linear-gradient(135deg,#182d57,#9d764c)}.style:nth-child(5){background:linear-gradient(135deg,#ddd,#888);color:#111}.style:nth-child(6){background:linear-gradient(135deg,#24114e,#e13bff)}.advanced{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-top:1px solid var(--line);padding-top:16px;margin-top:16px}.generate{margin-top:18px;width:100%;border:0;border-radius:10px;padding:16px;font-weight:800;font-size:17px;background:linear-gradient(90deg,#1974ff,#9a35ff);cursor:pointer}.hint{text-align:center;color:#b8c3d4;font-size:13px;margin-top:10px}.results{display:grid;gap:14px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.imgbox{aspect-ratio:1/1;border:1px solid #2a3b57;border-radius:12px;background:url('assets/concepts/mono51_image_studio_final_concept.png') center/cover no-repeat;position:relative;overflow:hidden}.imgbox:nth-child(2){background-image:url('assets/concepts/mono51_image_studio_alt_concept.png')}.imgbox::after{content:'Preview';position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);padding:6px 9px;border-radius:8px;font-size:12px}.actions{display:flex;gap:8px;margin-top:8px}.actions button,.smallbtn{background:#162237;border:1px solid #2a3b57;border-radius:9px;padding:9px 11px}.progress{display:grid;gap:10px}.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.step{border:1px solid #243653;border-radius:10px;padding:12px;text-align:center;background:#101a2a}.step.active{border-color:#8b3dff;background:#1e1642}.bar{height:7px;background:#182337;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;width:57%;background:linear-gradient(90deg,#2f7cff,#8b3dff)}.library{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mini{height:58px;border-radius:8px;background:linear-gradient(135deg,#173b66,#8b3dff)}.composer,.music{display:grid;gap:10px}.scene-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.scene{border:1px solid #273953;border-radius:10px;padding:10px;background:#0f1828}.scene .thumb{height:58px;border-radius:7px;background:linear-gradient(135deg,#173b66,#c06b3e);margin-bottom:8px}.wave{height:86px;border-radius:12px;background:repeating-linear-gradient(90deg,#34176e 0 4px,#8f43ff 4px 7px,transparent 7px 13px),linear-gradient(180deg,#151b2f,#11182a);display:flex;align-items:center;justify-content:center;color:#d9c8ff}.json{font-family:ui-monospace,Consolas,monospace;font-size:12px;white-space:pre-wrap;color:#9fe8a4;background:#08101b;border:1px solid #203147;border-radius:10px;padding:12px}.toast{position:fixed;right:22px;bottom:22px;background:#10243c;border:1px solid #3677d8;border-radius:10px;padding:14px 16px;opacity:0;transform:translateY(8px);transition:.25s}.toast.show{opacity:1;transform:translateY(0)}@media(max-width:1100px){.app{grid-template-columns:1fr}.side{display:none}.main{grid-template-columns:1fr}.styles{grid-template-columns:repeat(3,1fr)}}
@@ -14,10 +14,106 @@
 <div class="app"><aside class="side"><h2>IMAGE STUDIO</h2><p>AI Image Generator</p><div class="menu"><button class="active">🪄 AI 이미지 생성</button><button>🎨 스타일 템플릿</button><button>👤 캐릭터 라이브러리</button><button>📘 프롬프트 가이드</button><button>🖼 이미지 갤러리</button><button>🕘 프롬프트 기록</button><button>⚙ 설정</button></div><div class="guide"><h3>Image Studio Guide</h3><p>텍스트 프롬프트로 원하는 이미지를 생성하고 스타일과 옵션을 조합하여 10초 뮤직비디오의 첫 장면을 준비합니다.</p></div><div class="quick"><h3>Quick Links</h3><p>프롬프트 가이드<br>스타일 가이드<br>이미지 업로드<br>업데이트 노트</p></div><div class="version">MONO WORLD v51.0<br>© 2026 MONO STUDIO</div></aside>
 <main class="main"><section><div class="title"><h1>AI Image Generator</h1><p>상상하는 모든 이미지를 만들어 보세요. 첫 번째 목표는 10초 애니메이션 뮤직비디오입니다.</p></div><div class="card prompt"><div style="display:flex;justify-content:space-between;align-items:center"><b>프롬프트</b><button class="smallbtn" id="randomBtn">랜덤 프롬프트</button></div><textarea id="prompt">밤하늘에 별이 빛나는 바닷가, 등대가 있는 풍경, 애니메이션 스타일, 파도, 구름, 몽환적인 분위기, 디테일 높게</textarea><div class="tags"><span class="tag">풍경</span><span class="tag">바다</span><span class="tag">별밤</span><span class="tag">등대</span><span class="tag">구름</span><span class="tag">애니메이션</span><span class="tag">판타지</span><span class="tag">감성</span><span class="tag">+</span></div><div class="row"><div class="field"><label>모델</label><select id="model"><option>MONO AI v1.0 (최적화)</option><option>External API Ready</option><option>Local Model Ready</option></select></div><div class="field"><label>스타일</label><select id="style"><option>애니메이션 (Anime)</option><option>실사</option><option>판타지</option><option>스케치</option><option>사이버펑크</option></select></div><div class="field"><label>해상도</label><select id="ratio"><option>16:9 (1920x1080)</option><option>1:1</option><option>9:16</option><option>4:3</option></select></div><div class="field counts"><label>이미지 개수</label><div><button>1</button><button class="active">2</button><button>4</button><button>8</button></div></div></div><b style="display:block;margin-top:18px">스타일 프리셋</b><div class="styles"><div class="style">기본</div><div class="style">애니메이션</div><div class="style">실사</div><div class="style">판타지</div><div class="style">스케치</div><div class="style">사이버펑크</div></div><div class="advanced"><div class="field"><label>시드</label><input placeholder="시드 선택" /></div><div class="field"><label>가이드 스케일</label><input value="7.5" /></div><div class="field"><label>추론 단계</label><input value="28" /></div><div class="field"><label>이미지 선명도</label><input value="0.8" /></div></div><button class="generate" id="generateBtn">✨ 이미지 생성</button><div class="hint">⚡ 현재 버전은 실제 생성 API 연결 전 UI/프로젝트 저장 프로토타입입니다.</div></div>
 <div class="card" style="margin-top:14px"><b>Scene Composer (장면 구성)</b><div class="scene-row" style="margin-top:12px"><div class="scene"><div class="thumb"></div><b>Scene 1</b><br><small>00:00 - 00:02</small></div><div class="scene"><div class="thumb"></div><b>Scene 2</b><br><small>00:02 - 00:04</small></div><div class="scene"><div class="thumb"></div><b>Scene 3</b><br><small>00:04 - 00:06</small></div><div class="scene"><div class="thumb"></div><b>Scene 4</b><br><small>00:06 - 00:08</small></div><div class="scene"><div class="thumb"></div><b>Scene 5</b><br><small>00:08 - 00:10</small></div></div><button class="smallbtn" style="width:100%;margin-top:12px">+ 장면 추가</button></div><div class="card music" style="margin-top:14px"><b>Music Timeline (10초)</b><div class="wave">First MV Theme.mp3 · BPM 120 · 0s → 10s</div></div></section>
-<aside class="results"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>생성 결과</b><button class="smallbtn">전체 다운로드</button></div><div class="result-grid" style="margin-top:12px"><div><div class="imgbox"></div><div class="actions"><button>⬇</button><button>↗</button><button>♡</button><button>⋯</button></div></div><div><div class="imgbox"></div><div class="actions"><button>⬇</button><button>↗</button><button>♡</button><button>⋯</button></div></div></div></div><div class="card progress"><div style="display:flex;justify-content:space-between"><b>프로젝트: First Music Video</b><button class="smallbtn">프로젝트 설정</button></div><div class="steps"><div class="step">1<br>캐릭터<br>1/1</div><div class="step">2<br>음악<br>1/1</div><div class="step">3<br>장면<br>5/5</div><div class="step active">4<br>이미지<br>진행</div><div class="step">5<br>영상<br>대기</div><div class="step">6<br>편집<br>대기</div><div class="step">7<br>완성<br>대기</div></div><div class="bar"><span></span></div><div style="color:#b8c6d8">전체 진행률 57%</div></div><div class="library"><div class="card"><b>Asset Library</b><div class="mini-grid" style="margin-top:12px"><div class="mini"></div><div class="mini"></div><div class="mini"></div><div class="mini"></div></div><p style="color:#aebbd0">이미지 128 · 음악 8 · 효과음 22 · 자막 14</p></div><div class="card"><b>Character Library</b><div style="display:flex;gap:12px;margin-top:12px"><div class="mini" style="width:92px;height:92px"></div><div><b>Anand</b><br><span style="color:#aebbd0">Main / 기본 의상</span><br><button class="smallbtn" style="margin-top:10px">+ 캐릭터 추가</button></div></div></div></div><div class="card"><b>Workspace JSON</b><pre class="json" id="jsonBox"></pre></div></aside></main></div><div class="toast" id="toast">이미지 생성 작업이 프로젝트에 기록되었습니다.</div>
+<aside class="results"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b>생성 결과</b><button class="smallbtn">전체 다운로드</button></div><div class="result-grid" style="margin-top:12px"><div><div class="imgbox"></div><div class="actions"><button>⬇</button><button>↗</button><button>♡</button><button>⋯</button></div></div><div><div class="imgbox"></div><div class="actions"><button>⬇</button><button>↗</button><button>♡</button><button>⋯</button></div></div></div></div><div class="card progress"><div style="display:flex;justify-content:space-between"><b>프로젝트: First Music Video</b><button class="smallbtn">프로젝트 설정</button></div><div class="steps"><div class="step">1<br>캐릭터<br>1/1</div><div class="step">2<br>음악<br>1/1</div><div class="step">3<br>장면<br>5/5</div><div class="step active">4<br>이미지<br>진행</div><div class="step">5<br>영상<br>대기</div><div class="step">6<br>편집<br>대기</div><div class="step">7<br>완성<br>대기</div></div><div class="bar"><span></span></div><div style="color:#b8c6d8">전체 진행률 57%</div></div><div class="library"><div class="card"><b>Asset Library</b><div class="mini-grid" style="margin-top:12px"><div class="mini"></div><div class="mini"></div><div class="mini"></div><div class="mini"></div></div><p style="color:#aebbd0">이미지 128 · 음악 8 · 효과음 22 · 자막 14</p></div><div class="card"><b>Character Library</b><div style="display:flex;gap:12px;margin-top:12px"><div class="mini" style="width:92px;height:92px"></div><div><b>Anand</b><br><span style="color:#aebbd0">Main / 기본 의상</span><br><button class="smallbtn" style="margin-top:10px">+ 캐릭터 추가</button></div></div></div></div><div class="card"><b>AI Connection</b><p style="color:#aebbd0">Generate 버튼은 MONO Router를 통해 Image AI Connector로 전달됩니다. API 서버가 연결되면 실제 이미지를 받아오고, 없으면 Demo Preview로 기록됩니다.</p><pre class="json" id="connectorBox"></pre></div><div class="card"><b>Workspace JSON</b><pre class="json" id="jsonBox"></pre></div></aside></main></div><div class="toast" id="toast">이미지 생성 작업이 프로젝트에 기록되었습니다.</div>
 <script>
-const state={version:'MONO51',module:'Image Studio Generator',project:'First Music Video',target:'10초 애니메이션 뮤직비디오',model:'MONO AI v1.0',style:'Animation',ratio:'16:9',imageCount:2,progress:57,status:'UI prototype'};
-const jsonBox=document.getElementById('jsonBox');function renderJSON(){jsonBox.textContent=JSON.stringify(state,null,2)}renderJSON();
-document.getElementById('generateBtn').onclick=()=>{state.lastPrompt=document.getElementById('prompt').value;state.style=document.getElementById('style').value;state.ratio=document.getElementById('ratio').value;state.updatedAt=new Date().toISOString();renderJSON();let t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)};
-document.getElementById('randomBtn').onclick=()=>{const p=['새벽 바닷가, 소녀가 등대를 바라보는 장면, 감성 애니메이션 스타일','비가 내리는 밤의 미래 도시, 네온빛, 음악 비디오 분위기','별이 쏟아지는 하늘 아래 기차역, 몽환적인 애니메이션'];document.getElementById('prompt').value=p[Math.floor(Math.random()*p.length)]};
+const state={
+  version:'MONO52',
+  module:'Image AI Connection Engine',
+  project:'First Music Video',
+  target:'10초 애니메이션 뮤직비디오',
+  model:'MONO Image Router v1',
+  style:'Animation',
+  ratio:'16:9',
+  imageCount:2,
+  progress:62,
+  status:'AI connector ready',
+  gallery:[],
+  promptHistory:[]
+};
+
+const connector={
+  mode:'demo-ready',
+  route:'Prompt → MONO Router → Image AI Connector → Gallery → Asset Library',
+  endpoint:'/api/mono/image-generate',
+  apiKeyStorage:'server-side only',
+  note:'GitHub Pages는 보안상 API Key를 직접 넣지 않는다. 실제 생성은 백엔드/로컬 프록시 연결 후 활성화한다.'
+};
+
+const jsonBox=document.getElementById('jsonBox');
+const connectorBox=document.getElementById('connectorBox');
+
+function renderJSON(){
+  jsonBox.textContent=JSON.stringify(state,null,2);
+  if(connectorBox) connectorBox.textContent=JSON.stringify(connector,null,2);
+}
+renderJSON();
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+async function generateImage(payload){
+  if(connector.mode !== 'api'){
+    return {
+      ok:true,
+      demo:true,
+      images:[
+        {id:'demo_'+Date.now(), type:'demo-preview', prompt:payload.prompt, style:payload.style, ratio:payload.ratio}
+      ]
+    };
+  }
+
+  const res = await fetch(connector.endpoint,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  });
+  if(!res.ok) throw new Error('Image AI request failed: '+res.status);
+  return await res.json();
+}
+
+document.getElementById('generateBtn').onclick=async()=>{
+  const payload={
+    prompt:document.getElementById('prompt').value,
+    style:document.getElementById('style').value,
+    ratio:document.getElementById('ratio').value,
+    count:state.imageCount,
+    project:state.project,
+    target:state.target
+  };
+  state.lastPrompt=payload.prompt;
+  state.style=payload.style;
+  state.ratio=payload.ratio;
+  state.updatedAt=new Date().toISOString();
+  state.status='generating';
+  renderJSON();
+  toast('MONO Router가 Image AI Connector로 요청을 보냈습니다.');
+
+  try{
+    const result=await generateImage(payload);
+    state.status=result.demo?'demo generated':'generated';
+    state.promptHistory.unshift({prompt:payload.prompt,style:payload.style,ratio:payload.ratio,createdAt:new Date().toISOString()});
+    state.gallery.unshift(...(result.images||[]));
+    state.progress=68;
+    renderJSON();
+    toast(result.demo?'Demo Preview 기록 완료 · 실제 API 연결 준비됨':'이미지 생성 완료 · Gallery 저장됨');
+  }catch(err){
+    state.status='error';
+    state.lastError=err.message;
+    renderJSON();
+    toast('이미지 생성 오류: '+err.message);
+  }
+};
+
+document.getElementById('randomBtn').onclick=()=>{
+  const p=[
+    '새벽 바닷가, 소녀가 등대를 바라보는 장면, 감성 애니메이션 스타일',
+    '비가 내리는 밤의 미래 도시, 네온빛, 음악 비디오 분위기',
+    '별이 쏟아지는 하늘 아래 기차역, 몽환적인 애니메이션'
+  ];
+  document.getElementById('prompt').value=p[Math.floor(Math.random()*p.length)];
+};
 </script></body></html>
