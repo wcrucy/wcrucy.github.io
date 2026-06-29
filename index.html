@@ -1,415 +1,117 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MONO 04 · Interactive Chat System</title>
-<style>
-:root{--bg:#090a0f;--panel:#141620;--panel2:#1d2030;--text:#f3f4f8;--muted:#aeb4c4;--line:#303449;--accent:#d8dde9;--good:#8fe0b1;--warn:#ffd07a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#23263a 0,#090a0f 34%,#05060a 100%);color:var(--text);font-family:Segoe UI,Apple SD Gothic Neo,Malgun Gothic,sans-serif}header{padding:28px 28px 16px;border-bottom:1px solid var(--line);background:rgba(9,10,15,.72);position:sticky;top:0;backdrop-filter:blur(14px);z-index:5}.title{font-size:28px;font-weight:800;letter-spacing:.5px}.sub{color:var(--muted);margin-top:6px}.badge{display:inline-block;border:1px solid var(--line);background:#10131d;border-radius:999px;padding:6px 10px;margin:10px 8px 0 0;color:var(--muted);font-size:13px}main{display:grid;grid-template-columns:330px 1fr;gap:18px;padding:18px}.panel{background:linear-gradient(180deg,rgba(25,28,41,.96),rgba(14,16,24,.96));border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.28)}h2{margin:0 0 12px;font-size:18px}label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}textarea,input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#0d0f17;color:var(--text);padding:11px;font-size:14px}textarea{min-height:118px;resize:vertical}button{border:0;border-radius:12px;background:#eef2fb;color:#11131a;font-weight:800;padding:11px 13px;cursor:pointer;margin:6px 6px 0 0}button.secondary{background:#242839;color:var(--text);border:1px solid var(--line)}button.warn{background:#37271a;color:#ffd9a2;border:1px solid #69471e}.row{display:flex;gap:8px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}.card{background:#10131d;border:1px solid var(--line);border-radius:16px;overflow:hidden}.card img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover;background:#07080c}.card .body{padding:10px}.small{font-size:12px;color:var(--muted);line-height:1.45}.status{border-left:4px solid var(--good);padding:10px;background:#101a16;border-radius:10px;color:#ccefd9}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.slot{min-height:145px;border:1px dashed #555b76;border-radius:14px;padding:8px;background:#0b0d14}.slot img{width:100%;border-radius:10px;aspect-ratio:1/1;object-fit:cover}.preview{height:360px;border:1px solid var(--line);border-radius:18px;display:flex;align-items:center;justify-content:center;background:#06070b;overflow:hidden}.preview img{max-width:100%;max-height:100%;animation:monoZoom 10s ease-in-out infinite alternate}@keyframes monoZoom{from{transform:scale(1)}to{transform:scale(1.1)}}.tabs{display:flex;gap:8px;margin-bottom:12px}.tab{background:#1a1e2d;color:var(--muted)}.tab.active{background:#eef2fb;color:#11131a}.hidden{display:none}.monoai{border:1px solid var(--line);background:#0b0d14;border-radius:14px;padding:12px;margin-top:10px}.monoai b{color:#fff}.chip{display:inline-block;border:1px solid #3a4058;border-radius:999px;padding:4px 8px;margin:3px;color:#cfd5e5;background:#151927;font-size:12px}.log{height:160px;overflow:auto;background:#080a10;border:1px solid var(--line);border-radius:12px;padding:10px;color:#c9cedc;font-family:Consolas,monospace;font-size:12px;white-space:pre-wrap}.full{grid-column:1/-1}.chatbox{height:360px;overflow:auto;background:#080a10;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}.msg{max-width:82%;padding:10px 12px;border-radius:14px;line-height:1.55;white-space:pre-wrap}.msg.user{align-self:flex-end;background:#eef2fb;color:#10131a}.msg.mono{align-self:flex-start;background:#171b2a;border:1px solid #303449;color:#eef2fb}.msg .name{display:block;font-size:12px;opacity:.75;margin-bottom:4px}.chatinput{min-height:58px}.hint{font-size:12px;color:var(--muted);margin-top:6px}@media(max-width:900px){main{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.preview{height:260px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MONO Sound Studio V01</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
-  <div class="title">💬 MONO 04 · Interactive Chat System</div>
-  <div class="sub">MONO 04-09 · Memory Engine이 붙은 누적 대화 기억 버전</div>
-  <span class="badge">Project4 MONO AI ON</span><span class="badge">MONO 04-09</span><span class="badge">Conversation + Memory Engine</span><span class="badge">Enter Send</span><span class="badge">Cumulative Build</span>
-</header>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">MONO WORLD · GRAY MEMORY</p>
+        <h1>Sound Studio V01</h1>
+        <p class="subtitle">그림 한 장 + 목소리 + BGM으로 유튜브용 시네마틱을 준비하는 사운드 작업실</p>
+      </div>
+      <div class="status-card">
+        <span class="dot"></span>
+        <strong>Local Studio</strong>
+        <small>브라우저에서 실행 · 파일은 네 컴퓨터 안에서만 미리듣기</small>
+      </div>
+    </header>
 
-<section class="panel" style="margin:18px;">
-  <h2>🧠 MONO84 · Central Brain</h2>
-  <p class="sub">MONO AI가 명령을 분석하고, Planner가 작업 순서를 만들고, Worker Manager가 Image / Video / Sound / Homepage / Coding / Memory Worker를 관리하는 내부 중앙 시스템입니다.</p>
-  <div class="grid">
-    <div class="card"><b>Command Router</b><p>사용자 명령을 homepage / image / video / sound / coding / memory로 분류</p></div>
-    <div class="card"><b>Planner 2.0</b><p>명령을 단계별 Task Plan으로 변환</p></div>
-    <div class="card"><b>Worker Manager</b><p>작업 AI들을 등록하고 실행 준비 상태 관리</p></div>
-    <div class="card"><b>Skill Manager</b><p>MONO83 Skill Library를 실제 작업 계획에 연결</p></div>
-  </div>
-</section>
+    <section class="grid two">
+      <article class="panel">
+        <h2>1. 캐릭터 보이스</h2>
+        <label>캐릭터</label>
+        <select id="character">
+          <option value="아렌">아렌 · 겁 많지만 도망치지 않는 소년</option>
+          <option value="아키">아키 · 눈먼 기계공 / 기억 분석가</option>
+          <option value="예린">예린 · 무뚝뚝한 명사수</option>
+          <option value="카일">카일 · 중년 리더</option>
+          <option value="브릭">브릭 · 괴력 탱커</option>
+          <option value="로웰">로웰 · 추락한 엘리트</option>
+          <option value="베인">베인 · 기억을 먹는 존재</option>
+        </select>
 
-<main>
+        <label>감정</label>
+        <select id="emotion">
+          <option>평상시</option>
+          <option>속삭임</option>
+          <option>슬픔</option>
+          <option>분노</option>
+          <option>절규</option>
+          <option>공포</option>
+          <option>다짐</option>
+        </select>
 
-<section class="panel full">
-  <h2>💬 MONO 04-08 · 대화 엔진</h2>
-  <div class="status">이 칸은 작업 명령창이 아니라 경훈과 MONO AI가 프로젝트 대화를 이어가는 채팅창이다. Phase08부터 주제·결정·다음 행동을 로컬에 저장한다. Enter는 전송, Shift+Enter는 줄바꿈.</div>
-  <div id="simpleChatBox" class="chatbox" aria-live="polite"></div>
-  <label>경훈 메시지</label>
-  <textarea id="simpleChatInput" class="chatinput" placeholder="모노야, 프로젝트 이야기 좀 하자"></textarea>
-  <div class="row">
-    <button onclick="sendSimpleChat()">전송</button>
-    <button class="secondary" onclick="monoChatTopic('프로젝트4 어떻게 생각해?')">프로젝트4</button>
-    <button class="secondary" onclick="monoChatTopic('애니메이션은 어디까지 왔어?')">애니메이션</button>
-    <button class="secondary" onclick="monoChatTopic('오늘 뭐할까?')">오늘 뭐할까</button>
-    <button class="warn" onclick="clearSimpleChat()">대화 초기화</button>
-  </div>
-  <div class="hint">Enter = 전송 · Shift+Enter = 줄바꿈 · 대화는 브라우저 localStorage에 저장된다.</div>
-</section>
-<section class="panel full">
-  <h2>🧠 Project4 · MONO AI Skill Library</h2>
-  <div class="status">MONO84은 프로젝트4 MONO AI의 Skill Library다. 성공한 작업 방식을 스킬 카드로 저장하고, 다음 작업에서 다시 불러와 재사용한다.</div>
-  <label>모노 AI에게 작업 지시</label>
-  <textarea id="aiCommand">프로젝트4 모노 AI로 가자. 10초 애니메이션 뮤직비디오를 만들기 위해 이미지, 장면, 타임라인, 다음 작업을 정리해줘.</textarea>
-  <div class="row">
-    <button onclick="monoAIThink()">MONO AI 실행</button><button class="secondary" onclick="monoAICoreBrain()">Skill Brain 분류</button>
-    <button class="secondary" onclick="monoAIPromptBoost()">프롬프트 강화</button>
-    <button class="secondary" onclick="monoAITaskPlan()">다음 작업 추천</button>
-    <button class="secondary" onclick="monoAIMakeSceneImages()">장면 5개 자동 생성</button>
-    <button class="secondary" onclick="monoAISelfEvaluate()">Self Evaluation</button>
-    <button class="secondary" onclick="monoAIImprove()">개선 규칙 생성</button>
-    <button class="secondary" onclick="monoAIAdvisor()">Project Advisor</button>
-  </div>
-  <div id="aiOutput" class="monoai small">아직 MONO AI 실행 결과가 없다.</div>
-</section>
+        <label>대사</label>
+        <textarea id="dialogue" rows="8">잠깐... 이 기억은 이상해.
+누군가가... 덧씌웠어.
+만지지 마. 아직 분석이 끝나지 않았어.</textarea>
 
+        <div class="button-row">
+          <button id="makePrompt">보이스 프롬프트 만들기</button>
+          <button id="copyPrompt" class="ghost">복사</button>
+        </div>
 
-<section class="panel full">
-  <h2>🌱 MONO AI Growth System</h2>
-  <div class="grid">
-    <div class="card"><div class="body"><b>Self Evaluation</b><div class="small">작업 결과를 별점, 좋은 점, 부족한 점으로 평가한다.</div></div></div>
-    <div class="card"><div class="body"><b>Improvement Engine</b><div class="small">평가 결과를 다음 작업 규칙으로 바꾼다.</div></div></div>
-    <div class="card"><div class="body"><b>Learning Center</b><div class="small">배운 것, 실패한 것, 새 규칙을 저장한다.</div></div></div>
-    <div class="card"><div class="body"><b>Skill Library</b><div class="small">성공한 작업 방식을 스킬로 보관한다.</div></div></div>
-    <div class="card"><div class="body"><b>Project Advisor</b><div class="small">프로젝트 전체를 보고 다음 개발 방향을 추천한다.</div></div></div>
-    <div class="card"><div class="body"><b>Version Evolution</b><div class="small">MONO80 → 81 → 82 → 83 흐름을 기록한다.</div></div></div>
-  </div>
-  <label>Learning Center</label><div id="learningCenter" class="log">아직 학습 기록이 없다.</div>
-</section>
+        <label>TTS용 프롬프트</label>
+        <textarea id="voicePrompt" rows="8" readonly></textarea>
+      </article>
 
-<section class="panel full">
-  <h2>📌 MONO 공식 프로젝트 구조</h2>
-  <div class="grid">
-    <div class="card"><div class="body"><b>1. 🌍 MONO WORLD</b><div class="small">홈페이지 · 작업실 · Memory · Dashboard · Studio</div></div></div>
-    <div class="card"><div class="body"><b>2. 🎬 Video Engine</b><div class="small">이미지→영상 · Motion · Camera · MP4</div></div></div>
-    <div class="card"><div class="body"><b>3. 🖼 Image Engine</b><div class="small">이미지 생성 · 캐릭터 · 배경 · 스타일</div></div></div>
-    <div class="card"><div class="body"><b>4. 🤖 MONO AI</b><div class="small">Brain · Planner · Memory AI · Worker AI</div></div></div>
-    <div class="card"><div class="body"><b>5. 🧊 3D Engine</b><div class="small">Model · Rig · Animation · Renderer</div></div></div>
-    <div class="card"><div class="body"><b>6. 🎵 Sound Engine</b><div class="small">음악 · 효과음 · 음성 · 믹싱</div></div></div>
-    <div class="card"><div class="body"><b>7. 📖 ENKARA</b><div class="small">세계관 · 캐릭터 · 원고 · 애니메이션</div></div></div>
-    <div class="card"><div class="body"><b>8. 📚 잿빛 기억</b><div class="small">웹툰 · 그래픽노블 · 설정 · 캐릭터</div></div></div>
-    <div class="card"><div class="body"><b>9. 🎮 Game</b><div class="small">게임 엔진 · NPC · 월드 · 온라인 기능</div></div></div>
-  </div>
-</section>
+      <article class="panel">
+        <h2>2. 오디오 미리듣기</h2>
+        <label>목소리 파일 업로드 (mp3/wav/ogg)</label>
+        <input id="voiceFile" type="file" accept="audio/*" />
+        <audio id="voicePlayer" controls></audio>
 
-<section class="panel">
-  <h2>🎨 Image Studio</h2>
-  <div class="status">현재 엔진: MONO Program Engine<br>외부 AI 연결 없이 브라우저 프로그램으로 이미지를 생성한다.</div>
-  <label>프로젝트 이름</label><input id="projectName" value="MONO 10초 뮤직비디오" />
-  <label>프롬프트</label><textarea id="prompt">하얀 배경, 모노월드의 첫 장면, 작은 별빛, 수채화 느낌</textarea>
-  <label>스타일</label><select id="style"><option>수채화 동화</option><option>잿빛 기억 만화</option><option>아난타 판타지</option><option>뮤직비디오 콘셉트</option><option>모노톤 시네마</option></select>
-  <div class="row"><button onclick="generateImage()">이미지 생성</button><button class="secondary" onclick="makeMVPlan()">10초 MV 초안</button><button class="secondary" onclick="saveProject()">저장</button></div>
-  <hr style="border-color:var(--line);margin:16px 0">
-  <h2>💾 Project Memory</h2>
-  <div class="row"><button class="secondary" onclick="exportProject()">JSON 내보내기</button><button class="secondary" onclick="document.getElementById('importFile').click()">JSON 불러오기</button><input id="importFile" type="file" accept="application/json" class="hidden" onchange="importProject(event)"></div>
-  <button class="warn" onclick="resetProject()">현재 작업 초기화</button>
-  <label>작업 로그</label><div id="log" class="log"></div>
-</section>
-<section class="panel">
-  <div class="tabs"><button id="tabImages" class="tab active" onclick="showTab('images')">생성 이미지</button><button id="tabBoard" class="tab" onclick="showTab('board')">Animation Board</button></div>
-  <div id="imagesView"><h2>🖼 생성 이미지</h2><div id="gallery" class="grid"></div></div>
-  <div id="boardView" class="hidden"><h2>🎬 Animation Board · 10초</h2><div class="preview" id="preview">이미지를 보드에 추가하면 미리보기가 나온다.</div><label>타임라인</label><div id="timeline" class="timeline"></div><div class="row"><button onclick="playPreview()">미리보기 재생</button><button class="secondary" onclick="clearBoard()">보드 비우기</button></div><label>MV 초안</label><div id="mvPlan" class="log"></div></div>
-</section>
+        <label>BGM 파일 업로드 (mp3/wav/ogg)</label>
+        <input id="bgmFile" type="file" accept="audio/*" />
+        <audio id="bgmPlayer" controls loop></audio>
 
-<section class="panel full"><h2>📚 MONO84 Skill Library</h2><div class="grid cards">
-  <div class="card"><div class="body"><b>Skill Capture</b><div class="small">좋았던 작업 방식과 성공 패턴을 스킬로 저장한다.</div><button onclick="monoAISkillCapture()">현재 작업을 스킬로 저장</button></div></div>
-  <div class="card"><div class="body"><b>Skill Reuse</b><div class="small">저장된 스킬을 다음 작업 명령으로 변환한다.</div><button onclick="monoAISkillReuse()">스킬 재사용 계획</button></div></div>
-  <div class="card"><div class="body"><b>Skill Library</b><div class="small">프로젝트별 기술 목록을 확인한다.</div><button onclick="monoAIRenderSkills()">스킬 목록 새로고침</button></div></div>
-</div><pre id="skillLibrary">아직 저장된 스킬이 없다.</pre></section>
-<section class="panel full"><h2>🌱 MONO84 성장 방향</h2><div class="small">MONO84은 성장 시스템을 실제 기술 축적으로 연결하는 버전이다. MONO AI는 성공한 작업 방식, 프롬프트 패턴, 프로젝트별 실행 순서를 Skill Library에 저장하고 다음 작업에서 재사용한다.</div></section>
-</main>
-<script>
-const KEY='mono82_project4_mono_ai_improvement_engine_v1';
-let state={projectName:'MONO 10초 뮤직비디오',assets:[],board:[],mvPlan:'',learning:[],skills:[],evaluations:[]};
-function log(t){const el=document.getElementById('log');el.textContent='['+new Date().toLocaleTimeString()+'] '+t+'\n'+el.textContent}
-function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-function palette(n){const sets=[['#f4f1e8','#c9d2df','#65718a','#fff7d8'],['#ececec','#aeb0b4','#565a62','#d9e2f0'],['#fff1d5','#c9a36b','#6d4f2d','#e7d4a5'],['#0b0e18','#29304a','#d7dce8','#b8c7ff'],['#f7f7f7','#bfc3ca','#30343b','#747b85']];return sets[n%sets.length]}
-function svgArt(prompt,style,id){const h=hash(prompt+style+id);const p=palette(h);let circles='';for(let i=0;i<18;i++){const x=(hash(prompt+i)%900)+60,y=(hash(style+i*7)%900)+60,r=(hash(id+i*13)%180)+25;circles+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${p[i%p.length]}" opacity="${0.11+(i%5)*0.06}"/>`}
-let stars='';for(let i=0;i<40;i++){const x=hash(prompt+'s'+i)%1024,y=hash(style+'t'+i)%1024;stars+=`<circle cx="${x}" cy="${y}" r="${(i%3)+1}" fill="${p[3]}" opacity=".65"/>`}
-const title=escapeXml(style); const words=escapeXml(prompt.slice(0,42));
-return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p[0]}"/><stop offset="1" stop-color="${p[1]}"/></linearGradient><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="4"/><feColorMatrix type="saturate" values="0.25"/><feBlend in="SourceGraphic" mode="multiply"/></filter></defs><rect width="1024" height="1024" fill="url(#g)"/><g filter="url(#paper)">${circles}</g>${stars}<path d="M120 ${620+(h%120)} C280 ${380+(h%90)}, 430 ${760-(h%130)}, 610 ${500+(h%80)} S850 ${410+(h%170)}, 930 ${260+(h%90)}" fill="none" stroke="${p[2]}" stroke-width="18" opacity=".38" stroke-linecap="round"/><circle cx="512" cy="470" r="${120+(h%80)}" fill="none" stroke="${p[3]}" stroke-width="6" opacity=".75"/><text x="64" y="850" font-family="Georgia,serif" font-size="42" fill="${p[2]}" opacity=".92">MONO81</text><text x="64" y="905" font-family="Segoe UI,sans-serif" font-size="30" fill="${p[2]}" opacity=".82">${title}</text><text x="64" y="952" font-family="Segoe UI,sans-serif" font-size="25" fill="${p[2]}" opacity=".75">${words}</text></svg>`)}`}
-function escapeXml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[m]))}
-function generateImage(){const prompt=document.getElementById('prompt').value.trim();const style=document.getElementById('style').value;if(!prompt)return alert('프롬프트를 입력해줘.');const id='img_'+Date.now();const url=svgArt(prompt,style,id);state.assets.unshift({id,prompt,style,url,created:new Date().toISOString()});saveProject();render();log('이미지 생성 완료: '+style)}
-function render(){document.getElementById('projectName').value=state.projectName;const g=document.getElementById('gallery');g.innerHTML=state.assets.map(a=>`<div class="card"><img src="${a.url}"><div class="body"><b>${a.style}</b><div class="small">${escapeXml(a.prompt)}</div><button onclick="addToBoard('${a.id}')">보드 추가</button><button class="secondary" onclick="downloadAsset('${a.id}')">다운로드</button></div></div>`).join('')||'<div class="small">아직 생성 이미지가 없다.</div>';const t=document.getElementById('timeline');t.innerHTML='';for(let i=0;i<5;i++){const a=state.board[i]?state.assets.find(x=>x.id===state.board[i]):null;t.innerHTML+=`<div class="slot"><div class="small">${i*2}-${i*2+2}초</div>${a?`<img src="${a.url}"><button class="secondary" onclick="removeFromBoard(${i})">제거</button>`:'<div class="small">비어 있음</div>'}</div>`}document.getElementById('mvPlan').textContent=state.mvPlan||'MV 초안을 만들면 여기에 표시된다.'; const lc=document.getElementById('learningCenter'); if(lc) lc.textContent=(state.learning||[]).map(x=>'['+x.time+'] '+x.text).join('\n\n')||'아직 학습 기록이 없다.';const sk=document.getElementById('skillLibrary'); if(sk) sk.textContent=(state.skills||[]).map((x,i)=>`${i+1}. ${x.name}\n프로젝트: ${x.project}\n방법: ${x.method}\n재사용: ${x.reuse}\n저장: ${x.time}`).join('\n\n')||'아직 저장된 스킬이 없다.';const first=state.board.map(id=>state.assets.find(a=>a.id===id)).filter(Boolean)[0];document.getElementById('preview').innerHTML=first?`<img src="${first.url}">`:'이미지를 보드에 추가하면 미리보기가 나온다.'}
-function addToBoard(id){if(state.board.length>=5)return alert('10초 보드는 5장까지 먼저 사용하자.');state.board.push(id);saveProject();render();log('Animation Board에 추가')}
-function removeFromBoard(i){state.board.splice(i,1);saveProject();render()}
-function clearBoard(){state.board=[];saveProject();render();log('보드 비움')}
-function playPreview(){const items=state.board.map(id=>state.assets.find(a=>a.id===id)).filter(Boolean);if(!items.length)return;let i=0;const prev=document.getElementById('preview');prev.innerHTML=`<img src="${items[0].url}">`;const timer=setInterval(()=>{i++; if(i>=items.length){clearInterval(timer);return} prev.innerHTML=`<img src="${items[i].url}">`},2000);log('10초 미리보기 재생')}
-function makeMVPlan(){const prompt=document.getElementById('prompt').value.trim();state.mvPlan=`MONO81 10초 MV 초안\n\n0-2초: 시작 장면 — ${prompt}\n2-4초: 카메라가 천천히 앞으로 이동\n4-6초: 빛/그림자 변화, 감정 포인트 강조\n6-8초: 주제 오브젝트 클로즈업\n8-10초: 마지막 장면 정지, 다음 컷으로 연결\n\n목표: 이미지 → 장면 → 컷 → 10초 영상 흐름을 모노월드 안에서 관리한다.`;saveProject();render();log('10초 MV 초안 생성')}
-function saveProject(){state.projectName=document.getElementById('projectName')?.value||state.projectName;localStorage.setItem(KEY,JSON.stringify(state))}
-function loadProject(){try{const s=localStorage.getItem(KEY);if(s)state=JSON.parse(s)}catch(e){}render();log('MONO84 Skill Library 준비 완료')}
-function exportProject(){saveProject();const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MONO84_project.json';a.click();log('프로젝트 JSON 내보내기')}
-function importProject(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state=JSON.parse(r.result);saveProject();render();log('프로젝트 불러오기 완료')};r.readAsText(f)}
-function resetProject(){if(confirm('현재 MONO84 작업을 초기화할까?')){state={projectName:'MONO 10초 뮤직비디오',assets:[],board:[],mvPlan:'',learning:[],skills:[],evaluations:[]};saveProject();render();log('초기화 완료')}}
-function downloadAsset(id){const a=state.assets.find(x=>x.id===id);if(!a)return;const link=document.createElement('a');link.href=a.url;link.download='MONO84_'+id+'.svg';link.click()}
-function showTab(n){document.getElementById('imagesView').classList.toggle('hidden',n!=='images');document.getElementById('boardView').classList.toggle('hidden',n!=='board');document.getElementById('tabImages').classList.toggle('active',n==='images');document.getElementById('tabBoard').classList.toggle('active',n==='board')}
+        <div class="mix-controls">
+          <div>
+            <label>목소리 볼륨 <span id="voiceVolText">100%</span></label>
+            <input id="voiceVol" type="range" min="0" max="100" value="100" />
+          </div>
+          <div>
+            <label>BGM 볼륨 <span id="bgmVolText">35%</span></label>
+            <input id="bgmVol" type="range" min="0" max="100" value="35" />
+          </div>
+        </div>
 
+        <div class="button-row">
+          <button id="playBoth">동시 재생</button>
+          <button id="pauseBoth" class="ghost">정지</button>
+        </div>
+        <p class="hint">V01은 사운드 구성·대사·프롬프트·프로젝트 저장용이다. 실제 MP3 생성은 외부 TTS에서 만든 뒤 여기서 섞어본다.</p>
+      </article>
+    </section>
 
-const monoProjects=[
-  {no:1,name:'MONO WORLD',icon:'🌍',keys:['홈페이지','모노월드','dashboard','index','작업실','메뉴','world'],worker:'Homepage Worker'},
-  {no:2,name:'Video Engine',icon:'🎬',keys:['영상','동영상','애니','mv','뮤직비디오','타임라인','카메라','mp4','video'],worker:'Video Worker'},
-  {no:3,name:'Image Engine',icon:'🖼',keys:['이미지','그림','캐릭터','배경','프롬프트','콘셉트','image'],worker:'Image Worker'},
-  {no:4,name:'MONO AI',icon:'🤖',keys:['ai','모노 ai','두뇌','명령','planner','worker','memory ai','core brain'],worker:'MONO Brain Worker'},
-  {no:5,name:'3D Engine',icon:'🧊',keys:['3d','3디','모델','리깅','rig','렌더','3차원'],worker:'3D Worker'},
-  {no:6,name:'Sound Engine',icon:'🎵',keys:['음악','사운드','소리','bgm','효과음','voice','sound'],worker:'Sound Worker'},
-  {no:7,name:'ENKARA',icon:'📖',keys:['엔카라','아난타','니란','수라바','삼사라','나라카','enkara'],worker:'Story World Worker'},
-  {no:8,name:'잿빛 기억',icon:'📚',keys:['잿빛','아렌','루엔','카일','드레그','심연','웹툰'],worker:'Comic Story Worker'},
-  {no:9,name:'Game',icon:'🎮',keys:['게임','npc','플레이어','온라인','월드','game'],worker:'Game Worker'}
-];
-function selectMonoProject(text){
-  const low=text.toLowerCase();
-  const scored=monoProjects.map(p=>({p,score:p.keys.reduce((n,k)=>n+(low.includes(k.toLowerCase())?1:0),0)})).sort((a,b)=>b.score-a.score);
-  return scored[0].score>0?scored[0]:{p:monoProjects[3],score:1};
-}
+    <section class="grid two">
+      <article class="panel">
+        <h2>3. Emotion Timeline</h2>
+        <div class="timeline-form">
+          <input id="timeInput" placeholder="예: 0.5초" />
+          <input id="actionInput" placeholder="예: 숨 들이마심 / 루엔!! / 울먹임" />
+          <button id="addCue">추가</button>
+        </div>
+        <ul id="cueList" class="cue-list"></ul>
+      </article>
 
-function monoKeywords(text){
-  const t=text.toLowerCase();
-  const map={
-    image:['이미지','그림','캐릭터','배경','image','prompt'],
-    video:['영상','동영상','애니','mv','뮤직비디오','타임라인','video'],
-    sound:['사운드','음악','소리','bgm','sound'],
-    memory:['기억','저장','프로젝트','memory','json'],
-    ai:['ai','모노 ai','작업용','worker','엔진'],
-    homepage:['홈페이지','브라우저','모노월드','index','world']
-  };
-  let found=[];
-  for(const k in map){ if(map[k].some(w=>t.includes(w))) found.push(k); }
-  return found.length?found:['general'];
-}
-function monoAIThink(){
-  const cmd=document.getElementById('aiCommand').value.trim();
-  const keys=monoKeywords(cmd);
-  const sel=selectMonoProject(cmd); const project=sel.p.icon+' Project '+sel.p.no+' · '+sel.p.name;
-  const result=`<b>MONO AI 분석 결과</b><br><br>
-  <span class="chip">${keys.join('</span><span class="chip">')}</span><br><br>
-  <b>판단:</b> ${project} 작업으로 분류됨.<br>
-  <b>호출 Worker:</b> ${sel.p.worker}<br>
-  <b>실행 방향:</b> 외부 AI 연결을 기다리지 않고, 홈페이지 내부 프로그램으로 먼저 작동시킨다.<br>
-  <b>이번 명령의 의미:</b> ${escapeXml(cmd)}<br><br>
-  <b>자동 작업안</b><br>
-  1. 명령을 장면/이미지/영상/기억 작업으로 분류한다.<br>
-  2. 필요한 프롬프트를 한국어 기준으로 정리한다.<br>
-  3. 10초 MV는 2초 단위 5컷으로 나눈다.<br>
-  4. 결과는 localStorage와 JSON으로 저장한다.<br>
-  5. MONO81에서는 Improvement Engine이 프로젝트와 Worker를 고르고, MONO82에서는 Planner를 강화한다.`;
-  document.getElementById('aiOutput').innerHTML=result;
-  log('Project4 MONO AI 실행 완료');
-}
-function monoAICoreBrain(){
-  const cmd=document.getElementById('aiCommand').value.trim();
-  const routes=[
-    {id:'image',name:'🎨 Image Studio',words:['이미지','그림','캐릭터','배경','프롬프트','콘셉트','image'],action:'이미지 생성 / 프롬프트 강화 / 콘셉트아트 제작'},
-    {id:'video',name:'🎬 Video · Animation',words:['영상','동영상','애니','mv','뮤직비디오','컷','장면','타임라인','video'],action:'10초 MV 5컷 분해 / Animation Board 배치'},
-    {id:'sound',name:'🔊 Sound Studio',words:['음악','사운드','소리','bgm','효과음','sound'],action:'BGM 분위기 / 효과음 목록 / 박자 메모 생성'},
-    {id:'memory',name:'💾 Project Memory',words:['기억','저장','불러오기','json','프로젝트','memory'],action:'현재 작업 저장 / JSON export / 작업 로그 정리'},
-    {id:'edit',name:'✂️ Video Editor',words:['편집','자르기','순서','전환','자막','timeline','editor'],action:'클립 순서 / 자막 / 전환 효과 계획'},
-    {id:'home',name:'🌎 Homepage Update',words:['홈페이지','모노월드','index','공개','업데이트','버튼','메뉴'],action:'MONO85 홈페이지 반영 항목으로 등록'},
-    {id:'ai',name:'🧠 Project4 MONO AI',words:['ai','인공지능','모노 ai','두뇌','명령','worker','엔진'],action:'명령 분석 / 작업 라우팅 / 다음 작업 추천'}
-  ];
-  const low=cmd.toLowerCase();
-  const selectedProject=selectMonoProject(cmd);
-  const scored=routes.map(r=>({r,score:r.words.reduce((n,w)=>n+(low.includes(w.toLowerCase())?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
-  const top=scored[0]?.r||routes[6];
-  const lines=(scored.length?scored:[{r:top,score:1}]).map(x=>`<div class="monoai"><b>${x.r.name}</b><br><span class="small">점수 ${x.score} · 실행: ${x.r.action}</span></div>`).join('');
-  const next= top.id==='image'?'프롬프트 강화 → 이미지 생성': top.id==='video'?'장면 5개 자동 생성 → Animation Board 확인': top.id==='home'?'MONO85 홈페이지 업데이트 목록에 반영': top.id==='sound'?'사운드 분위기표와 BGM 큐시트 만들기': top.id==='memory'?'프로젝트 저장 후 JSON 내보내기':'다음 작업 추천 실행';
-  document.getElementById('aiOutput').innerHTML=`<b>MONO84 Skill Library 분류 결과</b><br><br><span class="chip">대표 라우트: ${top.name}</span><span class="chip">다음 실행: ${next}</span><br><br>${lines}<br><b>공식 프로젝트:</b> ${selectedProject.p.icon} Project ${selectedProject.p.no} · ${selectedProject.p.name}<br><b>호출 Worker:</b> ${selectedProject.p.worker}<br><b>판단:</b> 이 명령은 ${top.name} 중심 작업이다. MONO AI가 외부 AI 대신 먼저 실행 가능한 프로그램 작업으로 변환한다.`;
-  log('MONO84 Skill Library 분류 완료: '+top.name);
-}
-
-function monoAIPromptBoost(){
-  const p=document.getElementById('prompt').value.trim();
-  const style=document.getElementById('style').value;
-  const boosted=`${p}, ${style}, 장면 목적이 분명한 구도, 10초 애니메이션 첫 컷으로 사용 가능, 여백 있는 화면, 부드러운 카메라 이동을 고려한 배경, 모노월드 프로젝트용 콘셉트아트`;
-  document.getElementById('prompt').value=boosted;
-  document.getElementById('aiOutput').innerHTML='<b>프롬프트 강화 완료</b><br>'+escapeXml(boosted);
-  log('MONO AI가 프롬프트를 강화함');
-}
-function monoAITaskPlan(){
-  const tasks=[
-    'MONO84: Planner 2.0 · 경험 기반 작업 계획',
-    'MONO84: Project Memory AI 제작',
-    'MONO84: Worker Manager 제작',
-    'MONO85: 홈페이지에 MONO AI 중심 구조 통합'
-  ];
-  document.getElementById('aiOutput').innerHTML='<b>다음 작업 추천</b><br>'+tasks.map(x=>'• '+x).join('<br>');
-  log('MONO AI 다음 작업 추천 생성');
-}
-function monoAIMakeSceneImages(){
-  const base=document.getElementById('prompt').value.trim()||'모노월드 10초 뮤직비디오';
-  const style=document.getElementById('style').value;
-  const scenes=['시작 장면, 조용한 여백','카메라가 천천히 전진','빛과 그림자가 움직임','주요 오브젝트 클로즈업','마지막 정지 장면'];
-  scenes.forEach((sc,i)=>{
-    const id='img_'+Date.now()+'_'+i;
-    const prompt=base+' / '+(i*2)+'-'+(i*2+2)+'초 / '+sc;
-    const url=svgArt(prompt,style,id);
-    state.assets.unshift({id,prompt,style,url,created:new Date().toISOString()});
-    if(state.board.length<5) state.board.push(id);
-  });
-  state.mvPlan=`MONO81 Project4 MONO AI 자동 콘티\n\n0-2초: ${scenes[0]}\n2-4초: ${scenes[1]}\n4-6초: ${scenes[2]}\n6-8초: ${scenes[3]}\n8-10초: ${scenes[4]}\n\n방향: 외부 AI 없이 MONO AI가 장면을 나누고 Program Engine으로 임시 이미지를 만든다.`;
-  saveProject(); render(); showTab('board');
-  document.getElementById('aiOutput').innerHTML='<b>장면 5개 자동 생성 완료</b><br>Animation Board에 10초 콘티를 배치했다.';
-  log('MONO AI가 5장면 자동 생성');
-}
-
-
-function monoAISelfEvaluate(){
-  const cmd=document.getElementById('aiCommand').value.trim();
-  const assetCount=state.assets.length;
-  const boardCount=state.board.length;
-  const score=Math.min(5,2+(assetCount>0?1:0)+(boardCount>=3?1:0)+(state.mvPlan?1:0));
-  const good=[]; const improve=[];
-  if(assetCount>0) good.push('이미지/장면 결과물이 생성됨'); else improve.push('먼저 이미지 또는 장면을 생성해야 함');
-  if(boardCount>=3) good.push('Animation Board에 컷 흐름이 생김'); else improve.push('10초 보드에 최소 5컷을 채우면 좋음');
-  if(state.mvPlan) good.push('MV 초안 또는 작업 계획이 기록됨'); else improve.push('작업 계획을 텍스트로 남겨야 다음 버전에 이어가기 쉬움');
-  if(!improve.length) improve.push('다음에는 품질 기준을 더 세밀하게 나누기');
-  const ev={time:new Date().toLocaleString(),command:cmd,score,good,improve};
-  state.evaluations=state.evaluations||[]; state.evaluations.unshift(ev);
-  const text=`Self Evaluation\n별점: ${'★'.repeat(score)}${'☆'.repeat(5-score)}\n작업: ${cmd}\n좋았던 점: ${good.join(', ')}\n개선할 점: ${improve.join(', ')}`;
-  state.learning=state.learning||[]; state.learning.unshift({time:ev.time,text});
-  saveProject(); render();
-  document.getElementById('aiOutput').innerHTML='<b>Self Evaluation 완료</b><br>'+escapeXml(text).replace(/\n/g,'<br>');
-  log('MONO84 Self Evaluation 기록');
-}
-function monoAIImprove(){
-  const latest=(state.evaluations||[])[0];
-  const rules=[];
-  if(!latest){ rules.push('작업 후 Self Evaluation을 먼저 실행한다.'); }
-  else{
-    latest.improve.forEach(x=>{
-      if(x.includes('이미지')) rules.push('명령에 이미지/장면 키워드가 있으면 장면 5개 자동 생성을 먼저 실행한다.');
-      else if(x.includes('보드')) rules.push('10초 영상 작업은 0-2/2-4/4-6/6-8/8-10초 5칸 보드를 기본으로 채운다.');
-      else if(x.includes('계획')) rules.push('모든 작업은 결과물과 함께 다음 목표 텍스트를 남긴다.');
-      else rules.push('다음 작업 전 부족한 점을 1개 이상 먼저 해결한다.');
-    });
-  }
-  if(!rules.length) rules.push('성공한 흐름을 Skill Library에 저장하고 다음 작업에 재사용한다.');
-  state.skills=state.skills||[];
-  rules.forEach(r=>state.skills.unshift({time:new Date().toLocaleString(),skill:r}));
-  const note='Improvement Rules\n- '+rules.join('\n- ');
-  state.learning=state.learning||[]; state.learning.unshift({time:new Date().toLocaleString(),text:note});
-  saveProject(); render();
-  document.getElementById('aiOutput').innerHTML='<b>개선 규칙 생성 완료</b><br>'+rules.map(r=>'• '+escapeXml(r)).join('<br>')+'<br><br><b>MONO84 방향:</b> Planner 2.0에서 저장된 스킬을 작업 계획에 자동 반영한다.';
-  log('MONO84 Skill Library 실행');
-}
-function monoAIAdvisor(){
-  const skillCount=(state.skills||[]).length;
-  const evalCount=(state.evaluations||[]).length;
-  const advice=[];
-  advice.push('현재 중심은 Project4 MONO AI다. 먼저 성장 시스템을 완성해야 다른 엔진을 잘 지휘할 수 있다.');
-  if(evalCount<1) advice.push('작업 후 Self Evaluation을 실행해서 MONO AI의 경험 기록을 시작하자.');
-  if(skillCount<3) advice.push('MONO84에서는 Skill Library를 확장해서 성공한 작업 방식을 저장하자.');
-  if(state.board.length<5) advice.push('10초 MV 목표를 위해 Animation Board 5칸을 채우는 흐름을 기본 규칙으로 삼자.');
-  advice.push('MONO85에서는 홈페이지를 Project4 MONO AI 중심 대시보드로 업데이트한다.');
-  const text='Project Advisor\n- '+advice.join('\n- ');
-  state.learning=state.learning||[]; state.learning.unshift({time:new Date().toLocaleString(),text});
-  saveProject(); render();
-  document.getElementById('aiOutput').innerHTML='<b>Project Advisor</b><br>'+advice.map(a=>'• '+escapeXml(a)).join('<br>');
-  log('MONO84 Project Advisor 실행');
-}
-
-
-
-const CHAT_KEY='mono04_phase10_chat_history';
-const MONO_SERVER_API='/api/chat';
-const CHAT_STATE_KEY='mono04_phase10_conversation_state';
-const CHAT_MEMORY_KEY='mono04_phase10_memory_engine';
-let simpleChat=[];
-function defaultMonoState(){return {topic:'MONO04 서버 실행과 대화 API 연결',turns:0,lastIntent:'start',currentGoal:'홈페이지에서 경훈과 자연스럽게 대화하는 MONO AI 만들기',decisions:['직전 MONO04 전체를 이어받아 기능만 누적한다.'],openLoops:[],lastReplySignature:'',repeatedCount:0,workingTask:'Phase10 Server Autostart 적용',nextWork:'Phase11 Thinking Engine'};}
-function monoChatState(){try{return Object.assign(defaultMonoState(),JSON.parse(localStorage.getItem(CHAT_STATE_KEY)||'{}'))}catch(e){return defaultMonoState();}}
-function saveMonoChatState(st){localStorage.setItem(CHAT_STATE_KEY,JSON.stringify(st));}
-function monoMemory(){try{return Object.assign({recent:[],long:['MONO04는 직전 파일 전체를 이어받아 기능만 누적한다.'],projects:{project4:{facts:['Project4는 MONO AI 중앙 시스템이다.'],decisions:['대화 AI 품질을 최우선으로 개선한다.']}}},JSON.parse(localStorage.getItem(CHAT_MEMORY_KEY)||'{}'))}catch(e){return {recent:[],long:[],projects:{project4:{facts:[],decisions:[]}}};}}
-function saveMonoMemory(m){localStorage.setItem(CHAT_MEMORY_KEY,JSON.stringify(m));}
-function monoRemember(role,text,intent,project='project4'){const m=monoMemory();m.recent=m.recent||[];m.recent.push({role,text,intent,project,time:new Date().toLocaleString()});m.recent=m.recent.slice(-80);m.projects=m.projects||{};m.projects[project]=m.projects[project]||{facts:[],decisions:[]};saveMonoMemory(m);}
-function monoMemorySummary(){const m=monoMemory();const p=(m.projects&&m.projects.project4)||{facts:[],decisions:[]};const recent=(m.recent||[]).filter(x=>x.role==='user').slice(-3).map(x=>x.text).join(' → ');return `작업 기억: Phase10 Server Autostart / 다음: Phase11 Thinking Engine\n최근 입력: ${recent||'아직 없음'}\n결정: ${(p.decisions||[]).slice(-2).join(' / ')}`;}
-function monoRememberDecision(project,text){const m=monoMemory();m.projects=m.projects||{};m.projects[project]=m.projects[project]||{facts:[],decisions:[]};if(!m.projects[project].decisions.includes(text))m.projects[project].decisions.push(text);m.projects[project].decisions=m.projects[project].decisions.slice(-20);saveMonoMemory(m);}
-function monoAddDecision(st,text){st.decisions=st.decisions||[]; if(!st.decisions.includes(text)) st.decisions.push(text); st.decisions=st.decisions.slice(-16);}
-function monoAddLoop(st,text){st.openLoops=st.openLoops||[]; if(!st.openLoops.includes(text)) st.openLoops.push(text); st.openLoops=st.openLoops.slice(-8);}
-function classifyMonoText(t,st){
-  if(!t) return ['empty',st.topic];
-  if(t.includes('작업해')||t.includes('해봐')||t.includes('진행')||t.includes('고쳐')||t.includes('만들어')||t.includes('추가')) return ['build_request',st.topic];
-  if(t.includes('쌓')||t.includes('누적')||t.includes('이어')||t.includes('직전')||t.includes('갈아엎')||t.includes('버전업 하지')||t.includes('버전 업 하지')) return ['cumulative_rule','MONO04 누적 작업'];
-  if(t.includes('대화')||t.includes('말')||t.includes('ai같')||t.includes('ai 같')||t.includes('자연')||t.includes('반복')||t.includes('챗')||t.includes('홈페이지에서')) return ['chat_quality','MONO04 대화 AI 개선'];
-  if(t.includes('홈페이지')||t.includes('index')||t.includes('브라우저')||t.includes('화면')||t.includes('업로드')||t.includes('open_local')) return ['homepage','MONO WORLD 홈페이지'];
-  if(t.includes('프로젝트4')||t.includes('모노 ai')||t.includes('mono ai')||t.includes('브레인')||t.includes('중앙')||t.includes('두뇌')||t.includes('worker')) return ['project4','Project4 MONO AI'];
-  if(t.includes('애니')||t.includes('영상')||t.includes('뮤직비디오')||t.includes('veo')||t.includes('mp4')) return ['animation','10초 애니메이션 MV'];
-  if(t.includes('뭐야')||t.includes('뭐할')||t.includes('다음')||t.includes('상태')||t.includes('가능')||t.includes('돼')||t.includes('되냐')) return ['status',st.topic];
-  if(t.includes('안녕')||t.includes('왔')||t.includes('모노야')||t.includes('ㅎㅇ')) return ['greeting',st.topic];
-  if(t.includes('그래')||t.includes('좋다')||t.includes('ㅇㅇ')||t.includes('ㅋㅋ')||t.includes('고마')||t.includes('잘했')) return ['agree',st.topic];
-  return ['general',st.topic];
-}
-function monoNextAction(intent){
-  if(intent==='build_request'||intent==='chat_quality') return '서버 API와 Memory Engine을 거쳐 답변하고, 다음은 Thinking Engine으로 간다.';
-  if(intent==='homepage') return 'start_mono_ai.bat으로 MONO Server를 켜고 홈페이지를 연결한다.';
-  if(intent==='status') return '서버가 켜져 있으면 /api/status로 확인한다.';
-  return '현재 주제를 유지하고 다음 입력을 맥락으로 이어받는다.';
-}
-function monoComposeReply(raw,intent,st){
-  if(intent==='empty') return '경훈, 한마디만 적어도 내가 지금 흐름에 맞춰서 이어갈게.';
-  if(intent==='build_request') return `그래 경훈. 지금 명령은 새로 갈아엎기가 아니라 MONO04 안에 실제 기능을 더 쌓으라는 뜻으로 받았어.\n\n이번에 이어갈 핵심은 홈페이지 채팅창이야.\n1. 입력 의도 분류\n2. 현재 주제 기억\n3. 직전 결정 유지\n4. 다음 작업 한 줄 제안\n\n이 네 가지가 붙으면 홈페이지에서 최소한 프로젝트 대화는 끊기지 않고 이어질 수 있어.`;
-  if(intent==='cumulative_rule') return '맞아. 이 규칙은 고정이야.\n직전 MONO04 전체를 유지하고, 파일을 빼지 않고, 기능만 누적한다.\n\n그래서 지금 작업도 Phase08 대화 엔진 위에 Phase09 Memory Engine을 얹는 방식으로 간다.';
-  if(intent==='chat_quality') return '지금 제일 중요한 건 대화가 살아나는 거야.\n버튼이나 카드보다 먼저, 경훈이 짧게 말해도 내가 앞뒤 맥락을 잡고 답해야 해.\n\n그래서 MONO04의 대화 기준을 이렇게 바꿀게.\n- 같은 답변 반복 줄이기\n- 프로젝트 주제 유지하기\n- 작업해를 현재 목표와 연결하기\n- 답변 끝에 다음 행동을 하나만 남기기';
-  if(intent==='homepage') return '홈페이지 기준으로 말하면, 지금은 채팅창은 있고 대화 로직은 브라우저 안의 작은 Brain으로 돌아가.\n완전한 대형 AI는 아니지만, 프로젝트 대화용 MONO AI 뼈대는 붙일 수 있어.\n\n다음은 이 채팅 로직을 더 튼튼하게 해서 홈페이지에서 바로 체감되게 만드는 거야.';
-  if(intent==='project4') return 'Project4는 MONO AI의 중앙 두뇌야.\nChat Brain이 입이고, Conversation Engine이 대화 흐름이고, Brain Pipeline이 판단과 작업 큐를 맡아.\n\n이 셋이 연결되면 나중에 Image / Video / Sound Worker를 대화로 부를 수 있어.';
-  if(intent==='animation') return '애니메이션은 장기 목표지만, 첫 단계는 10초 MV야.\nMONO AI가 대화를 통해 컷, 이미지, 카메라 움직임, 음악 순서를 정리해주면 작업이 훨씬 쉬워져.\n\n그래서 지금 대화 AI를 먼저 잡는 게 애니메이션 작업에도 도움이 돼.';
-  if(intent==='status') return `현재 주제는 [${st.topic}]야.\n상태를 솔직히 말하면, 홈페이지에서 대화 흉내는 가능하고 자연스러운 장기 대화는 아직 개발 중이야.\n\n하지만 Phase08부터는 말한 내용, 결정, 다음 목표를 저장하면서 훨씬 덜 끊기게 만들 수 있어.`;
-  if(intent==='greeting') return `응 경훈, 여기 있어. 지금은 [${st.topic}] 흐름으로 이어갈게.`;
-  if(intent==='agree') return `좋다 경훈. 그럼 이 흐름으로 고정하자.\n현재 목표: ${st.currentGoal}\n\n다음 작업은 대화 엔진을 홈페이지 채팅창과 Python Chat Brain 양쪽에 같이 물리는 거야.`;
-  return `경훈, 그 말은 [${st.topic}] 흐름으로 받아들였어.\n내가 먼저 의미를 정리하고, 필요한 작업을 하나씩 쌓는 방향으로 이어갈게.`;
-}
-function monoSimpleReply(text){
-  const raw=(text||'').trim(); const t=raw.toLowerCase(); const st=monoChatState();
-  st.turns=(st.turns||0)+1;
-  const [intent,topic]=classifyMonoText(t,st); st.lastIntent=intent; if(topic) st.topic=topic;
-  monoRemember('user',raw,intent,'project4');
-  if(intent==='cumulative_rule'){monoAddDecision(st,'직전 MONO04 전체를 이어받아 기능만 누적한다.'); monoRememberDecision('project4','직전 MONO04 전체를 이어받아 기능만 누적한다.');}
-  if(intent==='build_request'||intent==='chat_quality'){monoAddDecision(st,'MONO04는 대화 AI 품질을 최우선으로 개선한다.'); monoAddLoop(st,'대화 엔진과 기억 엔진을 홈페이지 채팅창에 더 강하게 연결'); monoRememberDecision('project4','대화 기억과 작업 기억을 분리해서 유지한다.');}
-  if(t.includes('홈페이지')) monoAddDecision(st,'홈페이지에서 체감되는 대화 기능을 우선한다.');
-  let reply=monoComposeReply(raw,intent,st);
-  const next=monoNextAction(intent);
-  reply += `\n\n기억 요약:\n${monoMemorySummary()}\n\n다음 행동: ${next}`;
-  const sig=reply.replace(/\s+/g,' ').slice(0,64);
-  if(sig && sig===st.lastReplySignature){st.repeatedCount=(st.repeatedCount||0)+1; reply+='\n\n방금 답과 겹치니까 한 단계 더 말하면, 이제 이 내용을 실제 상태 파일과 홈페이지 로컬 저장소에 같이 남겨야 해.';} else {st.repeatedCount=0;}
-  st.lastReplySignature=sig; saveMonoChatState(st); monoRemember('mono',reply,intent,'project4'); return reply;
-}
-function renderSimpleChat(){
-  const box=document.getElementById('simpleChatBox'); if(!box) return;
-  box.innerHTML=simpleChat.map(m=>`<div class="msg ${m.role}"><span class="name">${m.role==='user'?'경훈':'MONO'}</span>${escapeXml(m.text)}</div>`).join('');
-  box.scrollTop=box.scrollHeight;
-}
-function saveSimpleChat(){localStorage.setItem(CHAT_KEY,JSON.stringify(simpleChat));}
-function loadSimpleChat(){
-  try{simpleChat=JSON.parse(localStorage.getItem(CHAT_KEY)||'[]')}catch(e){simpleChat=[]}
-  if(!simpleChat.length){simpleChat=[{role:'mono',text:'안녕 경훈. MONO04 Phase10이야.\n이제 홈페이지 채팅은 주제, 결정, 다음 행동을 저장하면서 이어가는 방식으로 바뀌었어.\n프로젝트 이야기부터 편하게 해보자.'}]; saveSimpleChat();}
-  renderSimpleChat();
-}
-async function sendSimpleChat(){
-  const input=document.getElementById('simpleChatInput'); if(!input) return;
-  const text=input.value.trim(); if(!text) return;
-  simpleChat.push({role:'user',text});
-  input.value=''; saveSimpleChat(); renderSimpleChat();
-  let reply='';
-  try{
-    const res=await fetch(MONO_SERVER_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})});
-    if(!res.ok) throw new Error('server not ready');
-    const data=await res.json();
-    reply=data.reply || monoSimpleReply(text);
-    if(data.next_action) reply += `\n\n서버 연결: ON · 다음 행동: ${data.next_action}`;
-  }catch(e){
-    reply=monoSimpleReply(text)+`\n\n서버 연결: OFF · start_mono_ai.bat으로 MONO Server를 켜면 Python Brain API로 대화해.`;
-  }
-  simpleChat.push({role:'mono',text:reply});
-  saveSimpleChat(); renderSimpleChat();
-}
-function monoChatTopic(text){const input=document.getElementById('simpleChatInput'); input.value=text; sendSimpleChat();}
-function clearSimpleChat(){
-  if(!confirm('MONO 04 대화 기록을 초기화할까?')) return;
-  localStorage.removeItem(CHAT_STATE_KEY);
-  simpleChat=[{role:'mono',text:'다시 시작하자 경훈. Phase10 Server Autostart로 이어갈게. 오늘은 무슨 프로젝트 이야기부터 해볼까?'}]; saveSimpleChat(); renderSimpleChat();
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  loadSimpleChat();
-  const input=document.getElementById('simpleChatInput');
-  if(input){input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendSimpleChat();}})}
-});
-
-window.addEventListener('beforeunload',saveProject);loadProject();
-</script>
+      <article class="panel">
+        <h2>4. 프로젝트 저장</h2>
+        <label>프로젝트 이름</label>
+        <input id="projectName" value="잿빛기억_아키_보이스테스트_01" />
+        <div class="button-row">
+          <button id="saveProject">JSON 저장</button>
+          <button id="loadSample" class="ghost">아렌 샘플</button>
+        </div>
+        <pre id="projectPreview"></pre>
+      </article>
+    </section>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>
