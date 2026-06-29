@@ -1,117 +1,52 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONO Sound Studio V01</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MONO Sound Studio V02</title>
+<style>
+:root{--bg:#101116;--panel:#181a22;--line:#2b2f3a;--text:#e8e8e8;--muted:#a9adba;--accent:#9aa4ff;}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#0d0e13,#171923);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;}
+header{padding:28px 24px;border-bottom:1px solid var(--line)} h1{margin:0;font-size:28px} p{color:var(--muted);line-height:1.6}
+main{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:20px;max-width:1200px;margin:auto}.card{background:rgba(24,26,34,.92);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+label{display:block;margin:14px 0 6px;color:#cdd1df;font-weight:700} select,input,textarea,button{width:100%;border-radius:12px;border:1px solid var(--line);background:#0f1118;color:var(--text);padding:12px;font-size:15px}textarea{min-height:170px;resize:vertical}button{cursor:pointer;background:#262b3f;font-weight:800;margin-top:10px}button:hover{background:#303756}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.small{font-size:13px;color:var(--muted)}pre{white-space:pre-wrap;background:#0c0e14;border:1px solid var(--line);border-radius:12px;padding:12px;color:#dfe3ff}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);margin:3px}.warn{color:#ffd28a}</style>
 </head>
 <body>
-  <main class="app">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">MONO WORLD · GRAY MEMORY</p>
-        <h1>Sound Studio V01</h1>
-        <p class="subtitle">그림 한 장 + 목소리 + BGM으로 유튜브용 시네마틱을 준비하는 사운드 작업실</p>
-      </div>
-      <div class="status-card">
-        <span class="dot"></span>
-        <strong>Local Studio</strong>
-        <small>브라우저에서 실행 · 파일은 네 컴퓨터 안에서만 미리듣기</small>
-      </div>
-    </header>
-
-    <section class="grid two">
-      <article class="panel">
-        <h2>1. 캐릭터 보이스</h2>
-        <label>캐릭터</label>
-        <select id="character">
-          <option value="아렌">아렌 · 겁 많지만 도망치지 않는 소년</option>
-          <option value="아키">아키 · 눈먼 기계공 / 기억 분석가</option>
-          <option value="예린">예린 · 무뚝뚝한 명사수</option>
-          <option value="카일">카일 · 중년 리더</option>
-          <option value="브릭">브릭 · 괴력 탱커</option>
-          <option value="로웰">로웰 · 추락한 엘리트</option>
-          <option value="베인">베인 · 기억을 먹는 존재</option>
-        </select>
-
-        <label>감정</label>
-        <select id="emotion">
-          <option>평상시</option>
-          <option>속삭임</option>
-          <option>슬픔</option>
-          <option>분노</option>
-          <option>절규</option>
-          <option>공포</option>
-          <option>다짐</option>
-        </select>
-
-        <label>대사</label>
-        <textarea id="dialogue" rows="8">잠깐... 이 기억은 이상해.
+<header><h1>MONO Sound Studio V02</h1><p>빠른 제작용: 대사·감정·캐릭터 설정을 만들고, 윈도우 기본 TTS 스크립트로 WAV 목소리 파일을 생성한다.</p></header>
+<main>
+<section class="card">
+<h2>Voice Line Builder</h2>
+<div class="row"><div><label>캐릭터</label><select id="character"><option>아키</option><option>아렌</option><option>루엔</option><option>예린</option><option>카일</option><option>브릭</option><option>로웰</option><option>베인</option></select></div><div><label>감정</label><select id="emotion"><option>조용함</option><option>불안</option><option>슬픔</option><option>분노</option><option>절규</option><option>속삭임</option></select></div></div>
+<div class="row"><div><label>속도</label><input id="rate" type="range" min="-10" max="10" value="-1" /></div><div><label>볼륨</label><input id="volume" type="range" min="0" max="100" value="100" /></div></div>
+<label>대사</label><textarea id="line">잠깐... 이 기억은 이상해.
 누군가가... 덧씌웠어.
 만지지 마. 아직 분석이 끝나지 않았어.</textarea>
-
-        <div class="button-row">
-          <button id="makePrompt">보이스 프롬프트 만들기</button>
-          <button id="copyPrompt" class="ghost">복사</button>
-        </div>
-
-        <label>TTS용 프롬프트</label>
-        <textarea id="voicePrompt" rows="8" readonly></textarea>
-      </article>
-
-      <article class="panel">
-        <h2>2. 오디오 미리듣기</h2>
-        <label>목소리 파일 업로드 (mp3/wav/ogg)</label>
-        <input id="voiceFile" type="file" accept="audio/*" />
-        <audio id="voicePlayer" controls></audio>
-
-        <label>BGM 파일 업로드 (mp3/wav/ogg)</label>
-        <input id="bgmFile" type="file" accept="audio/*" />
-        <audio id="bgmPlayer" controls loop></audio>
-
-        <div class="mix-controls">
-          <div>
-            <label>목소리 볼륨 <span id="voiceVolText">100%</span></label>
-            <input id="voiceVol" type="range" min="0" max="100" value="100" />
-          </div>
-          <div>
-            <label>BGM 볼륨 <span id="bgmVolText">35%</span></label>
-            <input id="bgmVol" type="range" min="0" max="100" value="35" />
-          </div>
-        </div>
-
-        <div class="button-row">
-          <button id="playBoth">동시 재생</button>
-          <button id="pauseBoth" class="ghost">정지</button>
-        </div>
-        <p class="hint">V01은 사운드 구성·대사·프롬프트·프로젝트 저장용이다. 실제 MP3 생성은 외부 TTS에서 만든 뒤 여기서 섞어본다.</p>
-      </article>
-    </section>
-
-    <section class="grid two">
-      <article class="panel">
-        <h2>3. Emotion Timeline</h2>
-        <div class="timeline-form">
-          <input id="timeInput" placeholder="예: 0.5초" />
-          <input id="actionInput" placeholder="예: 숨 들이마심 / 루엔!! / 울먹임" />
-          <button id="addCue">추가</button>
-        </div>
-        <ul id="cueList" class="cue-list"></ul>
-      </article>
-
-      <article class="panel">
-        <h2>4. 프로젝트 저장</h2>
-        <label>프로젝트 이름</label>
-        <input id="projectName" value="잿빛기억_아키_보이스테스트_01" />
-        <div class="button-row">
-          <button id="saveProject">JSON 저장</button>
-          <button id="loadSample" class="ghost">아렌 샘플</button>
-        </div>
-        <pre id="projectPreview"></pre>
-      </article>
-    </section>
-  </main>
-  <script src="app.js"></script>
+<button onclick="previewBrowserVoice()">브라우저 음성 미리듣기</button>
+<button onclick="downloadText()">voice_line.txt 저장</button>
+<button onclick="downloadProject()">sound_project.json 저장</button>
+<p class="small warn">실제 WAV 생성은 압축파일 안의 scripts/generate_voice.bat를 실행하면 된다.</p>
+</section>
+<section class="card">
+<h2>Generated Prompt</h2>
+<pre id="prompt"></pre>
+<h2>빠른 사용 순서</h2>
+<p><span class="pill">1</span> 대사 작성 <span class="pill">2</span> voice_line.txt 저장 <span class="pill">3</span> scripts 폴더에 넣기 <span class="pill">4</span> generate_voice.bat 실행 <span class="pill">5</span> output_voice.wav 사용</p>
+<p class="small">윈도우에 한국어 음성이 설치되어 있으면 한국어 음성을 우선 사용한다. 없으면 기본 음성으로 생성된다.</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function buildPrompt(){
+ const c=$('character').value,e=$('emotion').value,r=$('rate').value,v=$('volume').value,t=$('line').value;
+ $('prompt').textContent=`캐릭터: ${c}\n감정: ${e}\n속도: ${r}\n볼륨: ${v}\n\n대사:\n${t}\n\n연기 지시:\n${c}는 잿빛기억의 인물이다. ${e} 감정을 유지하되 과장하지 말고, 호흡과 침묵을 살려 말한다.`;
+}
+['character','emotion','rate','volume','line'].forEach(id=>$(id).addEventListener('input',buildPrompt)); buildPrompt();
+function previewBrowserVoice(){
+ const u=new SpeechSynthesisUtterance($('line').value); u.lang='ko-KR'; u.rate=1+(Number($('rate').value)/20); u.volume=Number($('volume').value)/100; speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+function dl(name,content,type='text/plain'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function downloadText(){dl('voice_line.txt',$('line').value)}
+function downloadProject(){dl('sound_project.json',JSON.stringify({character:$('character').value,emotion:$('emotion').value,rate:$('rate').value,volume:$('volume').value,line:$('line').value,createdAt:new Date().toISOString()},null,2),'application/json')}
+</script>
 </body>
 </html>
