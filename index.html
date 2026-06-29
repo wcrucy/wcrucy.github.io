@@ -2,98 +2,293 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MONO65 · Real AI Bridge + One Image Animation Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MONO84 · Project4 MONO AI Central Brain</title>
 <style>
-:root{--bg:#070b14;--panel:#0f1726;--panel2:#121d31;--line:#24344f;--text:#eef6ff;--muted:#9eb0c8;--blue:#2f8cff;--green:#17b26a;--red:#ef4444;--yellow:#f6c85f}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#15213a 0,#070b14 45%,#04070d 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",sans-serif}header{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line);background:#080d18cc;position:sticky;top:0;z-index:5;backdrop-filter:blur(10px)}h1{font-size:20px;margin:0;letter-spacing:2px}.sub{font-size:12px;color:var(--muted);margin-top:3px}.badges{display:flex;gap:10px;flex-wrap:wrap}.badge{border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:#101827;color:var(--muted);font-size:13px}.badge b{color:#8dffbd}.wrap{display:grid;grid-template-columns:330px 1fr 330px;gap:18px;padding:18px;max-width:1500px;margin:0 auto}.card{background:linear-gradient(180deg,#121b2e,#0b1220);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 40px #0006;margin-bottom:16px}.card h2,.card h3{margin:0 0 14px}.small{font-size:12px;color:var(--muted);line-height:1.45}.btn{border:1px solid #315071;background:#12223a;color:#fff;padding:11px 14px;border-radius:12px;font-weight:800;cursor:pointer}.btn.primary{background:linear-gradient(135deg,#2f7cff,#19b7ff);border-color:#4db6ff}.btn.green{background:#0e633c;border-color:#23b86e}.btn.red{background:#541c26;border-color:#a43b4b}.btn:active{transform:translateY(1px)}input,select,textarea{width:100%;background:#07101d;border:1px solid #2b405e;border-radius:12px;color:#fff;padding:12px;font-size:15px}textarea{min-height:110px;resize:vertical}.drop{border:2px dashed #3b5578;border-radius:20px;min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;background:#08111e;transition:.2s;padding:20px}.drop.drag{border-color:#3ea0ff;background:#0e223a}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}.thumb{background:#08111e;border:1px solid var(--line);border-radius:15px;overflow:hidden}.thumb img{width:100%;height:120px;object-fit:cover;display:block;background:#02050a}.thumb .body{padding:10px}.thumb .name{font-weight:800;font-size:13px;word-break:break-all}.thumb .meta{font-size:12px;color:var(--muted);margin:5px 0 10px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.lane{min-height:210px;background:#08111e;border:1px solid var(--line);border-radius:15px;padding:12px}.lane h3{font-size:15px;margin:0 0 10px}.mini{display:flex;gap:9px;align-items:center;padding:8px;border:1px solid #253956;border-radius:12px;background:#0d1728;margin-bottom:8px}.mini img{width:54px;height:38px;object-fit:cover;border-radius:7px}.mini span{font-size:12px;color:#dceaff;word-break:break-all}.scene{border:1px solid #2a4264;background:#08111e;border-radius:14px;padding:12px;margin-bottom:10px}.scene.active{outline:2px solid var(--blue)}.timeline{height:110px;background:#07101d;border:1px solid var(--line);border-radius:15px;padding:12px;display:flex;gap:6px;align-items:end;overflow:auto}.shot{height:56px;min-width:120px;background:linear-gradient(135deg,#214fd9,#2f78ff);border:1px solid #75a7ff;border-radius:10px;padding:8px;font-size:12px;font-weight:800}.preview{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:20;padding:24px}.preview.open{display:flex}.preview img{max-width:92vw;max-height:86vh;border-radius:16px;border:1px solid #456}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pill{padding:7px 10px;background:#0b1626;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px}
-.aiok{color:#8dffbd}.aibad{color:#ff8d8d}.statusbox{border:1px solid var(--line);border-radius:14px;background:#07101d;padding:12px;margin-top:10px}.rangeRow{display:grid;grid-template-columns:85px 1fr 54px;gap:8px;align-items:center;margin:9px 0}.stage{height:320px;background:#02050a;border:1px solid #31486b;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}.stage img{max-width:86%;max-height:86%;object-fit:contain;transition:transform 10s linear;will-change:transform}.stage.playing img{transform:translate(var(--panx),var(--pany)) scale(var(--zoom)) rotate(var(--rot));animation:monoShake var(--dur) linear infinite}.stage:not(.shake) img{animation:none}@keyframes monoShake{0%,100%{filter:none}25%{filter:drop-shadow(2px 0 0 #fff1)}50%{filter:drop-shadow(-2px 0 0 #fff1)}75%{filter:drop-shadow(0 2px 0 #fff1)}}.kbd{font-family:ui-monospace,Consolas,monospace;background:#050a12;border:1px solid var(--line);border-radius:8px;padding:2px 6px;color:#d7e8ff}
-@media(max-width:1100px){.wrap{grid-template-columns:1fr}.board{grid-template-columns:1fr 1fr}}@media(max-width:650px){.board{grid-template-columns:1fr}.badges{display:none}}
+:root{--bg:#090a0f;--panel:#141620;--panel2:#1d2030;--text:#f3f4f8;--muted:#aeb4c4;--line:#303449;--accent:#d8dde9;--good:#8fe0b1;--warn:#ffd07a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#23263a 0,#090a0f 34%,#05060a 100%);color:var(--text);font-family:Segoe UI,Apple SD Gothic Neo,Malgun Gothic,sans-serif}header{padding:28px 28px 16px;border-bottom:1px solid var(--line);background:rgba(9,10,15,.72);position:sticky;top:0;backdrop-filter:blur(14px);z-index:5}.title{font-size:28px;font-weight:800;letter-spacing:.5px}.sub{color:var(--muted);margin-top:6px}.badge{display:inline-block;border:1px solid var(--line);background:#10131d;border-radius:999px;padding:6px 10px;margin:10px 8px 0 0;color:var(--muted);font-size:13px}main{display:grid;grid-template-columns:330px 1fr;gap:18px;padding:18px}.panel{background:linear-gradient(180deg,rgba(25,28,41,.96),rgba(14,16,24,.96));border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.28)}h2{margin:0 0 12px;font-size:18px}label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}textarea,input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#0d0f17;color:var(--text);padding:11px;font-size:14px}textarea{min-height:118px;resize:vertical}button{border:0;border-radius:12px;background:#eef2fb;color:#11131a;font-weight:800;padding:11px 13px;cursor:pointer;margin:6px 6px 0 0}button.secondary{background:#242839;color:var(--text);border:1px solid var(--line)}button.warn{background:#37271a;color:#ffd9a2;border:1px solid #69471e}.row{display:flex;gap:8px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}.card{background:#10131d;border:1px solid var(--line);border-radius:16px;overflow:hidden}.card img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover;background:#07080c}.card .body{padding:10px}.small{font-size:12px;color:var(--muted);line-height:1.45}.status{border-left:4px solid var(--good);padding:10px;background:#101a16;border-radius:10px;color:#ccefd9}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.slot{min-height:145px;border:1px dashed #555b76;border-radius:14px;padding:8px;background:#0b0d14}.slot img{width:100%;border-radius:10px;aspect-ratio:1/1;object-fit:cover}.preview{height:360px;border:1px solid var(--line);border-radius:18px;display:flex;align-items:center;justify-content:center;background:#06070b;overflow:hidden}.preview img{max-width:100%;max-height:100%;animation:monoZoom 10s ease-in-out infinite alternate}@keyframes monoZoom{from{transform:scale(1)}to{transform:scale(1.1)}}.tabs{display:flex;gap:8px;margin-bottom:12px}.tab{background:#1a1e2d;color:var(--muted)}.tab.active{background:#eef2fb;color:#11131a}.hidden{display:none}.monoai{border:1px solid var(--line);background:#0b0d14;border-radius:14px;padding:12px;margin-top:10px}.monoai b{color:#fff}.chip{display:inline-block;border:1px solid #3a4058;border-radius:999px;padding:4px 8px;margin:3px;color:#cfd5e5;background:#151927;font-size:12px}.log{height:160px;overflow:auto;background:#080a10;border:1px solid var(--line);border-radius:12px;padding:10px;color:#c9cedc;font-family:Consolas,monospace;font-size:12px;white-space:pre-wrap}.full{grid-column:1/-1}@media(max-width:900px){main{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.preview{height:260px}}
 </style>
 </head>
 <body>
-<header><div><h1>🌎 MONO WORLD</h1><div class="sub">MONO65 · Real AI Bridge · 로컬 AI 연결 테스트 + 한 장 이미지 애니메이션</div></div><div class="badges"><div class="badge">Mode <b>AI Bridge</b></div><div class="badge">Images <b id="imageCount">0</b></div><div class="badge">Timeline <b>10초 MV</b></div><div class="badge">AI <b id="aiStatusBadge">OFF</b></div></div></header>
-<div class="wrap">
-<aside>
- <section class="card"><h2>📂 Image Import</h2><p class="small">ChatGPT에서 만든 이미지를 저장한 뒤 여기로 끌어다 놓거나 파일 선택으로 불러와.</p><input id="fileInput" type="file" accept="image/*" multiple><div id="drop" class="drop" style="margin-top:12px"><div><b>이미지 드래그 & 드롭</b><br><span class="small">PNG / JPG / WEBP 가능</span></div></div><div class="row" style="margin-top:12px"><button class="btn primary" onclick="document.getElementById('fileInput').click()">이미지 선택</button><button class="btn" onclick="clearAll()">초기화</button></div></section>
- <section class="card"><h2>🤖 AI Bridge</h2><p class="small">로컬 AI 서버를 켰을 때만 연결해. 예: <span class="kbd">http://127.0.0.1:7860</span> Stable Diffusion WebUI API.</p><label class="small">Local AI URL</label><input id="aiUrl" value="http://127.0.0.1:7860"><div class="row" style="margin-top:10px"><button class="btn primary" onclick="testAI()">연결 테스트</button><button class="btn" onclick="saveAIUrl()">주소 저장</button></div><div id="aiStatus" class="statusbox small">아직 테스트하지 않음</div><br><label class="small">AI 생성 프롬프트</label><textarea id="aiPrompt" placeholder="예: cinematic anime girl standing under moonlight, high quality"></textarea><button class="btn green" style="width:100%;margin-top:10px" onclick="generateAIImage()">로컬 AI 이미지 생성</button></section>
- <section class="card"><h2>🏷️ Import 설정</h2><label class="small">기본 분류</label><select id="defaultCategory"><option>Background</option><option>Character</option><option>Prop</option><option>Effect</option></select><br><br><label class="small">프로젝트</label><select id="project"><option>10초 Animation MV</option><option>MONO WORLD</option><option>ENKARA</option><option>잿빛 기억</option></select><br><br><label class="small">메모 / 프롬프트</label><textarea id="note" placeholder="예: 달빛 바다 배경, 아난타 스타일, 16:9"></textarea></section>
- <section class="card"><h2>🧭 Pipeline</h2><div class="row"><span class="pill">Import</span><span class="pill">Board</span><span class="pill">Scene</span><span class="pill">Shot</span><span class="pill">Timeline</span></div><p class="small">로컬 AI는 지금 당장 필수 아님. 나중에 업스케일, 배경제거, 프레임 생성, 영상 생성에 연결.</p></section>
-</aside>
+<header>
+  <div class="title">🌎 MONO84 · Project4 MONO AI Central Brain</div>
+  <div class="sub">프로젝트4 MONO AI가 성공한 작업 방식을 스킬로 저장하고 다음 작업에 재사용하는 Skill Library 버전</div>
+  <span class="badge">Project4 MONO AI ON</span><span class="badge">Skill Library</span><span class="badge">Skill Capture</span><span class="badge">Skill Reuse</span><span class="badge">Learning Center</span>
+</header>
+
+<section class="panel" style="margin:18px;">
+  <h2>🧠 MONO84 · Central Brain</h2>
+  <p class="sub">MONO AI가 명령을 분석하고, Planner가 작업 순서를 만들고, Worker Manager가 Image / Video / Sound / Homepage / Coding / Memory Worker를 관리하는 내부 중앙 시스템입니다.</p>
+  <div class="grid">
+    <div class="card"><b>Command Router</b><p>사용자 명령을 homepage / image / video / sound / coding / memory로 분류</p></div>
+    <div class="card"><b>Planner 2.0</b><p>명령을 단계별 Task Plan으로 변환</p></div>
+    <div class="card"><b>Worker Manager</b><p>작업 AI들을 등록하고 실행 준비 상태 관리</p></div>
+    <div class="card"><b>Skill Manager</b><p>MONO83 Skill Library를 실제 작업 계획에 연결</p></div>
+  </div>
+</section>
+
 <main>
- <section class="card"><h2>🎬 Animation Board</h2><p class="small">이미지 생성은 ChatGPT에서 하고, MONO WORLD는 이미지를 애니메이션 제작용 에셋으로 정리한다.</p><div class="board" id="board"></div></section>
- <section class="card"><h2>🖼️ Gallery</h2><div id="gallery" class="grid"></div></section>
- <section class="card"><h2>🎥 One Image Motion Preview</h2><p class="small">선택한 이미지 한 장으로 줌/이동/회전/흔들림을 10초 미리보기한다. 이 부분은 로컬 AI 없이 바로 작동.</p><div id="motionStage" class="stage"><span class="small">이미지를 선택하면 여기에 표시됨</span></div><div class="two" style="margin-top:12px"><button class="btn green" onclick="playMotion()">▶ 10초 Preview</button><button class="btn" onclick="stopMotion()">■ 정지</button></div><div class="rangeRow"><span class="small">Zoom</span><input id="mZoom" type="range" min="1" max="2" step="0.05" value="1.25" oninput="syncMotionLabels()"><b id="mZoomV">1.25</b></div><div class="rangeRow"><span class="small">Pan X</span><input id="mPanX" type="range" min="-160" max="160" step="5" value="0" oninput="syncMotionLabels()"><b id="mPanXV">0</b></div><div class="rangeRow"><span class="small">Pan Y</span><input id="mPanY" type="range" min="-100" max="100" step="5" value="0" oninput="syncMotionLabels()"><b id="mPanYV">0</b></div><div class="rangeRow"><span class="small">Rotate</span><input id="mRot" type="range" min="-8" max="8" step="0.5" value="0" oninput="syncMotionLabels()"><b id="mRotV">0</b></div><div class="row"><button class="btn" onclick="applyPreset('cinematic')">Cinematic</button><button class="btn" onclick="applyPreset('anime')">Anime</button><button class="btn" onclick="applyPreset('dramatic')">Dramatic</button><button class="btn" onclick="applyPreset('shake')">Shake</button></div></section>
- <section class="card"><h2>🎞️ 10초 Timeline Preview</h2><div class="row" style="margin-bottom:10px"><button class="btn green" onclick="buildTimeline()">Scene → Shot → 10초 Timeline</button><button class="btn" onclick="downloadProject()">프로젝트 JSON 저장</button></div><div id="timeline" class="timeline"></div><p class="small" id="timelineInfo">아직 타임라인 없음</p></section>
+<section class="panel full">
+  <h2>🧠 Project4 · MONO AI Skill Library</h2>
+  <div class="status">MONO84은 프로젝트4 MONO AI의 Skill Library다. 성공한 작업 방식을 스킬 카드로 저장하고, 다음 작업에서 다시 불러와 재사용한다.</div>
+  <label>모노 AI에게 작업 지시</label>
+  <textarea id="aiCommand">프로젝트4 모노 AI로 가자. 10초 애니메이션 뮤직비디오를 만들기 위해 이미지, 장면, 타임라인, 다음 작업을 정리해줘.</textarea>
+  <div class="row">
+    <button onclick="monoAIThink()">MONO AI 실행</button><button class="secondary" onclick="monoAICoreBrain()">Skill Brain 분류</button>
+    <button class="secondary" onclick="monoAIPromptBoost()">프롬프트 강화</button>
+    <button class="secondary" onclick="monoAITaskPlan()">다음 작업 추천</button>
+    <button class="secondary" onclick="monoAIMakeSceneImages()">장면 5개 자동 생성</button>
+    <button class="secondary" onclick="monoAISelfEvaluate()">Self Evaluation</button>
+    <button class="secondary" onclick="monoAIImprove()">개선 규칙 생성</button>
+    <button class="secondary" onclick="monoAIAdvisor()">Project Advisor</button>
+  </div>
+  <div id="aiOutput" class="monoai small">아직 MONO AI 실행 결과가 없다.</div>
+</section>
+
+
+<section class="panel full">
+  <h2>🌱 MONO AI Growth System</h2>
+  <div class="grid">
+    <div class="card"><div class="body"><b>Self Evaluation</b><div class="small">작업 결과를 별점, 좋은 점, 부족한 점으로 평가한다.</div></div></div>
+    <div class="card"><div class="body"><b>Improvement Engine</b><div class="small">평가 결과를 다음 작업 규칙으로 바꾼다.</div></div></div>
+    <div class="card"><div class="body"><b>Learning Center</b><div class="small">배운 것, 실패한 것, 새 규칙을 저장한다.</div></div></div>
+    <div class="card"><div class="body"><b>Skill Library</b><div class="small">성공한 작업 방식을 스킬로 보관한다.</div></div></div>
+    <div class="card"><div class="body"><b>Project Advisor</b><div class="small">프로젝트 전체를 보고 다음 개발 방향을 추천한다.</div></div></div>
+    <div class="card"><div class="body"><b>Version Evolution</b><div class="small">MONO80 → 81 → 82 → 83 흐름을 기록한다.</div></div></div>
+  </div>
+  <label>Learning Center</label><div id="learningCenter" class="log">아직 학습 기록이 없다.</div>
+</section>
+
+<section class="panel full">
+  <h2>📌 MONO 공식 프로젝트 구조</h2>
+  <div class="grid">
+    <div class="card"><div class="body"><b>1. 🌍 MONO WORLD</b><div class="small">홈페이지 · 작업실 · Memory · Dashboard · Studio</div></div></div>
+    <div class="card"><div class="body"><b>2. 🎬 Video Engine</b><div class="small">이미지→영상 · Motion · Camera · MP4</div></div></div>
+    <div class="card"><div class="body"><b>3. 🖼 Image Engine</b><div class="small">이미지 생성 · 캐릭터 · 배경 · 스타일</div></div></div>
+    <div class="card"><div class="body"><b>4. 🤖 MONO AI</b><div class="small">Brain · Planner · Memory AI · Worker AI</div></div></div>
+    <div class="card"><div class="body"><b>5. 🧊 3D Engine</b><div class="small">Model · Rig · Animation · Renderer</div></div></div>
+    <div class="card"><div class="body"><b>6. 🎵 Sound Engine</b><div class="small">음악 · 효과음 · 음성 · 믹싱</div></div></div>
+    <div class="card"><div class="body"><b>7. 📖 ENKARA</b><div class="small">세계관 · 캐릭터 · 원고 · 애니메이션</div></div></div>
+    <div class="card"><div class="body"><b>8. 📚 잿빛 기억</b><div class="small">웹툰 · 그래픽노블 · 설정 · 캐릭터</div></div></div>
+    <div class="card"><div class="body"><b>9. 🎮 Game</b><div class="small">게임 엔진 · NPC · 월드 · 온라인 기능</div></div></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>🎨 Image Studio</h2>
+  <div class="status">현재 엔진: MONO Program Engine<br>외부 AI 연결 없이 브라우저 프로그램으로 이미지를 생성한다.</div>
+  <label>프로젝트 이름</label><input id="projectName" value="MONO 10초 뮤직비디오" />
+  <label>프롬프트</label><textarea id="prompt">하얀 배경, 모노월드의 첫 장면, 작은 별빛, 수채화 느낌</textarea>
+  <label>스타일</label><select id="style"><option>수채화 동화</option><option>잿빛 기억 만화</option><option>아난타 판타지</option><option>뮤직비디오 콘셉트</option><option>모노톤 시네마</option></select>
+  <div class="row"><button onclick="generateImage()">이미지 생성</button><button class="secondary" onclick="makeMVPlan()">10초 MV 초안</button><button class="secondary" onclick="saveProject()">저장</button></div>
+  <hr style="border-color:var(--line);margin:16px 0">
+  <h2>💾 Project Memory</h2>
+  <div class="row"><button class="secondary" onclick="exportProject()">JSON 내보내기</button><button class="secondary" onclick="document.getElementById('importFile').click()">JSON 불러오기</button><input id="importFile" type="file" accept="application/json" class="hidden" onchange="importProject(event)"></div>
+  <button class="warn" onclick="resetProject()">현재 작업 초기화</button>
+  <label>작업 로그</label><div id="log" class="log"></div>
+</section>
+<section class="panel">
+  <div class="tabs"><button id="tabImages" class="tab active" onclick="showTab('images')">생성 이미지</button><button id="tabBoard" class="tab" onclick="showTab('board')">Animation Board</button></div>
+  <div id="imagesView"><h2>🖼 생성 이미지</h2><div id="gallery" class="grid"></div></div>
+  <div id="boardView" class="hidden"><h2>🎬 Animation Board · 10초</h2><div class="preview" id="preview">이미지를 보드에 추가하면 미리보기가 나온다.</div><label>타임라인</label><div id="timeline" class="timeline"></div><div class="row"><button onclick="playPreview()">미리보기 재생</button><button class="secondary" onclick="clearBoard()">보드 비우기</button></div><label>MV 초안</label><div id="mvPlan" class="log"></div></div>
+</section>
+
+<section class="panel full"><h2>📚 MONO84 Skill Library</h2><div class="grid cards">
+  <div class="card"><div class="body"><b>Skill Capture</b><div class="small">좋았던 작업 방식과 성공 패턴을 스킬로 저장한다.</div><button onclick="monoAISkillCapture()">현재 작업을 스킬로 저장</button></div></div>
+  <div class="card"><div class="body"><b>Skill Reuse</b><div class="small">저장된 스킬을 다음 작업 명령으로 변환한다.</div><button onclick="monoAISkillReuse()">스킬 재사용 계획</button></div></div>
+  <div class="card"><div class="body"><b>Skill Library</b><div class="small">프로젝트별 기술 목록을 확인한다.</div><button onclick="monoAIRenderSkills()">스킬 목록 새로고침</button></div></div>
+</div><pre id="skillLibrary">아직 저장된 스킬이 없다.</pre></section>
+<section class="panel full"><h2>🌱 MONO84 성장 방향</h2><div class="small">MONO84은 성장 시스템을 실제 기술 축적으로 연결하는 버전이다. MONO AI는 성공한 작업 방식, 프롬프트 패턴, 프로젝트별 실행 순서를 Skill Library에 저장하고 다음 작업에서 재사용한다.</div></section>
 </main>
-<aside>
- <section class="card"><h2>MONO Director</h2><div id="director" class="scene">ChatGPT로 만든 이미지를 가져오면 Animation Board에 자동 등록된다.</div></section>
- <section class="card"><h2>📚 Asset Library</h2><div id="assets"></div></section>
- <section class="card"><h2>🎭 Scene Composer</h2><div id="scenes"></div><button class="btn primary" onclick="addSelectedToScene()" style="width:100%;margin-top:8px">선택 이미지 Scene 등록</button></section>
- <section class="card"><h2>🧪 Diagnostics</h2><pre id="diag" class="small" style="white-space:pre-wrap;max-height:180px;overflow:auto;background:#060b12;border:1px solid var(--line);border-radius:12px;padding:12px">ready</pre></section>
-</aside>
-</div>
-<div id="preview" class="preview" onclick="this.classList.remove('open')"><img id="previewImg"></div>
 <script>
-const CATS=['Background','Character','Prop','Effect'];
-let state=JSON.parse(localStorage.getItem('mono65_state')||'null')||{images:[],scenes:[{name:'Scene 1',assets:[]},{name:'Scene 2',assets:[]},{name:'Scene 3',assets:[]},{name:'Scene 4',assets:[]},{name:'Scene 5',assets:[]}],selected:null,timeline:[]};
-function save(){localStorage.setItem('mono65_state',JSON.stringify(state));render();}
-function log(x){document.getElementById('diag').textContent=typeof x==='string'?x:JSON.stringify(x,null,2)}
-function classify(name,note){const t=(name+' '+note).toLowerCase(); if(/캐릭|인물|소녀|소년|사람|character|girl|boy|person|ananta|anand/.test(t))return'Character'; if(/소품|검|책|lamp|prop|item/.test(t))return'Prop'; if(/빛|마법|효과|effect|spark|fire|smoke/.test(t))return'Effect'; return document.getElementById('defaultCategory')?.value||'Background'}
-function handleFiles(files){[...files].forEach(file=>{if(!file.type.startsWith('image/'))return; const r=new FileReader(); r.onload=()=>{const note=document.getElementById('note').value.trim(); const img={id:'mono65_'+Date.now()+'_'+Math.random().toString(36).slice(2,6),name:file.name.replace(/\.[^.]+$/,''),src:r.result,category:classify(file.name,note),project:document.getElementById('project').value,note,created:new Date().toLocaleString()}; state.images.unshift(img); state.selected=img.id; save(); log('Import 성공: '+file.name)}; r.readAsDataURL(file);});}
-fileInput.addEventListener('change',e=>handleFiles(e.target.files));
-['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag')}));
-['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag')}));
-drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
-function moveCat(id,cat){const im=state.images.find(x=>x.id===id); if(im){im.category=cat;save();}}
-function selectImg(id){state.selected=id;save();}
-function openImg(src){previewImg.src=src;preview.classList.add('open')}
-function addToScene(id,idx=0){const s=state.scenes[idx]; if(!s.assets.includes(id))s.assets.push(id); save();}
-function addSelectedToScene(){if(!state.selected){log('선택된 이미지 없음');return} addToScene(state.selected,0); log('Scene 1에 등록 완료')}
-function buildTimeline(){const ids=state.scenes.flatMap(s=>s.assets); const unique=[...new Set(ids)]; const take=unique.length?unique:state.images.slice(0,4).map(x=>x.id); const dur=take.length?Math.max(1,10/take.length):0; state.timeline=take.map((id,i)=>({id,shot:'Shot '+(i+1),duration:+dur.toFixed(1)})); save(); log({ok:true,timeline:state.timeline})}
-function downloadProject(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='mono65_ai_bridge_animation_project.json'; a.click(); URL.revokeObjectURL(a.href)}
-function clearAll(){if(confirm('MONO65 저장 데이터를 지울까?')){localStorage.removeItem('mono65_state');location.reload();}}
+const KEY='mono82_project4_mono_ai_improvement_engine_v1';
+let state={projectName:'MONO 10초 뮤직비디오',assets:[],board:[],mvPlan:'',learning:[],skills:[],evaluations:[]};
+function log(t){const el=document.getElementById('log');el.textContent='['+new Date().toLocaleTimeString()+'] '+t+'\n'+el.textContent}
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function palette(n){const sets=[['#f4f1e8','#c9d2df','#65718a','#fff7d8'],['#ececec','#aeb0b4','#565a62','#d9e2f0'],['#fff1d5','#c9a36b','#6d4f2d','#e7d4a5'],['#0b0e18','#29304a','#d7dce8','#b8c7ff'],['#f7f7f7','#bfc3ca','#30343b','#747b85']];return sets[n%sets.length]}
+function svgArt(prompt,style,id){const h=hash(prompt+style+id);const p=palette(h);let circles='';for(let i=0;i<18;i++){const x=(hash(prompt+i)%900)+60,y=(hash(style+i*7)%900)+60,r=(hash(id+i*13)%180)+25;circles+=`<circle cx="${x}" cy="${y}" r="${r}" fill="${p[i%p.length]}" opacity="${0.11+(i%5)*0.06}"/>`}
+let stars='';for(let i=0;i<40;i++){const x=hash(prompt+'s'+i)%1024,y=hash(style+'t'+i)%1024;stars+=`<circle cx="${x}" cy="${y}" r="${(i%3)+1}" fill="${p[3]}" opacity=".65"/>`}
+const title=escapeXml(style); const words=escapeXml(prompt.slice(0,42));
+return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p[0]}"/><stop offset="1" stop-color="${p[1]}"/></linearGradient><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="4"/><feColorMatrix type="saturate" values="0.25"/><feBlend in="SourceGraphic" mode="multiply"/></filter></defs><rect width="1024" height="1024" fill="url(#g)"/><g filter="url(#paper)">${circles}</g>${stars}<path d="M120 ${620+(h%120)} C280 ${380+(h%90)}, 430 ${760-(h%130)}, 610 ${500+(h%80)} S850 ${410+(h%170)}, 930 ${260+(h%90)}" fill="none" stroke="${p[2]}" stroke-width="18" opacity=".38" stroke-linecap="round"/><circle cx="512" cy="470" r="${120+(h%80)}" fill="none" stroke="${p[3]}" stroke-width="6" opacity=".75"/><text x="64" y="850" font-family="Georgia,serif" font-size="42" fill="${p[2]}" opacity=".92">MONO81</text><text x="64" y="905" font-family="Segoe UI,sans-serif" font-size="30" fill="${p[2]}" opacity=".82">${title}</text><text x="64" y="952" font-family="Segoe UI,sans-serif" font-size="25" fill="${p[2]}" opacity=".75">${words}</text></svg>`)}`}
+function escapeXml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[m]))}
+function generateImage(){const prompt=document.getElementById('prompt').value.trim();const style=document.getElementById('style').value;if(!prompt)return alert('프롬프트를 입력해줘.');const id='img_'+Date.now();const url=svgArt(prompt,style,id);state.assets.unshift({id,prompt,style,url,created:new Date().toISOString()});saveProject();render();log('이미지 생성 완료: '+style)}
+function render(){document.getElementById('projectName').value=state.projectName;const g=document.getElementById('gallery');g.innerHTML=state.assets.map(a=>`<div class="card"><img src="${a.url}"><div class="body"><b>${a.style}</b><div class="small">${escapeXml(a.prompt)}</div><button onclick="addToBoard('${a.id}')">보드 추가</button><button class="secondary" onclick="downloadAsset('${a.id}')">다운로드</button></div></div>`).join('')||'<div class="small">아직 생성 이미지가 없다.</div>';const t=document.getElementById('timeline');t.innerHTML='';for(let i=0;i<5;i++){const a=state.board[i]?state.assets.find(x=>x.id===state.board[i]):null;t.innerHTML+=`<div class="slot"><div class="small">${i*2}-${i*2+2}초</div>${a?`<img src="${a.url}"><button class="secondary" onclick="removeFromBoard(${i})">제거</button>`:'<div class="small">비어 있음</div>'}</div>`}document.getElementById('mvPlan').textContent=state.mvPlan||'MV 초안을 만들면 여기에 표시된다.'; const lc=document.getElementById('learningCenter'); if(lc) lc.textContent=(state.learning||[]).map(x=>'['+x.time+'] '+x.text).join('\n\n')||'아직 학습 기록이 없다.';const sk=document.getElementById('skillLibrary'); if(sk) sk.textContent=(state.skills||[]).map((x,i)=>`${i+1}. ${x.name}\n프로젝트: ${x.project}\n방법: ${x.method}\n재사용: ${x.reuse}\n저장: ${x.time}`).join('\n\n')||'아직 저장된 스킬이 없다.';const first=state.board.map(id=>state.assets.find(a=>a.id===id)).filter(Boolean)[0];document.getElementById('preview').innerHTML=first?`<img src="${first.url}">`:'이미지를 보드에 추가하면 미리보기가 나온다.'}
+function addToBoard(id){if(state.board.length>=5)return alert('10초 보드는 5장까지 먼저 사용하자.');state.board.push(id);saveProject();render();log('Animation Board에 추가')}
+function removeFromBoard(i){state.board.splice(i,1);saveProject();render()}
+function clearBoard(){state.board=[];saveProject();render();log('보드 비움')}
+function playPreview(){const items=state.board.map(id=>state.assets.find(a=>a.id===id)).filter(Boolean);if(!items.length)return;let i=0;const prev=document.getElementById('preview');prev.innerHTML=`<img src="${items[0].url}">`;const timer=setInterval(()=>{i++; if(i>=items.length){clearInterval(timer);return} prev.innerHTML=`<img src="${items[i].url}">`},2000);log('10초 미리보기 재생')}
+function makeMVPlan(){const prompt=document.getElementById('prompt').value.trim();state.mvPlan=`MONO81 10초 MV 초안\n\n0-2초: 시작 장면 — ${prompt}\n2-4초: 카메라가 천천히 앞으로 이동\n4-6초: 빛/그림자 변화, 감정 포인트 강조\n6-8초: 주제 오브젝트 클로즈업\n8-10초: 마지막 장면 정지, 다음 컷으로 연결\n\n목표: 이미지 → 장면 → 컷 → 10초 영상 흐름을 모노월드 안에서 관리한다.`;saveProject();render();log('10초 MV 초안 생성')}
+function saveProject(){state.projectName=document.getElementById('projectName')?.value||state.projectName;localStorage.setItem(KEY,JSON.stringify(state))}
+function loadProject(){try{const s=localStorage.getItem(KEY);if(s)state=JSON.parse(s)}catch(e){}render();log('MONO84 Skill Library 준비 완료')}
+function exportProject(){saveProject();const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MONO84_project.json';a.click();log('프로젝트 JSON 내보내기')}
+function importProject(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state=JSON.parse(r.result);saveProject();render();log('프로젝트 불러오기 완료')};r.readAsText(f)}
+function resetProject(){if(confirm('현재 MONO84 작업을 초기화할까?')){state={projectName:'MONO 10초 뮤직비디오',assets:[],board:[],mvPlan:'',learning:[],skills:[],evaluations:[]};saveProject();render();log('초기화 완료')}}
+function downloadAsset(id){const a=state.assets.find(x=>x.id===id);if(!a)return;const link=document.createElement('a');link.href=a.url;link.download='MONO84_'+id+'.svg';link.click()}
+function showTab(n){document.getElementById('imagesView').classList.toggle('hidden',n!=='images');document.getElementById('boardView').classList.toggle('hidden',n!=='board');document.getElementById('tabImages').classList.toggle('active',n==='images');document.getElementById('tabBoard').classList.toggle('active',n==='board')}
 
-function saveAIUrl(){localStorage.setItem('mono65_ai_url', aiUrl.value.trim()); aiStatus.textContent='AI 주소 저장됨: '+aiUrl.value.trim();}
-window.addEventListener('DOMContentLoaded',()=>{const u=localStorage.getItem('mono65_ai_url'); if(u) aiUrl.value=u; syncMotionLabels();});
-async function testAI(){
- const base=aiUrl.value.trim().replace(/\/$/,''); saveAIUrl(); aiStatus.textContent='연결 테스트 중...'; aiStatusBadge.textContent='TEST';
- try{
-   const res=await fetch(base+'/sdapi/v1/options',{method:'GET'});
-   if(!res.ok) throw new Error('HTTP '+res.status);
-   aiStatus.innerHTML='<b class="aiok">연결 성공</b><br>Stable Diffusion WebUI API 응답 확인됨.'; aiStatusBadge.textContent='ON';
- }catch(e){
-   aiStatus.innerHTML='<b class="aibad">연결 실패</b><br>로컬 AI가 꺼져 있거나, WebUI API/CORS 설정이 필요해.<br>'+String(e.message||e);
-   aiStatusBadge.textContent='OFF';
- }
-}
-async function generateAIImage(){
- const base=aiUrl.value.trim().replace(/\/$/,''); const prompt=aiPrompt.value.trim();
- if(!prompt){aiStatus.textContent='프롬프트를 먼저 적어줘.'; return;}
- aiStatus.textContent='로컬 AI 이미지 생성 요청 중...';
- try{
-   const res=await fetch(base+'/sdapi/v1/txt2img',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt,steps:20,width:768,height:512,cfg_scale:7})});
-   if(!res.ok) throw new Error('HTTP '+res.status);
-   const data=await res.json();
-   if(!data.images||!data.images[0]) throw new Error('이미지 응답 없음');
-   const src='data:image/png;base64,'+data.images[0];
-   const img={id:'mono65_ai_'+Date.now(),name:'local_ai_'+new Date().toISOString().slice(11,19).replaceAll(':',''),src,category:'Background',project:document.getElementById('project').value,note:prompt,created:new Date().toLocaleString()};
-   state.images.unshift(img); state.selected=img.id; save(); aiStatus.innerHTML='<b class="aiok">AI 이미지 생성 성공</b><br>Gallery와 Motion Preview에 등록됨.'; aiStatusBadge.textContent='ON';
- }catch(e){aiStatus.innerHTML='<b class="aibad">AI 생성 실패</b><br>'+String(e.message||e); aiStatusBadge.textContent='OFF';}
-}
-function getSelectedImage(){return state.images.find(x=>x.id===state.selected)||state.images[0];}
-function syncMotionLabels(){['Zoom','PanX','PanY','Rot'].forEach(k=>{const el=document.getElementById('m'+k), v=document.getElementById('m'+k+'V'); if(el&&v)v.textContent=el.value;});}
-function renderMotionStage(){const im=getSelectedImage(); const st=document.getElementById('motionStage'); if(!st)return; st.classList.remove('playing','shake'); if(!im){st.innerHTML='<span class="small">이미지를 선택하면 여기에 표시됨</span>';return;} st.innerHTML=`<img id="motionImg" src="${im.src}" alt="motion preview">`;}
-function playMotion(){renderMotionStage(); const st=document.getElementById('motionStage'); const im=document.getElementById('motionImg'); if(!im)return; st.style.setProperty('--zoom',mZoom.value); st.style.setProperty('--panx',mPanX.value+'px'); st.style.setProperty('--pany',mPanY.value+'px'); st.style.setProperty('--rot',mRot.value+'deg'); st.style.setProperty('--dur','10s'); im.style.transition='none'; im.style.transform='translate(0,0) scale(1) rotate(0deg)'; void im.offsetWidth; im.style.transition='transform 10s linear'; if(Math.abs(+mPanX.value)>120||Math.abs(+mPanY.value)>80){} st.classList.add('playing'); setTimeout(()=>st.classList.remove('playing'),10000);}
-function stopMotion(){const st=document.getElementById('motionStage'); if(st)st.classList.remove('playing','shake'); renderMotionStage();}
-function applyPreset(p){const presets={cinematic:[1.28,35,-10,0],anime:[1.18,-45,0,1.5],dramatic:[1.45,0,-35,-2],shake:[1.12,15,0,0]}; const v=presets[p]||presets.cinematic; mZoom.value=v[0];mPanX.value=v[1];mPanY.value=v[2];mRot.value=v[3]; syncMotionLabels(); if(p==='shake')motionStage.classList.add('shake'); playMotion();}
 
-function render(){imageCount.textContent=state.images.length; director.innerHTML=state.images.length?`가져온 이미지 ${state.images.length}개. 이제 Scene과 Timeline으로 연결하면 돼.`:'ChatGPT로 만든 이미지를 가져오면 Animation Board에 자동 등록된다.';
- board.innerHTML=CATS.map(cat=>`<div class="lane"><h3>${cat}</h3>${state.images.filter(i=>i.category===cat).map(i=>`<div class="mini" onclick="selectImg('${i.id}')"><img src="${i.src}"><span>${i.name}</span></div>`).join('')||'<p class="small">비어 있음</p>'}</div>`).join('');
- gallery.innerHTML=state.images.map(i=>`<div class="thumb" style="outline:${state.selected===i.id?'2px solid #2f8cff':'none'}"><img src="${i.src}" onclick="openImg('${i.src}')"><div class="body"><div class="name">${i.name}</div><div class="meta">${i.category} · ${i.project}<br>${i.note||'메모 없음'}</div><div class="row"><button class="btn" onclick="selectImg('${i.id}')">선택</button><button class="btn green" onclick="addToScene('${i.id}',0)">Scene 등록</button></div><div class="row" style="margin-top:8px">${CATS.map(c=>`<button class="btn" onclick="moveCat('${i.id}','${c}')">${c[0]}</button>`).join('')}</div></div></div>`).join('')||'<p class="small">아직 가져온 이미지 없음</p>';
- assets.innerHTML=state.images.slice(0,8).map(i=>`<div class="mini"><img src="${i.src}"><span><b>${i.category}</b><br>${i.name}</span></div>`).join('')||'<p class="small">Asset 없음</p>';
- scenes.innerHTML=state.scenes.map((s,idx)=>`<div class="scene"><b>${s.name}</b><div class="small">assets: ${s.assets.length}</div>${s.assets.slice(0,3).map(id=>{const im=state.images.find(x=>x.id===id);return im?`<div class="mini"><img src="${im.src}"><span>${im.name}</span></div>`:''}).join('')}</div>`).join('');
- timeline.innerHTML=state.timeline.map(t=>{const im=state.images.find(x=>x.id===t.id);return `<div class="shot">${t.shot}<br>${t.duration}s<br>${im?im.name:''}</div>`}).join('')||'<span class="small">Scene 등록 후 Timeline 생성</span>'; timelineInfo.textContent=state.timeline.length?`총 ${state.timeline.length}개 Shot · 약 10초 구성`:'아직 타임라인 없음'; renderMotionStage();}
-render();
+const monoProjects=[
+  {no:1,name:'MONO WORLD',icon:'🌍',keys:['홈페이지','모노월드','dashboard','index','작업실','메뉴','world'],worker:'Homepage Worker'},
+  {no:2,name:'Video Engine',icon:'🎬',keys:['영상','동영상','애니','mv','뮤직비디오','타임라인','카메라','mp4','video'],worker:'Video Worker'},
+  {no:3,name:'Image Engine',icon:'🖼',keys:['이미지','그림','캐릭터','배경','프롬프트','콘셉트','image'],worker:'Image Worker'},
+  {no:4,name:'MONO AI',icon:'🤖',keys:['ai','모노 ai','두뇌','명령','planner','worker','memory ai','core brain'],worker:'MONO Brain Worker'},
+  {no:5,name:'3D Engine',icon:'🧊',keys:['3d','3디','모델','리깅','rig','렌더','3차원'],worker:'3D Worker'},
+  {no:6,name:'Sound Engine',icon:'🎵',keys:['음악','사운드','소리','bgm','효과음','voice','sound'],worker:'Sound Worker'},
+  {no:7,name:'ENKARA',icon:'📖',keys:['엔카라','아난타','니란','수라바','삼사라','나라카','enkara'],worker:'Story World Worker'},
+  {no:8,name:'잿빛 기억',icon:'📚',keys:['잿빛','아렌','루엔','카일','드레그','심연','웹툰'],worker:'Comic Story Worker'},
+  {no:9,name:'Game',icon:'🎮',keys:['게임','npc','플레이어','온라인','월드','game'],worker:'Game Worker'}
+];
+function selectMonoProject(text){
+  const low=text.toLowerCase();
+  const scored=monoProjects.map(p=>({p,score:p.keys.reduce((n,k)=>n+(low.includes(k.toLowerCase())?1:0),0)})).sort((a,b)=>b.score-a.score);
+  return scored[0].score>0?scored[0]:{p:monoProjects[3],score:1};
+}
+
+function monoKeywords(text){
+  const t=text.toLowerCase();
+  const map={
+    image:['이미지','그림','캐릭터','배경','image','prompt'],
+    video:['영상','동영상','애니','mv','뮤직비디오','타임라인','video'],
+    sound:['사운드','음악','소리','bgm','sound'],
+    memory:['기억','저장','프로젝트','memory','json'],
+    ai:['ai','모노 ai','작업용','worker','엔진'],
+    homepage:['홈페이지','브라우저','모노월드','index','world']
+  };
+  let found=[];
+  for(const k in map){ if(map[k].some(w=>t.includes(w))) found.push(k); }
+  return found.length?found:['general'];
+}
+function monoAIThink(){
+  const cmd=document.getElementById('aiCommand').value.trim();
+  const keys=monoKeywords(cmd);
+  const sel=selectMonoProject(cmd); const project=sel.p.icon+' Project '+sel.p.no+' · '+sel.p.name;
+  const result=`<b>MONO AI 분석 결과</b><br><br>
+  <span class="chip">${keys.join('</span><span class="chip">')}</span><br><br>
+  <b>판단:</b> ${project} 작업으로 분류됨.<br>
+  <b>호출 Worker:</b> ${sel.p.worker}<br>
+  <b>실행 방향:</b> 외부 AI 연결을 기다리지 않고, 홈페이지 내부 프로그램으로 먼저 작동시킨다.<br>
+  <b>이번 명령의 의미:</b> ${escapeXml(cmd)}<br><br>
+  <b>자동 작업안</b><br>
+  1. 명령을 장면/이미지/영상/기억 작업으로 분류한다.<br>
+  2. 필요한 프롬프트를 한국어 기준으로 정리한다.<br>
+  3. 10초 MV는 2초 단위 5컷으로 나눈다.<br>
+  4. 결과는 localStorage와 JSON으로 저장한다.<br>
+  5. MONO81에서는 Improvement Engine이 프로젝트와 Worker를 고르고, MONO82에서는 Planner를 강화한다.`;
+  document.getElementById('aiOutput').innerHTML=result;
+  log('Project4 MONO AI 실행 완료');
+}
+function monoAICoreBrain(){
+  const cmd=document.getElementById('aiCommand').value.trim();
+  const routes=[
+    {id:'image',name:'🎨 Image Studio',words:['이미지','그림','캐릭터','배경','프롬프트','콘셉트','image'],action:'이미지 생성 / 프롬프트 강화 / 콘셉트아트 제작'},
+    {id:'video',name:'🎬 Video · Animation',words:['영상','동영상','애니','mv','뮤직비디오','컷','장면','타임라인','video'],action:'10초 MV 5컷 분해 / Animation Board 배치'},
+    {id:'sound',name:'🔊 Sound Studio',words:['음악','사운드','소리','bgm','효과음','sound'],action:'BGM 분위기 / 효과음 목록 / 박자 메모 생성'},
+    {id:'memory',name:'💾 Project Memory',words:['기억','저장','불러오기','json','프로젝트','memory'],action:'현재 작업 저장 / JSON export / 작업 로그 정리'},
+    {id:'edit',name:'✂️ Video Editor',words:['편집','자르기','순서','전환','자막','timeline','editor'],action:'클립 순서 / 자막 / 전환 효과 계획'},
+    {id:'home',name:'🌎 Homepage Update',words:['홈페이지','모노월드','index','공개','업데이트','버튼','메뉴'],action:'MONO85 홈페이지 반영 항목으로 등록'},
+    {id:'ai',name:'🧠 Project4 MONO AI',words:['ai','인공지능','모노 ai','두뇌','명령','worker','엔진'],action:'명령 분석 / 작업 라우팅 / 다음 작업 추천'}
+  ];
+  const low=cmd.toLowerCase();
+  const selectedProject=selectMonoProject(cmd);
+  const scored=routes.map(r=>({r,score:r.words.reduce((n,w)=>n+(low.includes(w.toLowerCase())?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+  const top=scored[0]?.r||routes[6];
+  const lines=(scored.length?scored:[{r:top,score:1}]).map(x=>`<div class="monoai"><b>${x.r.name}</b><br><span class="small">점수 ${x.score} · 실행: ${x.r.action}</span></div>`).join('');
+  const next= top.id==='image'?'프롬프트 강화 → 이미지 생성': top.id==='video'?'장면 5개 자동 생성 → Animation Board 확인': top.id==='home'?'MONO85 홈페이지 업데이트 목록에 반영': top.id==='sound'?'사운드 분위기표와 BGM 큐시트 만들기': top.id==='memory'?'프로젝트 저장 후 JSON 내보내기':'다음 작업 추천 실행';
+  document.getElementById('aiOutput').innerHTML=`<b>MONO84 Skill Library 분류 결과</b><br><br><span class="chip">대표 라우트: ${top.name}</span><span class="chip">다음 실행: ${next}</span><br><br>${lines}<br><b>공식 프로젝트:</b> ${selectedProject.p.icon} Project ${selectedProject.p.no} · ${selectedProject.p.name}<br><b>호출 Worker:</b> ${selectedProject.p.worker}<br><b>판단:</b> 이 명령은 ${top.name} 중심 작업이다. MONO AI가 외부 AI 대신 먼저 실행 가능한 프로그램 작업으로 변환한다.`;
+  log('MONO84 Skill Library 분류 완료: '+top.name);
+}
+
+function monoAIPromptBoost(){
+  const p=document.getElementById('prompt').value.trim();
+  const style=document.getElementById('style').value;
+  const boosted=`${p}, ${style}, 장면 목적이 분명한 구도, 10초 애니메이션 첫 컷으로 사용 가능, 여백 있는 화면, 부드러운 카메라 이동을 고려한 배경, 모노월드 프로젝트용 콘셉트아트`;
+  document.getElementById('prompt').value=boosted;
+  document.getElementById('aiOutput').innerHTML='<b>프롬프트 강화 완료</b><br>'+escapeXml(boosted);
+  log('MONO AI가 프롬프트를 강화함');
+}
+function monoAITaskPlan(){
+  const tasks=[
+    'MONO84: Planner 2.0 · 경험 기반 작업 계획',
+    'MONO84: Project Memory AI 제작',
+    'MONO84: Worker Manager 제작',
+    'MONO85: 홈페이지에 MONO AI 중심 구조 통합'
+  ];
+  document.getElementById('aiOutput').innerHTML='<b>다음 작업 추천</b><br>'+tasks.map(x=>'• '+x).join('<br>');
+  log('MONO AI 다음 작업 추천 생성');
+}
+function monoAIMakeSceneImages(){
+  const base=document.getElementById('prompt').value.trim()||'모노월드 10초 뮤직비디오';
+  const style=document.getElementById('style').value;
+  const scenes=['시작 장면, 조용한 여백','카메라가 천천히 전진','빛과 그림자가 움직임','주요 오브젝트 클로즈업','마지막 정지 장면'];
+  scenes.forEach((sc,i)=>{
+    const id='img_'+Date.now()+'_'+i;
+    const prompt=base+' / '+(i*2)+'-'+(i*2+2)+'초 / '+sc;
+    const url=svgArt(prompt,style,id);
+    state.assets.unshift({id,prompt,style,url,created:new Date().toISOString()});
+    if(state.board.length<5) state.board.push(id);
+  });
+  state.mvPlan=`MONO81 Project4 MONO AI 자동 콘티\n\n0-2초: ${scenes[0]}\n2-4초: ${scenes[1]}\n4-6초: ${scenes[2]}\n6-8초: ${scenes[3]}\n8-10초: ${scenes[4]}\n\n방향: 외부 AI 없이 MONO AI가 장면을 나누고 Program Engine으로 임시 이미지를 만든다.`;
+  saveProject(); render(); showTab('board');
+  document.getElementById('aiOutput').innerHTML='<b>장면 5개 자동 생성 완료</b><br>Animation Board에 10초 콘티를 배치했다.';
+  log('MONO AI가 5장면 자동 생성');
+}
+
+
+function monoAISelfEvaluate(){
+  const cmd=document.getElementById('aiCommand').value.trim();
+  const assetCount=state.assets.length;
+  const boardCount=state.board.length;
+  const score=Math.min(5,2+(assetCount>0?1:0)+(boardCount>=3?1:0)+(state.mvPlan?1:0));
+  const good=[]; const improve=[];
+  if(assetCount>0) good.push('이미지/장면 결과물이 생성됨'); else improve.push('먼저 이미지 또는 장면을 생성해야 함');
+  if(boardCount>=3) good.push('Animation Board에 컷 흐름이 생김'); else improve.push('10초 보드에 최소 5컷을 채우면 좋음');
+  if(state.mvPlan) good.push('MV 초안 또는 작업 계획이 기록됨'); else improve.push('작업 계획을 텍스트로 남겨야 다음 버전에 이어가기 쉬움');
+  if(!improve.length) improve.push('다음에는 품질 기준을 더 세밀하게 나누기');
+  const ev={time:new Date().toLocaleString(),command:cmd,score,good,improve};
+  state.evaluations=state.evaluations||[]; state.evaluations.unshift(ev);
+  const text=`Self Evaluation\n별점: ${'★'.repeat(score)}${'☆'.repeat(5-score)}\n작업: ${cmd}\n좋았던 점: ${good.join(', ')}\n개선할 점: ${improve.join(', ')}`;
+  state.learning=state.learning||[]; state.learning.unshift({time:ev.time,text});
+  saveProject(); render();
+  document.getElementById('aiOutput').innerHTML='<b>Self Evaluation 완료</b><br>'+escapeXml(text).replace(/\n/g,'<br>');
+  log('MONO84 Self Evaluation 기록');
+}
+function monoAIImprove(){
+  const latest=(state.evaluations||[])[0];
+  const rules=[];
+  if(!latest){ rules.push('작업 후 Self Evaluation을 먼저 실행한다.'); }
+  else{
+    latest.improve.forEach(x=>{
+      if(x.includes('이미지')) rules.push('명령에 이미지/장면 키워드가 있으면 장면 5개 자동 생성을 먼저 실행한다.');
+      else if(x.includes('보드')) rules.push('10초 영상 작업은 0-2/2-4/4-6/6-8/8-10초 5칸 보드를 기본으로 채운다.');
+      else if(x.includes('계획')) rules.push('모든 작업은 결과물과 함께 다음 목표 텍스트를 남긴다.');
+      else rules.push('다음 작업 전 부족한 점을 1개 이상 먼저 해결한다.');
+    });
+  }
+  if(!rules.length) rules.push('성공한 흐름을 Skill Library에 저장하고 다음 작업에 재사용한다.');
+  state.skills=state.skills||[];
+  rules.forEach(r=>state.skills.unshift({time:new Date().toLocaleString(),skill:r}));
+  const note='Improvement Rules\n- '+rules.join('\n- ');
+  state.learning=state.learning||[]; state.learning.unshift({time:new Date().toLocaleString(),text:note});
+  saveProject(); render();
+  document.getElementById('aiOutput').innerHTML='<b>개선 규칙 생성 완료</b><br>'+rules.map(r=>'• '+escapeXml(r)).join('<br>')+'<br><br><b>MONO84 방향:</b> Planner 2.0에서 저장된 스킬을 작업 계획에 자동 반영한다.';
+  log('MONO84 Skill Library 실행');
+}
+function monoAIAdvisor(){
+  const skillCount=(state.skills||[]).length;
+  const evalCount=(state.evaluations||[]).length;
+  const advice=[];
+  advice.push('현재 중심은 Project4 MONO AI다. 먼저 성장 시스템을 완성해야 다른 엔진을 잘 지휘할 수 있다.');
+  if(evalCount<1) advice.push('작업 후 Self Evaluation을 실행해서 MONO AI의 경험 기록을 시작하자.');
+  if(skillCount<3) advice.push('MONO84에서는 Skill Library를 확장해서 성공한 작업 방식을 저장하자.');
+  if(state.board.length<5) advice.push('10초 MV 목표를 위해 Animation Board 5칸을 채우는 흐름을 기본 규칙으로 삼자.');
+  advice.push('MONO85에서는 홈페이지를 Project4 MONO AI 중심 대시보드로 업데이트한다.');
+  const text='Project Advisor\n- '+advice.join('\n- ');
+  state.learning=state.learning||[]; state.learning.unshift({time:new Date().toLocaleString(),text});
+  saveProject(); render();
+  document.getElementById('aiOutput').innerHTML='<b>Project Advisor</b><br>'+advice.map(a=>'• '+escapeXml(a)).join('<br>');
+  log('MONO84 Project Advisor 실행');
+}
+
+window.addEventListener('beforeunload',saveProject);loadProject();
 </script>
 </body>
 </html>
