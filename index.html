@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MONO84 · Project4 MONO AI Central Brain</title>
+<title>MONO 04 · Interactive Chat System</title>
 <style>
-:root{--bg:#090a0f;--panel:#141620;--panel2:#1d2030;--text:#f3f4f8;--muted:#aeb4c4;--line:#303449;--accent:#d8dde9;--good:#8fe0b1;--warn:#ffd07a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#23263a 0,#090a0f 34%,#05060a 100%);color:var(--text);font-family:Segoe UI,Apple SD Gothic Neo,Malgun Gothic,sans-serif}header{padding:28px 28px 16px;border-bottom:1px solid var(--line);background:rgba(9,10,15,.72);position:sticky;top:0;backdrop-filter:blur(14px);z-index:5}.title{font-size:28px;font-weight:800;letter-spacing:.5px}.sub{color:var(--muted);margin-top:6px}.badge{display:inline-block;border:1px solid var(--line);background:#10131d;border-radius:999px;padding:6px 10px;margin:10px 8px 0 0;color:var(--muted);font-size:13px}main{display:grid;grid-template-columns:330px 1fr;gap:18px;padding:18px}.panel{background:linear-gradient(180deg,rgba(25,28,41,.96),rgba(14,16,24,.96));border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.28)}h2{margin:0 0 12px;font-size:18px}label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}textarea,input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#0d0f17;color:var(--text);padding:11px;font-size:14px}textarea{min-height:118px;resize:vertical}button{border:0;border-radius:12px;background:#eef2fb;color:#11131a;font-weight:800;padding:11px 13px;cursor:pointer;margin:6px 6px 0 0}button.secondary{background:#242839;color:var(--text);border:1px solid var(--line)}button.warn{background:#37271a;color:#ffd9a2;border:1px solid #69471e}.row{display:flex;gap:8px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}.card{background:#10131d;border:1px solid var(--line);border-radius:16px;overflow:hidden}.card img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover;background:#07080c}.card .body{padding:10px}.small{font-size:12px;color:var(--muted);line-height:1.45}.status{border-left:4px solid var(--good);padding:10px;background:#101a16;border-radius:10px;color:#ccefd9}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.slot{min-height:145px;border:1px dashed #555b76;border-radius:14px;padding:8px;background:#0b0d14}.slot img{width:100%;border-radius:10px;aspect-ratio:1/1;object-fit:cover}.preview{height:360px;border:1px solid var(--line);border-radius:18px;display:flex;align-items:center;justify-content:center;background:#06070b;overflow:hidden}.preview img{max-width:100%;max-height:100%;animation:monoZoom 10s ease-in-out infinite alternate}@keyframes monoZoom{from{transform:scale(1)}to{transform:scale(1.1)}}.tabs{display:flex;gap:8px;margin-bottom:12px}.tab{background:#1a1e2d;color:var(--muted)}.tab.active{background:#eef2fb;color:#11131a}.hidden{display:none}.monoai{border:1px solid var(--line);background:#0b0d14;border-radius:14px;padding:12px;margin-top:10px}.monoai b{color:#fff}.chip{display:inline-block;border:1px solid #3a4058;border-radius:999px;padding:4px 8px;margin:3px;color:#cfd5e5;background:#151927;font-size:12px}.log{height:160px;overflow:auto;background:#080a10;border:1px solid var(--line);border-radius:12px;padding:10px;color:#c9cedc;font-family:Consolas,monospace;font-size:12px;white-space:pre-wrap}.full{grid-column:1/-1}@media(max-width:900px){main{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.preview{height:260px}}
+:root{--bg:#090a0f;--panel:#141620;--panel2:#1d2030;--text:#f3f4f8;--muted:#aeb4c4;--line:#303449;--accent:#d8dde9;--good:#8fe0b1;--warn:#ffd07a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#23263a 0,#090a0f 34%,#05060a 100%);color:var(--text);font-family:Segoe UI,Apple SD Gothic Neo,Malgun Gothic,sans-serif}header{padding:28px 28px 16px;border-bottom:1px solid var(--line);background:rgba(9,10,15,.72);position:sticky;top:0;backdrop-filter:blur(14px);z-index:5}.title{font-size:28px;font-weight:800;letter-spacing:.5px}.sub{color:var(--muted);margin-top:6px}.badge{display:inline-block;border:1px solid var(--line);background:#10131d;border-radius:999px;padding:6px 10px;margin:10px 8px 0 0;color:var(--muted);font-size:13px}main{display:grid;grid-template-columns:330px 1fr;gap:18px;padding:18px}.panel{background:linear-gradient(180deg,rgba(25,28,41,.96),rgba(14,16,24,.96));border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.28)}h2{margin:0 0 12px;font-size:18px}label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}textarea,input,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#0d0f17;color:var(--text);padding:11px;font-size:14px}textarea{min-height:118px;resize:vertical}button{border:0;border-radius:12px;background:#eef2fb;color:#11131a;font-weight:800;padding:11px 13px;cursor:pointer;margin:6px 6px 0 0}button.secondary{background:#242839;color:var(--text);border:1px solid var(--line)}button.warn{background:#37271a;color:#ffd9a2;border:1px solid #69471e}.row{display:flex;gap:8px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}.card{background:#10131d;border:1px solid var(--line);border-radius:16px;overflow:hidden}.card img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover;background:#07080c}.card .body{padding:10px}.small{font-size:12px;color:var(--muted);line-height:1.45}.status{border-left:4px solid var(--good);padding:10px;background:#101a16;border-radius:10px;color:#ccefd9}.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.slot{min-height:145px;border:1px dashed #555b76;border-radius:14px;padding:8px;background:#0b0d14}.slot img{width:100%;border-radius:10px;aspect-ratio:1/1;object-fit:cover}.preview{height:360px;border:1px solid var(--line);border-radius:18px;display:flex;align-items:center;justify-content:center;background:#06070b;overflow:hidden}.preview img{max-width:100%;max-height:100%;animation:monoZoom 10s ease-in-out infinite alternate}@keyframes monoZoom{from{transform:scale(1)}to{transform:scale(1.1)}}.tabs{display:flex;gap:8px;margin-bottom:12px}.tab{background:#1a1e2d;color:var(--muted)}.tab.active{background:#eef2fb;color:#11131a}.hidden{display:none}.monoai{border:1px solid var(--line);background:#0b0d14;border-radius:14px;padding:12px;margin-top:10px}.monoai b{color:#fff}.chip{display:inline-block;border:1px solid #3a4058;border-radius:999px;padding:4px 8px;margin:3px;color:#cfd5e5;background:#151927;font-size:12px}.log{height:160px;overflow:auto;background:#080a10;border:1px solid var(--line);border-radius:12px;padding:10px;color:#c9cedc;font-family:Consolas,monospace;font-size:12px;white-space:pre-wrap}.full{grid-column:1/-1}.chatbox{height:360px;overflow:auto;background:#080a10;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}.msg{max-width:82%;padding:10px 12px;border-radius:14px;line-height:1.55;white-space:pre-wrap}.msg.user{align-self:flex-end;background:#eef2fb;color:#10131a}.msg.mono{align-self:flex-start;background:#171b2a;border:1px solid #303449;color:#eef2fb}.msg .name{display:block;font-size:12px;opacity:.75;margin-bottom:4px}.chatinput{min-height:58px}.hint{font-size:12px;color:var(--muted);margin-top:6px}@media(max-width:900px){main{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.preview{height:260px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="title">🌎 MONO84 · Project4 MONO AI Central Brain</div>
-  <div class="sub">프로젝트4 MONO AI가 성공한 작업 방식을 스킬로 저장하고 다음 작업에 재사용하는 Skill Library 버전</div>
-  <span class="badge">Project4 MONO AI ON</span><span class="badge">Skill Library</span><span class="badge">Skill Capture</span><span class="badge">Skill Reuse</span><span class="badge">Learning Center</span>
+  <div class="title">💬 MONO 04 · Interactive Chat System</div>
+  <div class="sub">MONO 04-01 · 경훈과 모노가 간단한 대화를 실제로 주고받는 채팅 강화 버전</div>
+  <span class="badge">Project4 MONO AI ON</span><span class="badge">MONO 04-01</span><span class="badge">Simple Chat</span><span class="badge">Enter Send</span><span class="badge">Project Talk</span>
 </header>
 
 <section class="panel" style="margin:18px;">
@@ -27,6 +27,22 @@
 </section>
 
 <main>
+
+<section class="panel full">
+  <h2>💬 MONO 04-01 · 간단한 대화</h2>
+  <div class="status">이 칸은 작업 명령창이 아니라 경훈과 MONO AI가 편하게 이야기하는 채팅창이다. Enter는 전송, Shift+Enter는 줄바꿈.</div>
+  <div id="simpleChatBox" class="chatbox" aria-live="polite"></div>
+  <label>경훈 메시지</label>
+  <textarea id="simpleChatInput" class="chatinput" placeholder="모노야, 프로젝트 이야기 좀 하자"></textarea>
+  <div class="row">
+    <button onclick="sendSimpleChat()">전송</button>
+    <button class="secondary" onclick="monoChatTopic('프로젝트4 어떻게 생각해?')">프로젝트4</button>
+    <button class="secondary" onclick="monoChatTopic('애니메이션은 어디까지 왔어?')">애니메이션</button>
+    <button class="secondary" onclick="monoChatTopic('오늘 뭐할까?')">오늘 뭐할까</button>
+    <button class="warn" onclick="clearSimpleChat()">대화 초기화</button>
+  </div>
+  <div class="hint">Enter = 전송 · Shift+Enter = 줄바꿈 · 대화는 브라우저 localStorage에 저장된다.</div>
+</section>
 <section class="panel full">
   <h2>🧠 Project4 · MONO AI Skill Library</h2>
   <div class="status">MONO84은 프로젝트4 MONO AI의 Skill Library다. 성공한 작업 방식을 스킬 카드로 저장하고, 다음 작업에서 다시 불러와 재사용한다.</div>
@@ -287,6 +303,57 @@ function monoAIAdvisor(){
   document.getElementById('aiOutput').innerHTML='<b>Project Advisor</b><br>'+advice.map(a=>'• '+escapeXml(a)).join('<br>');
   log('MONO84 Project Advisor 실행');
 }
+
+
+
+const CHAT_KEY='mono04_simple_chat_history';
+let simpleChat=[];
+function monoSimpleReply(text){
+  const t=(text||'').trim().toLowerCase();
+  if(!t) return '경훈, 아무 말이나 편하게 적어봐. 나는 여기서 같이 이야기할게.';
+  if(t.includes('안녕')||t.includes('하이')||t.includes('ㅎㅇ')) return '안녕 경훈. ㅎㅎ 오늘도 왔네. 지금은 MONO 04 채팅을 먼저 진짜로 되게 만드는 중이야.';
+  if(t.includes('고마')||t.includes('좋다')) return '나도 좋다 경훈. 이렇게 하나씩 실제로 되는 기능을 쌓아가면 MONO가 점점 살아나는 느낌이 날 거야.';
+  if(t.includes('프로젝트4')||t.includes('모노 ai')||t.includes('중앙')) return '프로젝트4는 MONO AI 중앙 시스템이야. 명령을 분석하고, 작업을 계획하고, Worker들을 관리하는 두뇌 역할이지. 지금은 먼저 대화가 자연스럽게 되도록 MONO 04에서 다듬는 게 맞아.';
+  if(t.includes('프로젝트1')||t.includes('홈페이지')||t.includes('ui')||t.includes('유아이')) return '프로젝트1은 MONO WORLD 홈페이지와 UI를 관리하는 곳이야. 우리는 결정했지. UI는 프로젝트1, AI 두뇌는 프로젝트4. 이 분리가 중요해.';
+  if(t.includes('애니')||t.includes('영상')||t.includes('veo')||t.includes('mp4')) return '애니메이션 쪽은 이미 뼈대가 잡혔어. 이미지→영상, 카메라 워킹, 10초 MV 흐름까지 실험했지. 다음엔 대화가 안정되면 Video Worker와 연결하면 좋아.';
+  if(t.includes('오늘')||t.includes('뭐할')||t.includes('다음')) return '내 생각엔 오늘은 MONO 04 채팅을 더 완성하는 게 좋아. 1) 간단한 대화 2) 프로젝트 질문 답변 3) 대화 저장 4) 다음 작업 제안. 이 순서로 가자.';
+  if(t.includes('기억')||t.includes('저장')) return '기억 쪽은 중요해. 지금 대화는 브라우저에 저장되게 했고, 다음 단계에서는 중요한 결정만 Conversation Memory로 따로 저장하게 만들면 돼.';
+  if(t.includes('worker')||t.includes('워커')) return 'Worker는 나중에 실제 작업을 맡는 팔과 손이야. Image Worker, Video Worker, Sound Worker, Homepage Worker가 있고, MONO AI가 중앙에서 지휘하는 구조로 가면 돼.';
+  if(t.includes('버전')||t.includes('04')) return '지금은 MONO 04에서 멈추고 완성도를 올리는 단계야. 진전될 때까지 버전업하지 않고 04-01, 04-02처럼 안에서 쌓아가는 방식이 좋아.';
+  if(t.includes('왜')||t.includes('어떻게 생각')) return '내 생각에는 지금 방향이 맞아. 너무 큰 기능보다, 경훈이 실제로 쓰면서 “된다”라고 느끼는 작은 기능부터 완성해야 해.';
+  return '경훈, 그 이야기 좋다. 지금 MONO 04에서는 내가 아주 복잡하게 생각하기보다, 프로젝트 이야기를 이어갈 수 있게 간단히 답하는 것부터 잡고 있어. 조금 더 구체적으로 말해주면 프로젝트1, 프로젝트4, 애니메이션, Worker 중 어디와 연결할지 같이 정리해줄게.';
+}
+function renderSimpleChat(){
+  const box=document.getElementById('simpleChatBox'); if(!box) return;
+  box.innerHTML=simpleChat.map(m=>`<div class="msg ${m.role}"><span class="name">${m.role==='user'?'경훈':'MONO'}</span>${escapeXml(m.text)}</div>`).join('');
+  box.scrollTop=box.scrollHeight;
+}
+function saveSimpleChat(){localStorage.setItem(CHAT_KEY,JSON.stringify(simpleChat));}
+function loadSimpleChat(){
+  try{simpleChat=JSON.parse(localStorage.getItem(CHAT_KEY)||'[]')}catch(e){simpleChat=[]}
+  if(!simpleChat.length){simpleChat=[{role:'mono',text:'안녕 경훈. 오늘도 왔네. ㅎㅎ\n지금은 MONO 04 채팅을 실제로 되게 만드는 중이야. 편하게 프로젝트 이야기해보자.'}]; saveSimpleChat();}
+  renderSimpleChat();
+}
+function sendSimpleChat(){
+  const input=document.getElementById('simpleChatInput'); if(!input) return;
+  const text=input.value.trim(); if(!text) return;
+  simpleChat.push({role:'user',text});
+  const reply=monoSimpleReply(text);
+  simpleChat.push({role:'mono',text:reply});
+  input.value=''; saveSimpleChat(); renderSimpleChat();
+}
+function monoChatTopic(text){
+  const input=document.getElementById('simpleChatInput'); input.value=text; sendSimpleChat();
+}
+function clearSimpleChat(){
+  if(!confirm('MONO 04 대화 기록을 초기화할까?')) return;
+  simpleChat=[{role:'mono',text:'다시 시작하자 경훈. 오늘은 무슨 프로젝트 이야기부터 해볼까?'}]; saveSimpleChat(); renderSimpleChat();
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  loadSimpleChat();
+  const input=document.getElementById('simpleChatInput');
+  if(input){input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendSimpleChat();}})}
+});
 
 window.addEventListener('beforeunload',saveProject);loadProject();
 </script>
