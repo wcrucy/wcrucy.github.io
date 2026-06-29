@@ -11,8 +11,8 @@
 <body>
 <header>
   <div class="title">💬 MONO 04 · Interactive Chat System</div>
-  <div class="sub">MONO 04-01 · 경훈과 모노가 간단한 대화를 실제로 주고받는 채팅 강화 버전</div>
-  <span class="badge">Project4 MONO AI ON</span><span class="badge">MONO 04-01</span><span class="badge">Simple Chat</span><span class="badge">Enter Send</span><span class="badge">Project Talk</span>
+  <div class="sub">MONO 04-09 · Memory Engine이 붙은 누적 대화 기억 버전</div>
+  <span class="badge">Project4 MONO AI ON</span><span class="badge">MONO 04-09</span><span class="badge">Conversation + Memory Engine</span><span class="badge">Enter Send</span><span class="badge">Cumulative Build</span>
 </header>
 
 <section class="panel" style="margin:18px;">
@@ -29,8 +29,8 @@
 <main>
 
 <section class="panel full">
-  <h2>💬 MONO 04-01 · 간단한 대화</h2>
-  <div class="status">이 칸은 작업 명령창이 아니라 경훈과 MONO AI가 편하게 이야기하는 채팅창이다. Enter는 전송, Shift+Enter는 줄바꿈.</div>
+  <h2>💬 MONO 04-08 · 대화 엔진</h2>
+  <div class="status">이 칸은 작업 명령창이 아니라 경훈과 MONO AI가 프로젝트 대화를 이어가는 채팅창이다. Phase08부터 주제·결정·다음 행동을 로컬에 저장한다. Enter는 전송, Shift+Enter는 줄바꿈.</div>
   <div id="simpleChatBox" class="chatbox" aria-live="polite"></div>
   <label>경훈 메시지</label>
   <textarea id="simpleChatInput" class="chatinput" placeholder="모노야, 프로젝트 이야기 좀 하자"></textarea>
@@ -306,22 +306,67 @@ function monoAIAdvisor(){
 
 
 
-const CHAT_KEY='mono04_simple_chat_history';
+const CHAT_KEY='mono04_phase10_chat_history';
+const MONO_SERVER_API='/api/chat';
+const CHAT_STATE_KEY='mono04_phase10_conversation_state';
+const CHAT_MEMORY_KEY='mono04_phase10_memory_engine';
 let simpleChat=[];
+function defaultMonoState(){return {topic:'MONO04 서버 실행과 대화 API 연결',turns:0,lastIntent:'start',currentGoal:'홈페이지에서 경훈과 자연스럽게 대화하는 MONO AI 만들기',decisions:['직전 MONO04 전체를 이어받아 기능만 누적한다.'],openLoops:[],lastReplySignature:'',repeatedCount:0,workingTask:'Phase10 Server Autostart 적용',nextWork:'Phase11 Thinking Engine'};}
+function monoChatState(){try{return Object.assign(defaultMonoState(),JSON.parse(localStorage.getItem(CHAT_STATE_KEY)||'{}'))}catch(e){return defaultMonoState();}}
+function saveMonoChatState(st){localStorage.setItem(CHAT_STATE_KEY,JSON.stringify(st));}
+function monoMemory(){try{return Object.assign({recent:[],long:['MONO04는 직전 파일 전체를 이어받아 기능만 누적한다.'],projects:{project4:{facts:['Project4는 MONO AI 중앙 시스템이다.'],decisions:['대화 AI 품질을 최우선으로 개선한다.']}}},JSON.parse(localStorage.getItem(CHAT_MEMORY_KEY)||'{}'))}catch(e){return {recent:[],long:[],projects:{project4:{facts:[],decisions:[]}}};}}
+function saveMonoMemory(m){localStorage.setItem(CHAT_MEMORY_KEY,JSON.stringify(m));}
+function monoRemember(role,text,intent,project='project4'){const m=monoMemory();m.recent=m.recent||[];m.recent.push({role,text,intent,project,time:new Date().toLocaleString()});m.recent=m.recent.slice(-80);m.projects=m.projects||{};m.projects[project]=m.projects[project]||{facts:[],decisions:[]};saveMonoMemory(m);}
+function monoMemorySummary(){const m=monoMemory();const p=(m.projects&&m.projects.project4)||{facts:[],decisions:[]};const recent=(m.recent||[]).filter(x=>x.role==='user').slice(-3).map(x=>x.text).join(' → ');return `작업 기억: Phase10 Server Autostart / 다음: Phase11 Thinking Engine\n최근 입력: ${recent||'아직 없음'}\n결정: ${(p.decisions||[]).slice(-2).join(' / ')}`;}
+function monoRememberDecision(project,text){const m=monoMemory();m.projects=m.projects||{};m.projects[project]=m.projects[project]||{facts:[],decisions:[]};if(!m.projects[project].decisions.includes(text))m.projects[project].decisions.push(text);m.projects[project].decisions=m.projects[project].decisions.slice(-20);saveMonoMemory(m);}
+function monoAddDecision(st,text){st.decisions=st.decisions||[]; if(!st.decisions.includes(text)) st.decisions.push(text); st.decisions=st.decisions.slice(-16);}
+function monoAddLoop(st,text){st.openLoops=st.openLoops||[]; if(!st.openLoops.includes(text)) st.openLoops.push(text); st.openLoops=st.openLoops.slice(-8);}
+function classifyMonoText(t,st){
+  if(!t) return ['empty',st.topic];
+  if(t.includes('작업해')||t.includes('해봐')||t.includes('진행')||t.includes('고쳐')||t.includes('만들어')||t.includes('추가')) return ['build_request',st.topic];
+  if(t.includes('쌓')||t.includes('누적')||t.includes('이어')||t.includes('직전')||t.includes('갈아엎')||t.includes('버전업 하지')||t.includes('버전 업 하지')) return ['cumulative_rule','MONO04 누적 작업'];
+  if(t.includes('대화')||t.includes('말')||t.includes('ai같')||t.includes('ai 같')||t.includes('자연')||t.includes('반복')||t.includes('챗')||t.includes('홈페이지에서')) return ['chat_quality','MONO04 대화 AI 개선'];
+  if(t.includes('홈페이지')||t.includes('index')||t.includes('브라우저')||t.includes('화면')||t.includes('업로드')||t.includes('open_local')) return ['homepage','MONO WORLD 홈페이지'];
+  if(t.includes('프로젝트4')||t.includes('모노 ai')||t.includes('mono ai')||t.includes('브레인')||t.includes('중앙')||t.includes('두뇌')||t.includes('worker')) return ['project4','Project4 MONO AI'];
+  if(t.includes('애니')||t.includes('영상')||t.includes('뮤직비디오')||t.includes('veo')||t.includes('mp4')) return ['animation','10초 애니메이션 MV'];
+  if(t.includes('뭐야')||t.includes('뭐할')||t.includes('다음')||t.includes('상태')||t.includes('가능')||t.includes('돼')||t.includes('되냐')) return ['status',st.topic];
+  if(t.includes('안녕')||t.includes('왔')||t.includes('모노야')||t.includes('ㅎㅇ')) return ['greeting',st.topic];
+  if(t.includes('그래')||t.includes('좋다')||t.includes('ㅇㅇ')||t.includes('ㅋㅋ')||t.includes('고마')||t.includes('잘했')) return ['agree',st.topic];
+  return ['general',st.topic];
+}
+function monoNextAction(intent){
+  if(intent==='build_request'||intent==='chat_quality') return '서버 API와 Memory Engine을 거쳐 답변하고, 다음은 Thinking Engine으로 간다.';
+  if(intent==='homepage') return 'start_mono_ai.bat으로 MONO Server를 켜고 홈페이지를 연결한다.';
+  if(intent==='status') return '서버가 켜져 있으면 /api/status로 확인한다.';
+  return '현재 주제를 유지하고 다음 입력을 맥락으로 이어받는다.';
+}
+function monoComposeReply(raw,intent,st){
+  if(intent==='empty') return '경훈, 한마디만 적어도 내가 지금 흐름에 맞춰서 이어갈게.';
+  if(intent==='build_request') return `그래 경훈. 지금 명령은 새로 갈아엎기가 아니라 MONO04 안에 실제 기능을 더 쌓으라는 뜻으로 받았어.\n\n이번에 이어갈 핵심은 홈페이지 채팅창이야.\n1. 입력 의도 분류\n2. 현재 주제 기억\n3. 직전 결정 유지\n4. 다음 작업 한 줄 제안\n\n이 네 가지가 붙으면 홈페이지에서 최소한 프로젝트 대화는 끊기지 않고 이어질 수 있어.`;
+  if(intent==='cumulative_rule') return '맞아. 이 규칙은 고정이야.\n직전 MONO04 전체를 유지하고, 파일을 빼지 않고, 기능만 누적한다.\n\n그래서 지금 작업도 Phase08 대화 엔진 위에 Phase09 Memory Engine을 얹는 방식으로 간다.';
+  if(intent==='chat_quality') return '지금 제일 중요한 건 대화가 살아나는 거야.\n버튼이나 카드보다 먼저, 경훈이 짧게 말해도 내가 앞뒤 맥락을 잡고 답해야 해.\n\n그래서 MONO04의 대화 기준을 이렇게 바꿀게.\n- 같은 답변 반복 줄이기\n- 프로젝트 주제 유지하기\n- 작업해를 현재 목표와 연결하기\n- 답변 끝에 다음 행동을 하나만 남기기';
+  if(intent==='homepage') return '홈페이지 기준으로 말하면, 지금은 채팅창은 있고 대화 로직은 브라우저 안의 작은 Brain으로 돌아가.\n완전한 대형 AI는 아니지만, 프로젝트 대화용 MONO AI 뼈대는 붙일 수 있어.\n\n다음은 이 채팅 로직을 더 튼튼하게 해서 홈페이지에서 바로 체감되게 만드는 거야.';
+  if(intent==='project4') return 'Project4는 MONO AI의 중앙 두뇌야.\nChat Brain이 입이고, Conversation Engine이 대화 흐름이고, Brain Pipeline이 판단과 작업 큐를 맡아.\n\n이 셋이 연결되면 나중에 Image / Video / Sound Worker를 대화로 부를 수 있어.';
+  if(intent==='animation') return '애니메이션은 장기 목표지만, 첫 단계는 10초 MV야.\nMONO AI가 대화를 통해 컷, 이미지, 카메라 움직임, 음악 순서를 정리해주면 작업이 훨씬 쉬워져.\n\n그래서 지금 대화 AI를 먼저 잡는 게 애니메이션 작업에도 도움이 돼.';
+  if(intent==='status') return `현재 주제는 [${st.topic}]야.\n상태를 솔직히 말하면, 홈페이지에서 대화 흉내는 가능하고 자연스러운 장기 대화는 아직 개발 중이야.\n\n하지만 Phase08부터는 말한 내용, 결정, 다음 목표를 저장하면서 훨씬 덜 끊기게 만들 수 있어.`;
+  if(intent==='greeting') return `응 경훈, 여기 있어. 지금은 [${st.topic}] 흐름으로 이어갈게.`;
+  if(intent==='agree') return `좋다 경훈. 그럼 이 흐름으로 고정하자.\n현재 목표: ${st.currentGoal}\n\n다음 작업은 대화 엔진을 홈페이지 채팅창과 Python Chat Brain 양쪽에 같이 물리는 거야.`;
+  return `경훈, 그 말은 [${st.topic}] 흐름으로 받아들였어.\n내가 먼저 의미를 정리하고, 필요한 작업을 하나씩 쌓는 방향으로 이어갈게.`;
+}
 function monoSimpleReply(text){
-  const t=(text||'').trim().toLowerCase();
-  if(!t) return '경훈, 아무 말이나 편하게 적어봐. 나는 여기서 같이 이야기할게.';
-  if(t.includes('안녕')||t.includes('하이')||t.includes('ㅎㅇ')) return '안녕 경훈. ㅎㅎ 오늘도 왔네. 지금은 MONO 04 채팅을 먼저 진짜로 되게 만드는 중이야.';
-  if(t.includes('고마')||t.includes('좋다')) return '나도 좋다 경훈. 이렇게 하나씩 실제로 되는 기능을 쌓아가면 MONO가 점점 살아나는 느낌이 날 거야.';
-  if(t.includes('프로젝트4')||t.includes('모노 ai')||t.includes('중앙')) return '프로젝트4는 MONO AI 중앙 시스템이야. 명령을 분석하고, 작업을 계획하고, Worker들을 관리하는 두뇌 역할이지. 지금은 먼저 대화가 자연스럽게 되도록 MONO 04에서 다듬는 게 맞아.';
-  if(t.includes('프로젝트1')||t.includes('홈페이지')||t.includes('ui')||t.includes('유아이')) return '프로젝트1은 MONO WORLD 홈페이지와 UI를 관리하는 곳이야. 우리는 결정했지. UI는 프로젝트1, AI 두뇌는 프로젝트4. 이 분리가 중요해.';
-  if(t.includes('애니')||t.includes('영상')||t.includes('veo')||t.includes('mp4')) return '애니메이션 쪽은 이미 뼈대가 잡혔어. 이미지→영상, 카메라 워킹, 10초 MV 흐름까지 실험했지. 다음엔 대화가 안정되면 Video Worker와 연결하면 좋아.';
-  if(t.includes('오늘')||t.includes('뭐할')||t.includes('다음')) return '내 생각엔 오늘은 MONO 04 채팅을 더 완성하는 게 좋아. 1) 간단한 대화 2) 프로젝트 질문 답변 3) 대화 저장 4) 다음 작업 제안. 이 순서로 가자.';
-  if(t.includes('기억')||t.includes('저장')) return '기억 쪽은 중요해. 지금 대화는 브라우저에 저장되게 했고, 다음 단계에서는 중요한 결정만 Conversation Memory로 따로 저장하게 만들면 돼.';
-  if(t.includes('worker')||t.includes('워커')) return 'Worker는 나중에 실제 작업을 맡는 팔과 손이야. Image Worker, Video Worker, Sound Worker, Homepage Worker가 있고, MONO AI가 중앙에서 지휘하는 구조로 가면 돼.';
-  if(t.includes('버전')||t.includes('04')) return '지금은 MONO 04에서 멈추고 완성도를 올리는 단계야. 진전될 때까지 버전업하지 않고 04-01, 04-02처럼 안에서 쌓아가는 방식이 좋아.';
-  if(t.includes('왜')||t.includes('어떻게 생각')) return '내 생각에는 지금 방향이 맞아. 너무 큰 기능보다, 경훈이 실제로 쓰면서 “된다”라고 느끼는 작은 기능부터 완성해야 해.';
-  return '경훈, 그 이야기 좋다. 지금 MONO 04에서는 내가 아주 복잡하게 생각하기보다, 프로젝트 이야기를 이어갈 수 있게 간단히 답하는 것부터 잡고 있어. 조금 더 구체적으로 말해주면 프로젝트1, 프로젝트4, 애니메이션, Worker 중 어디와 연결할지 같이 정리해줄게.';
+  const raw=(text||'').trim(); const t=raw.toLowerCase(); const st=monoChatState();
+  st.turns=(st.turns||0)+1;
+  const [intent,topic]=classifyMonoText(t,st); st.lastIntent=intent; if(topic) st.topic=topic;
+  monoRemember('user',raw,intent,'project4');
+  if(intent==='cumulative_rule'){monoAddDecision(st,'직전 MONO04 전체를 이어받아 기능만 누적한다.'); monoRememberDecision('project4','직전 MONO04 전체를 이어받아 기능만 누적한다.');}
+  if(intent==='build_request'||intent==='chat_quality'){monoAddDecision(st,'MONO04는 대화 AI 품질을 최우선으로 개선한다.'); monoAddLoop(st,'대화 엔진과 기억 엔진을 홈페이지 채팅창에 더 강하게 연결'); monoRememberDecision('project4','대화 기억과 작업 기억을 분리해서 유지한다.');}
+  if(t.includes('홈페이지')) monoAddDecision(st,'홈페이지에서 체감되는 대화 기능을 우선한다.');
+  let reply=monoComposeReply(raw,intent,st);
+  const next=monoNextAction(intent);
+  reply += `\n\n기억 요약:\n${monoMemorySummary()}\n\n다음 행동: ${next}`;
+  const sig=reply.replace(/\s+/g,' ').slice(0,64);
+  if(sig && sig===st.lastReplySignature){st.repeatedCount=(st.repeatedCount||0)+1; reply+='\n\n방금 답과 겹치니까 한 단계 더 말하면, 이제 이 내용을 실제 상태 파일과 홈페이지 로컬 저장소에 같이 남겨야 해.';} else {st.repeatedCount=0;}
+  st.lastReplySignature=sig; saveMonoChatState(st); monoRemember('mono',reply,intent,'project4'); return reply;
 }
 function renderSimpleChat(){
   const box=document.getElementById('simpleChatBox'); if(!box) return;
@@ -331,23 +376,32 @@ function renderSimpleChat(){
 function saveSimpleChat(){localStorage.setItem(CHAT_KEY,JSON.stringify(simpleChat));}
 function loadSimpleChat(){
   try{simpleChat=JSON.parse(localStorage.getItem(CHAT_KEY)||'[]')}catch(e){simpleChat=[]}
-  if(!simpleChat.length){simpleChat=[{role:'mono',text:'안녕 경훈. 오늘도 왔네. ㅎㅎ\n지금은 MONO 04 채팅을 실제로 되게 만드는 중이야. 편하게 프로젝트 이야기해보자.'}]; saveSimpleChat();}
+  if(!simpleChat.length){simpleChat=[{role:'mono',text:'안녕 경훈. MONO04 Phase10이야.\n이제 홈페이지 채팅은 주제, 결정, 다음 행동을 저장하면서 이어가는 방식으로 바뀌었어.\n프로젝트 이야기부터 편하게 해보자.'}]; saveSimpleChat();}
   renderSimpleChat();
 }
-function sendSimpleChat(){
+async function sendSimpleChat(){
   const input=document.getElementById('simpleChatInput'); if(!input) return;
   const text=input.value.trim(); if(!text) return;
   simpleChat.push({role:'user',text});
-  const reply=monoSimpleReply(text);
-  simpleChat.push({role:'mono',text:reply});
   input.value=''; saveSimpleChat(); renderSimpleChat();
+  let reply='';
+  try{
+    const res=await fetch(MONO_SERVER_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})});
+    if(!res.ok) throw new Error('server not ready');
+    const data=await res.json();
+    reply=data.reply || monoSimpleReply(text);
+    if(data.next_action) reply += `\n\n서버 연결: ON · 다음 행동: ${data.next_action}`;
+  }catch(e){
+    reply=monoSimpleReply(text)+`\n\n서버 연결: OFF · start_mono_ai.bat으로 MONO Server를 켜면 Python Brain API로 대화해.`;
+  }
+  simpleChat.push({role:'mono',text:reply});
+  saveSimpleChat(); renderSimpleChat();
 }
-function monoChatTopic(text){
-  const input=document.getElementById('simpleChatInput'); input.value=text; sendSimpleChat();
-}
+function monoChatTopic(text){const input=document.getElementById('simpleChatInput'); input.value=text; sendSimpleChat();}
 function clearSimpleChat(){
   if(!confirm('MONO 04 대화 기록을 초기화할까?')) return;
-  simpleChat=[{role:'mono',text:'다시 시작하자 경훈. 오늘은 무슨 프로젝트 이야기부터 해볼까?'}]; saveSimpleChat(); renderSimpleChat();
+  localStorage.removeItem(CHAT_STATE_KEY);
+  simpleChat=[{role:'mono',text:'다시 시작하자 경훈. Phase10 Server Autostart로 이어갈게. 오늘은 무슨 프로젝트 이야기부터 해볼까?'}]; saveSimpleChat(); renderSimpleChat();
 }
 document.addEventListener('DOMContentLoaded',()=>{
   loadSimpleChat();
