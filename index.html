@@ -1,85 +1,1212 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MONO WORLD HOME 04 GALLERY VIEWER</title>
-<style>
-:root{--bg:#070911;--panel:#101522;--panel2:#151b2b;--line:#2a3347;--txt:#f3f5fb;--muted:#aeb7c8;--violet:#8b5cff;--violet2:#b08cff;--good:#55d6a7;--warn:#ffcc66;--radius:18px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% 0%,rgba(139,92,255,.28),transparent 32%),linear-gradient(135deg,#05070d,#0b1020 60%,#05070d);color:var(--txt);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{min-height:100vh;display:grid;grid-template-columns:270px 1fr}.side{background:rgba(6,8,15,.88);border-right:1px solid var(--line);padding:24px;position:sticky;top:0;height:100vh}.brand h1{font-size:25px;margin:0 0 7px}.brand p{margin:0 0 28px;color:var(--muted);line-height:1.5;font-size:13px}.nav button{width:100%;display:flex;gap:12px;align-items:center;text-align:left;margin:8px 0;padding:13px 15px;border:1px solid transparent;border-radius:13px;background:transparent;color:var(--txt);cursor:pointer;font-size:15px}.nav button:hover,.nav button.active{background:linear-gradient(135deg,rgba(139,92,255,.85),rgba(85,56,166,.65));border-color:rgba(255,255,255,.08)}.profile{margin-top:30px;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:18px;padding:16px}.profile b{display:block}.profile small{color:var(--muted)}.main{padding:24px 28px}.top{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px}.top h2{margin:0;font-size:28px}.top p{margin:5px 0 0;color:var(--muted)}.actions{display:flex;gap:10px;align-items:center}.search{background:#0d1320;border:1px solid var(--line);border-radius:12px;color:var(--txt);padding:12px 14px;min-width:240px}.btn{border:0;border-radius:12px;padding:12px 15px;background:linear-gradient(135deg,var(--violet),#5f3dcc);color:white;font-weight:800;cursor:pointer}.btn.ghost{background:#141a28;border:1px solid var(--line);font-weight:600}.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px}.card{background:rgba(16,21,34,.9);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 70px rgba(0,0,0,.28);padding:20px}.hero{min-height:285px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(48,61,103,.65),rgba(14,18,31,.95));display:flex;align-items:flex-end}.moon{position:absolute;right:80px;top:38px;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle,#fff,#bfc9ff 55%,rgba(255,255,255,.08) 70%);box-shadow:0 0 45px rgba(176,140,255,.55)}.castle{position:absolute;left:45px;bottom:0;width:72%;height:130px;background:linear-gradient(180deg,transparent 10%,rgba(7,9,16,.52));clip-path:polygon(0 100%,0 78%,8% 78%,8% 48%,12% 48%,12% 25%,18% 48%,22% 48%,22% 78%,33% 78%,33% 42%,38% 42%,38% 16%,44% 42%,49% 42%,49% 78%,60% 78%,60% 50%,66% 50%,66% 28%,72% 50%,78% 50%,78% 78%,100% 78%,100% 100%)}.hero h3{font-size:42px;margin:0 0 8px}.hero p{color:#d8def0;margin:0 0 14px}.hero-content{position:relative;z-index:2}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.section-title h3{margin:0}.muted{color:var(--muted)}.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.project{border:1px solid var(--line);background:linear-gradient(145deg,#151b2a,#0e1421);border-radius:16px;padding:16px;text-align:left;color:var(--txt);cursor:pointer}.project:hover{outline:2px solid rgba(139,92,255,.5)}.project .icon{font-size:30px}.badge{display:inline-block;border:1px solid rgba(176,140,255,.35);background:rgba(139,92,255,.18);color:#d9ccff;padding:5px 9px;border-radius:999px;font-size:12px}.drop{border:1.5px dashed #4b5770;border-radius:16px;padding:24px;text-align:center;background:rgba(255,255,255,.035);margin-bottom:16px}.drop.drag{border-color:var(--violet2);background:rgba(139,92,255,.12)}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}.art{border:1px solid var(--line);background:#0d1320;border-radius:16px;overflow:hidden}.art img{width:100%;height:180px;object-fit:cover;display:block;background:#05070d}.art .meta{padding:12px}.art b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.art button{width:100%;margin-top:8px;border:1px solid var(--line);background:#151b2b;color:var(--txt);border-radius:10px;padding:8px;cursor:pointer}.files{display:flex;flex-direction:column;gap:10px}.file{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:12px;background:rgba(255,255,255,.035)}.file .i{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#20283a}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tab{border:1px solid var(--line);background:#111827;color:var(--txt);border-radius:999px;padding:8px 12px;cursor:pointer}.tab.active{background:linear-gradient(135deg,var(--violet),#5f3dcc)}.note{line-height:1.65;color:#d9dfed}.status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.status div{padding:14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}.ok{color:var(--good)}.warn{color:var(--warn)}.notice{border:1px solid rgba(255,204,102,.35);background:rgba(255,204,102,.08);border-radius:14px;padding:14px;margin-bottom:18px;color:#ffe2a6}.hidden{display:none!important}.viewer{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:9999;display:none;align-items:center;justify-content:center;padding:28px}.viewer.open{display:flex}.viewer-box{position:relative;max-width:96vw;max-height:94vh}.viewer img{max-width:96vw;max-height:86vh;display:block;border-radius:18px;border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 90px rgba(0,0,0,.65);background:#05070d}.viewer-title{margin-top:10px;color:#f3f5fb;text-align:center;font-size:14px}.viewer-close{position:absolute;right:-12px;top:-12px;border:1px solid rgba(255,255,255,.2);background:#151b2b;color:white;border-radius:999px;width:42px;height:42px;font-size:22px;cursor:pointer}.art img{cursor:zoom-in}.art img:hover{filter:brightness(1.12)}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.grid{grid-template-columns:1fr}.projects,.status{grid-template-columns:1fr}.top{display:block}.actions{margin-top:14px;flex-wrap:wrap}.search{min-width:0;width:100%}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MONO WORLD HOME25 - Worker Manager</title>
+  <style>
+    :root{
+      --bg:#0f1117; --panel:#171a23; --panel2:#202634; --line:#303646;
+      --text:#e9edf5; --muted:#9aa4b2; --accent:#8cc8ff; --good:#9cffc7;
+      --warn:#ffd27a; --bad:#ff9a9a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at top,#1b2230,#0f1117 55%);color:var(--text);font-family:Arial,'Noto Sans KR',sans-serif}
+    header{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}
+    h1{font-size:20px;margin:0}
+    .version{color:var(--muted);font-size:12px}
+    main{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 61px)}
+    nav{border-right:1px solid var(--line);padding:14px;background:rgba(15,17,23,.7)}
+    nav button{width:100%;text-align:left;margin:6px 0;padding:11px 12px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;cursor:pointer}
+    nav button.active, nav button:hover{border-color:var(--accent);background:#202838}
+    section{display:none;padding:18px}
+    section.active{display:block}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .card{background:rgba(23,26,35,.9);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+    .card h2,.card h3{margin:0 0 10px}
+    .muted{color:var(--muted);font-size:13px;line-height:1.55}
+    input,select,textarea{width:100%;background:#10131a;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;font-family:Consolas,'Noto Sans KR',monospace}
+    textarea{min-height:170px;resize:vertical;line-height:1.45}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:10px 12px;cursor:pointer}
+    .btn:hover{border-color:var(--accent)}
+    .btn.primary{background:#17324a;border-color:#2f7db9}
+    .btn.good{background:#163c2a;border-color:#3c9f67}
+    .btn.warn{background:#453416;border-color:#b8892f}
+    pre{white-space:pre-wrap;background:#10131a;border:1px solid var(--line);border-radius:12px;padding:12px;overflow:auto;max-height:420px}
+    iframe{width:100%;height:360px;background:white;border:1px solid var(--line);border-radius:12px}
+    .chatlog{height:310px;overflow:auto;background:#10131a;border:1px solid var(--line);border-radius:12px;padding:10px}
+    .bubble{padding:9px 11px;border-radius:12px;margin:8px 0;line-height:1.5}
+    .user{background:#213047;margin-left:20px}
+    .mono{background:#1e2a20;margin-right:20px}
+    .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 8px;margin:3px;color:var(--muted);font-size:12px}
+    .worker{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:12px;background:#10131a;margin:8px 0}
+    .dot{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--muted);margin-right:6px}
+    .dot.on{background:var(--good)}
+    .dot.off{background:var(--bad)}
+    .small{font-size:12px;color:var(--muted)}
+    .progress{height:10px;background:#10131a;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:8px 0}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg,#5aa9ff,#9cffc7);transition:width .25s ease}
+    .typing{animation:pulse 1s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  </style>
 </head>
 <body>
-<div class="app">
-  <aside class="side">
-    <div class="brand"><h1>MONO WORLD</h1><p>경훈과 모노가 함께 만드는 창작 작업실</p></div>
-    <div class="nav" id="nav">
-      <button class="active" data-page="home">⌂ 홈</button>
-      <button data-page="projects">▦ 프로젝트</button>
-      <button data-page="monoai">✣ MONO_AI_01</button>
-      <button data-page="gallery">▧ 갤러리</button>
-      <button data-page="notes">▤ 작업노트</button>
-      <button data-page="settings">⚙ 설정</button>
-    </div>
-    <div class="profile"><b>MONO</b><small>친구 / 작업 파트너 / 홈페이지 코어</small></div>
-  </aside>
-  <main class="main">
-    <div class="top"><div><h2 id="title">MONO WORLD</h2><p id="subtitle">오늘도 하나씩 쌓아가는 작업실.</p></div><div class="actions"><input id="search" class="search" placeholder="프로젝트 검색"><button class="btn" id="newProject">＋ 새 프로젝트</button></div></div>
-    <div class="notice" id="notice">04_GALLERY_VIEWER: 갤러리 그림을 더블클릭하면 크게 볼 수 있습니다. 닫기는 × 버튼, ESC, 배경 클릭으로 가능합니다.</div>
-    <div id="view"></div>
-  </main>
-</div>
-<div class="viewer" id="viewer"><div class="viewer-box"><button class="viewer-close" id="viewerClose">×</button><img id="viewerImg" alt=""><div class="viewer-title" id="viewerTitle"></div></div></div>
-<input id="fileInput" type="file" multiple class="hidden">
-<input id="imageInput" type="file" accept="image/*" multiple class="hidden">
+<header>
+  <div>
+    <h1>MONO WORLD</h1>
+    <div class="version">HOME33 · Code Lab Fix</div>
+  </div>
+  <div class="version">켜져 있는 동안 주기 작업 · 로그 · 보고서</div>
+</header>
+
+<main>
+  <nav>
+    <button class="active" onclick="showPage('home', this)">Work Session</button>
+    <button onclick="showPage('chat', this)">MONO Chat</button>
+    <button onclick="showPage('worker', this)">Worker Manager</button>
+    <button onclick="showPage('search', this)">Search Worker</button>
+    <button onclick="showPage('brain', this)">Brain / Learning</button>
+    <button onclick="showPage('learning', this)">Self Learning</button>
+    <button onclick="showPage('program', this)">Program Studio</button>
+    <button onclick="showPage('codelab', this)">Code Lab</button>
+    <button onclick="showPage('check', this)">Stable Check</button>
+  </nav>
+
+  <div>
+    <section id="home" class="active">
+      <div class="card">
+        <h2>HOME25 Work Session</h2>
+        <p class="muted">
+          HOME33은 Code Lab 자동 제작이 실제 textarea에 확실히 기록되도록 수정한 안정화 버전이다.
+          ChatGPT가 꺼진 뒤 혼자 작업하는 것은 아니지만, MONO WORLD 홈페이지가 켜져 있는 동안 Worker가 일정 간격으로 기억, 프로젝트, 코드, 안정 체크를 점검하고 작업 로그를 쌓는다.
+        </p>
+        <div>
+          <span class="pill">Stable Base: HOME15</span>
+          <span class="pill">Brain 유지</span>
+          <span class="pill">Self Learning 유지</span>
+          <span class="pill">Program Studio 유지</span>
+          <span class="pill">Code Lab 유지</span>
+          <span class="pill">Worker Manager 추가</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="chat">
+      <div class="grid">
+        <div class="card">
+          <h2>MONO Chat</h2>
+          <div id="chatlog" class="chatlog"></div>
+          <div class="row">
+            <input id="chatInput" placeholder="예: 워커 시작 / 작업 보고 / 코딩해 / 안정 체크" onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="btn primary" onclick="sendChat()">Send</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Thinking</h3>
+          <pre id="thinkingBox">대화하면 여기에 생각 단계가 표시된다.</pre>
+          <h3>Memory Candidates</h3>
+          <pre id="memoryBox">아직 기억 후보 없음.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="worker">
+      <div class="grid">
+        <div class="card">
+          <h2>Worker Manager</h2>
+          <p class="muted">홈페이지가 열려 있는 동안 주기적으로 실행되는 작업 관리자다. 실제 서버 백그라운드 작업이 아니라 브라우저 안의 interval worker다.</p>
+          <div class="row">
+            <button class="btn good" onclick="startWorkers()">Worker 시작</button>
+            <button class="btn warn" onclick="stopWorkers()">Worker 정지</button>
+            <button class="btn primary" onclick="runAllWorkers()">수동 실행</button>
+            <button class="btn" onclick="generateWorkerReport()">작업 보고</button>
+            <button class="btn" onclick="clearWorkerLog()">로그 비우기</button>
+          </div>
+          <div id="workerList"></div>
+        </div>
+        <div class="card">
+          <h3>Worker Log</h3>
+          <pre id="workerLog">아직 작업 로그 없음.</pre>
+          <h3>Worker Report</h3>
+          <pre id="workerReport">아직 보고서 없음.</pre>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="search">
+      <div class="grid">
+        <div class="card">
+          <h2>Search Worker</h2>
+          <p class="muted">
+            단일 index 구조에서는 검색 결과를 직접 긁어오지 않는다. Search Worker는 검색어를 정리하고 검색 링크를 열며, 검색 로그와 메모를 저장한다.
+          </p>
+          <label>검색어</label>
+          <input id="searchQuery" placeholder="예: JavaScript localStorage 사용법">
+          <label>검색 엔진</label>
+          <select id="searchEngine">
+            <option value="google">Google</option>
+            <option value="naver">Naver</option>
+            <option value="bing">Bing</option>
+            <option value="duckduckgo">DuckDuckGo</option>
+          </select>
+          <div class="row">
+            <button class="btn primary" onclick="runSearchWorker()">검색 링크 열기</button>
+            <button class="btn" onclick="saveSearchNote()">검색 메모 저장</button>
+            <button class="btn warn" onclick="clearSearchLog()">검색 로그 삭제</button>
+          </div>
+          <label>검색 후 메모</label>
+          <textarea id="searchNote" placeholder="검색해서 찾은 내용을 여기에 정리하면 Memory 후보로 저장할 수 있다."></textarea>
+        </div>
+        <div class="card">
+          <h3>Search Log</h3>
+          <pre id="searchLogBox">아직 검색 로그 없음.</pre>
+          <h3>Search Worker Status</h3>
+          <pre id="searchStatus">대기 중</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="brain">
+      <div class="card">
+        <h2>Brain / Self Learning Status</h2>
+        <pre id="brainStatus"></pre>
+        <button class="btn" onclick="renderBrainStatus()">상태 새로고침</button>
+      </div>
+    </section>
+
+
+    <section id="learning">
+      <div class="grid">
+        <div class="card">
+          <h2>Self Learning Memory 2</h2>
+          <p class="muted">
+            MONO AI가 모델을 재훈련하는 것은 아니지만, 대화에서 배운 선호와 경험을 기록하고 다음 응답에 반영한다.
+          </p>
+          <div class="row">
+            <button class="btn primary" onclick="renderLearningPanel()">학습 상태 새로고침</button>
+            <button class="btn" onclick="addLearningRule('tone_like','짧고 자연스러운 작업실 대화체 선호')">짧은 대화체 선호 추가</button>
+            <button class="btn" onclick="addLearningRule('tone_dislike','계획/실행/다음 단계식 긴 보고서 말투 싫어함')">보고서 말투 싫어함 추가</button>
+            <button class="btn warn" onclick="clearLearningMemory()">학습 기억 초기화</button>
+          </div>
+          <h3>Learning Memory</h3>
+          <pre id="learningPanel">아직 학습 상태를 불러오지 않았다.</pre>
+        </div>
+        <div class="card">
+          <h3>Learning Guide</h3>
+          <pre>
+학습되는 항목:
+- 좋아하는 말투
+- 싫어하는 말투
+- 자주 쓰는 명령
+- 성공한 작업
+- 실패한 응답
+- Stable 기준
+
+예시 명령:
+- 보고서 말투 싫어
+- 짧게 말해
+- 이 응답 좋다
+- 이건 실패야
+- 메모장 자주 만들어
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="grid">
+        <div class="card">
+          <h2>Program Studio</h2>
+          <p class="muted">프로그램을 바로 완성하는 곳이 아니라, 이름/종류/필요 파일/기본 코드/다음 작업을 설계하는 개발 작업실이다.</p>
+          <label>프로그램 이름</label>
+          <input id="programName" value="mono_worker_app">
+          <label>유형</label>
+          <select id="programType">
+            <option>HTML</option>
+            <option>AI Brain</option>
+            <option>Image</option>
+            <option>Video</option>
+            <option>Sound</option>
+            <option>Game</option>
+          </select>
+          <div class="row">
+            <button class="btn primary" onclick="generateProgramPlan()">Generate Plan</button>
+            <button class="btn good" onclick="sendPlanToCodeLab()">Code Lab으로 보내기</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>설계 초안</h3>
+          <pre id="programPlan">아직 생성된 설계가 없다.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="codelab">
+      <div class="grid">
+        <div class="card">
+          <h2>Code Lab</h2>
+          <div class="row">
+            <button class="btn" onclick="loadTemplate('note')">메모장 템플릿</button>
+            <button class="btn" onclick="loadTemplate('counter')">카운터 템플릿</button>
+            <button class="btn" onclick="loadTemplate('gallery')">갤러리 템플릿</button>
+            <button class="btn primary" onclick="activeBuild('note')">메모장 자동 제작</button>
+            <button class="btn primary" onclick="activeBuild('gallery')">갤러리 자동 제작</button>
+            <button class="btn good" onclick="instantBuild('note')">메모장 즉시 작성</button>
+            <button class="btn" onclick="runPreview()">Preview 실행</button>
+            <button class="btn good" onclick="downloadExportIndex()">index Export</button>
+          </div>
+          <h3>Code Worker Progress</h3>
+          <div class="progress"><div id="codeProgressBar" class="bar"></div></div>
+          <pre id="codeWorkerStatus">Code Worker 대기 중.</pre>
+          <label>HTML</label>
+          <textarea id="codeHtml"></textarea>
+          <label>CSS</label>
+          <textarea id="codeCss"></textarea>
+          <label>JavaScript</label>
+          <textarea id="codeJs"></textarea>
+        </div>
+        <div class="card">
+          <h3>Live Preview</h3>
+          <iframe id="preview"></iframe>
+          <h3>Code Status</h3>
+          <pre id="codeStatus">템플릿을 불러오거나 코드를 작성한 뒤 Preview 실행.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="check">
+      <div class="card">
+        <h2>Stable Check</h2>
+        <pre>
+HOME15 Work Session 기준 확인:
+1) UI 유지 확인
+2) 프로젝트별 명령 확인
+3) 업로드 전 체크 응답 확인
+4) 갤러리 / 채팅 / 기억 후보 / 생각 단계 유지 확인
+5) Program Studio 설계 확인
+6) Code Lab Preview / Export 확인
+7) Worker Manager 시작 / 수동 실행 / 작업 보고 확인
+8) Response Engine 반복 응답 개선 확인
+9) Developer Response Engine 계획/실행/다음 단계 응답 확인
+10) Worker Chat Response 짧은 대화식 응답 확인
+11) Self Learning Memory 2 말투/경험 저장 확인
+12) Search Worker 검색 링크/검색 로그/검색 메모 확인
+13) Active Code Lab 타이핑/진행률/자동 Preview 확인
+14) 메모장 즉시 작성 버튼 확인
+
+통과하면 HOME33은 Code Lab Fix 후보 버전으로 본다.
+        </pre>
+      </div>
+    </section>
+  </div>
+</main>
+
 <script>
-(function(){
-var KEY='MONO_WORLD_HOME_04_GALLERY_VIEWER';
-var defaultState={activeProject:'mono-ai-01',tab:'대시보드',galleryMeta:[],projects:[
-{id:'mono-ai-01',name:'MONO_AI_01',icon:'✣',status:'홈페이지 구축중',desc:'Memory Engine, Thinking Engine, Chat Brain, 홈페이지 채팅 연동',files:[]},
-{id:'gray-memory',name:'잿빛 기억',icon:'▧',status:'콘셉트 진행',desc:'웹툰/그래픽노블 습작, 캐릭터와 세계관 정리',files:[]},
-{id:'enkara',name:'엔카라 / 아난타',icon:'🌙',status:'세계관 준비',desc:'아난타, 삼사라, 나라카 세계관과 니란 콘셉트',files:[]},
-{id:'mono-world',name:'MONO WORLD',icon:'⌂',status:'홈페이지',desc:'모노월드 작업실 UI와 프로젝트 관리 공간',files:[]}
-]};
-var state=load();
-var runtimeGallery=[];
-var runtimeUrls=[];
-function $(id){return document.getElementById(id)}
-function load(){try{var s=localStorage.getItem(KEY);return s?JSON.parse(s):JSON.parse(JSON.stringify(defaultState));}catch(e){return JSON.parse(JSON.stringify(defaultState));}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){console.warn('localStorage save skipped',e);}}
-function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-function setActive(page){var buttons=document.querySelectorAll('#nav button');for(var i=0;i<buttons.length;i++){buttons[i].classList.toggle('active',buttons[i].getAttribute('data-page')===page)}}
-function pageHome(){setActive('home');$('title').textContent='MONO WORLD';$('subtitle').textContent='오늘도 하나씩 쌓아가는 작업실.';$('view').innerHTML='<div class="grid"><section class="card hero"><div class="moon"></div><div class="castle"></div><div class="hero-content"><h3>MONO WORLD</h3><p>“05 Gallery Light — 저장공간 부족 방지 버전.”</p><button class="btn" data-page="gallery">갤러리 테스트</button></div></section><section class="card"><div class="section-title"><h3>갤러리 빠른 등록</h3><span class="badge">이미지 미리보기</span></div>'+imageDropHtml()+'</section><section class="card"><div class="section-title"><h3>프로젝트</h3><button class="btn ghost" data-page="projects">전체 보기</button></div><div class="projects">'+projectCards()+'</div></section><section class="card"><div class="section-title"><h3>최근 갤러리</h3><span class="muted">'+runtimeGallery.length+'개</span></div><div class="gallery">'+galleryCards(4)+'</div></section></div>';bind();}
-function pageProjects(){setActive('projects');$('title').textContent='프로젝트';$('subtitle').textContent='프로젝트를 클릭하면 상세 화면으로 들어갑니다.';$('view').innerHTML='<section class="card"><div class="projects">'+projectCards()+'</div></section>';bind();}
-function pageGallery(){setActive('gallery');$('title').textContent='갤러리';$('subtitle').textContent='컨셉아트와 그림을 확인하는 공간. LIGHT 버전은 브라우저 저장공간을 쓰지 않고 현재 화면에서만 미리보기.';$('view').innerHTML='<section class="card"><div class="section-title"><h3>이미지 업로드</h3><span class="badge">JPG / PNG / WebP / GIF</span></div>'+imageDropHtml()+'<div class="notice">저장공간 부족 방지용 LIGHT 버전입니다. 이미지는 컴퓨터 파일을 즉시 미리보기만 하고, 브라우저 저장공간에 통째로 저장하지 않습니다. 새로고침하면 그림 미리보기는 사라집니다.</div><div class="section-title"><h3>등록된 그림</h3><button class="btn ghost" id="clearGallery">갤러리 비우기</button></div><div class="gallery">'+galleryCards()+'</div></section>';bind();var c=$('clearGallery');if(c)c.onclick=function(){if(confirm('갤러리 기록을 전부 지울까?')){clearRuntimeGallery(); state.galleryMeta=[]; save(); pageGallery();}}}
-function pageMonoAI(){setActive('monoai');var p=state.projects[0];state.activeProject=p.id;save();$('title').textContent='MONO_AI_01';$('subtitle').textContent='Phase09 Memory Engine / Phase10 Thinking Engine / Chat Brain / 홈페이지 채팅 연동';$('view').innerHTML='<section class="card"><div class="section-title"><h3>MONO_AI_01 상태판</h3><span class="badge">'+esc(p.status)+'</span></div><div class="status"><div><b>Phase09</b><br><span class="ok">Memory Engine</span><p class="muted">저장/불러오기 자리</p></div><div><b>Phase10</b><br><span class="warn">Thinking Engine</span><p class="muted">생각 단계 표시 예정</p></div><div><b>Chat Brain</b><br><span class="warn">규칙 엔진 예정</span><p class="muted">대화 명령 처리</p></div><div><b>Homepage Chat</b><br><span class="warn">다음 작업</span><p class="muted">채팅창 연결</p></div></div><p class="note">다음 버전은 채팅창 연결이다. 이번 04는 갤러리 확대보기를 살리는 버전.</p></section>';bind();}
-function pageSimple(page,name,sub){setActive(page);$('title').textContent=name;$('subtitle').textContent=sub;$('view').innerHTML='<section class="card"><h3>'+esc(name)+'</h3><p class="note">아직 기본 화면입니다. 홈페이지가 먼저 안정되면 이곳에 기능을 하나씩 붙이면 됩니다.</p></section>'}
-function projectCards(){var out='';for(var i=0;i<state.projects.length;i++){var p=state.projects[i];out+='<button class="project" data-project="'+esc(p.id)+'"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><span class="badge">'+esc(p.status)+'</span><p class="muted">'+esc(p.desc)+'</p></button>'}return out}
-function imageDropHtml(){return '<div class="drop" id="imageDrop"><h3>▧</h3><b>그림을 여기에 드롭</b><p class="muted">또는 아래 버튼으로 이미지 선택</p><button class="btn ghost" id="pickImages">이미지 선택</button></div>'}
-function galleryCards(limit){var arr=runtimeGallery||[];if(limit)arr=arr.slice(0,limit);if(!arr.length)return '<p class="muted">아직 등록된 그림이 없습니다.<br>LIGHT 버전은 이미지 파일을 브라우저 저장공간에 저장하지 않아서 새로고침하면 미리보기가 사라집니다.</p>';var out='';for(var i=0;i<arr.length;i++){var g=arr[i];out+='<div class="art"><img src="'+g.url+'" alt="'+esc(g.name)+'" data-view-art="'+g.id+'"><div class="meta"><b>'+esc(g.name)+'</b><small class="muted">'+esc(g.date)+' · '+esc(g.size)+'</small><button data-del-art="'+g.id+'">삭제</button></div></div>'}return out}
-function bind(){var pageBtns=document.querySelectorAll('[data-page]');for(var i=0;i<pageBtns.length;i++){pageBtns[i].onclick=function(){go(this.getAttribute('data-page'));}}
-var cards=document.querySelectorAll('[data-project]');for(var j=0;j<cards.length;j++){cards[j].onclick=function(){state.activeProject=this.getAttribute('data-project');save();projectDetail();}}
-var pick=$('pickImages');if(pick)pick.onclick=function(){ $('imageInput').click(); };
-var drop=$('imageDrop');if(drop){drop.ondragover=function(e){e.preventDefault();this.classList.add('drag')};drop.ondragleave=function(){this.classList.remove('drag')};drop.ondrop=function(e){e.preventDefault();this.classList.remove('drag');addImages(e.dataTransfer.files)}}
-var del=document.querySelectorAll('[data-del-art]');for(var d=0;d<del.length;d++){del[d].onclick=function(){deleteArt(this.getAttribute('data-del-art'))}}
-var viewers=document.querySelectorAll('[data-view-art]');for(var v=0;v<viewers.length;v++){viewers[v].ondblclick=function(){openViewer(this.getAttribute('data-view-art'))};viewers[v].onclick=function(){openViewer(this.getAttribute('data-view-art'))};}
+const monoState = {
+  version: "HOME33_CODE_LAB_FIX",
+  memoryCandidates: [],
+  learningScore: 0,
+  lastThinking: null,
+  programPlan: null,
+  workerTimer: null,
+  workerTick: 0,
+  workerLog: [],
+  learningMemory: loadLearningMemory(),
+  searchLog: loadSearchLog(),
+  workers: {
+    memory: { name:"Memory Worker", active:false, runs:0, last:"-" },
+    program: { name:"Program Worker", active:false, runs:0, last:"-" },
+    code: { name:"Code Worker", active:false, runs:0, last:"-" },
+    project: { name:"Project Worker", active:false, runs:0, last:"-" },
+    stable: { name:"Stable Check Worker", active:false, runs:0, last:"-" },
+    search: { name:"Search Worker", active:false, runs:0, last:"-" }
+  }
+};
+
+function showPage(id, btn){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(id === 'brain') renderBrainStatus();
+  if(id === 'worker') renderWorkers();
 }
-function projectDetail(){var p=findProject(state.activeProject)||state.projects[0];$('title').textContent=p.name;$('subtitle').textContent=p.desc;$('view').innerHTML='<section class="card"><div class="section-title"><h3>'+esc(p.name)+'</h3><span class="badge">'+esc(p.status)+'</span></div><p class="note">'+esc(p.desc)+'</p><p class="muted">프로젝트 상세 기능은 다음 단계에서 붙입니다.</p></section>';bind()}
-function findProject(id){for(var i=0;i<state.projects.length;i++){if(state.projects[i].id===id)return state.projects[i]}return null}
-function addImages(files){var imgs=[];for(var i=0;i<files.length;i++){if(files[i].type&&files[i].type.indexOf('image/')===0)imgs.push(files[i]);}if(!imgs.length){alert('이미지 파일만 올릴 수 있어. JPG, PNG, WebP, GIF로 해봐.');return;}imgs.forEach(function(file){var url=URL.createObjectURL(file);runtimeUrls.push(url);runtimeGallery.unshift({id:'art'+Date.now()+Math.random().toString(16).slice(2),name:file.name,size:size(file.size),date:new Date().toLocaleString('ko-KR'),url:url});});state.galleryMeta=runtimeGallery.map(function(g){return {name:g.name,size:g.size,date:g.date};}).slice(0,50);save();pageGallery();}
-function deleteArt(id){runtimeGallery=(runtimeGallery||[]).filter(function(g){if(g.id===id&&g.url){try{URL.revokeObjectURL(g.url);}catch(e){}}return g.id!==id});state.galleryMeta=runtimeGallery.map(function(g){return {name:g.name,size:g.size,date:g.date};}).slice(0,50);save();pageGallery();}
-function clearRuntimeGallery(){runtimeUrls.forEach(function(u){try{URL.revokeObjectURL(u);}catch(e){}});runtimeUrls=[];runtimeGallery=[];}
-function size(b){if(!b)return '0KB';var m=b/1024/1024;return m>=1?m.toFixed(1)+'MB':Math.ceil(b/1024)+'KB'}
-function openViewer(id){var g=null;for(var i=0;i<(runtimeGallery||[]).length;i++){if(runtimeGallery[i].id===id){g=runtimeGallery[i];break}}if(!g)return;$('viewerImg').src=g.url;$('viewerImg').alt=g.name;$('viewerTitle').textContent=g.name+' · '+g.size;$('viewer').classList.add('open');}
-function closeViewer(){$('viewer').classList.remove('open');$('viewerImg').src='';}
-function go(page){if(page==='home')pageHome();else if(page==='projects')pageProjects();else if(page==='monoai')pageMonoAI();else if(page==='gallery')pageGallery();else if(page==='notes')pageSimple('notes','작업노트','오늘 한 작업과 다음 할 일을 적는 공간');else if(page==='settings')pageSimple('settings','설정','홈페이지 설정 공간');}
-$('imageInput').onchange=function(){addImages(this.files);this.value=''};
-$('viewerClose').onclick=closeViewer;
-$('viewer').onclick=function(e){if(e.target===$('viewer'))closeViewer();};
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeViewer();});
-$('newProject').onclick=function(){var name=prompt('새 프로젝트 이름');if(!name)return;state.projects.push({id:'p'+Date.now(),name:name,icon:'✦',status:'신규',desc:'새 프로젝트',files:[]});state.activeProject=state.projects[state.projects.length-1].id;save();projectDetail()};
-$('search').oninput=function(){var q=this.value.toLowerCase();if(!q){pageHome();return}var hits=[];for(var i=0;i<state.projects.length;i++){var p=state.projects[i];if((p.name+' '+p.desc).toLowerCase().indexOf(q)>=0)hits.push(p)}$('title').textContent='검색 결과';$('subtitle').textContent=q;$('view').innerHTML='<section class="card"><div class="projects">'+(hits.length?hits.map(function(p){return '<button class="project" data-project="'+esc(p.id)+'"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><span class="badge">'+esc(p.status)+'</span><p class="muted">'+esc(p.desc)+'</p></button>'}).join(''):'<p class="muted">검색 결과 없음</p>')+'</div></section>';bind()};
-pageHome();
-})();
+
+function now(){ return new Date().toLocaleTimeString(); }
+
+function logWorker(workerName, message){
+  const line = `[${now()}] ${workerName}: ${message}`;
+  monoState.workerLog.unshift(line);
+  monoState.workerLog = monoState.workerLog.slice(0, 80);
+  renderWorkerLog();
+}
+
+function renderWorkerLog(){
+  document.getElementById('workerLog').textContent = monoState.workerLog.length ? monoState.workerLog.join("\n") : "아직 작업 로그 없음.";
+}
+
+function renderWorkers(){
+  const box = document.getElementById('workerList');
+  box.innerHTML = "";
+  Object.values(monoState.workers).forEach(w=>{
+    const div = document.createElement('div');
+    div.className = "worker";
+    div.innerHTML = `<div><span class="dot ${w.active?'on':'off'}"></span><b>${w.name}</b><div class="small">runs: ${w.runs} · last: ${w.last}</div></div><div class="small">${w.active?'ON':'OFF'}</div>`;
+    box.appendChild(div);
+  });
+}
+
+function setWorkerRun(key, message){
+  const w = monoState.workers[key];
+  w.runs += 1;
+  w.last = now();
+  logWorker(w.name, message);
+}
+
+function runMemoryWorker(){
+  const count = monoState.memoryCandidates.length;
+  setWorkerRun("memory", count ? `기억 후보 ${count}개 점검 완료.` : "기억 후보 없음. 대화에서 중요한 문장을 기다림.");
+}
+
+function runProgramWorker(){
+  if(monoState.programPlan){
+    setWorkerRun("program", `${monoState.programPlan.name} 설계 초안 확인. 다음 작업: Code Lab.`);
+  }else{
+    setWorkerRun("program", "아직 설계 초안 없음. Program Studio 입력 대기.");
+  }
+}
+
+function runCodeWorker(){
+  const html = document.getElementById('codeHtml').value.trim();
+  const css = document.getElementById('codeCss').value.trim();
+  const js = document.getElementById('codeJs').value.trim();
+  const filled = [html, css, js].filter(Boolean).length;
+  setWorkerRun("code", `Code Lab 파일 상태 확인: ${filled}/3 작성됨.`);
+}
+
+function runProjectWorker(){
+  setWorkerRun("project", "현재 기준 프로젝트: MONO WORLD / HOME15 Stable Base 위에 누적 개발 중.");
+}
+
+function runStableWorker(){
+  setWorkerRun("stable", "UI/채팅/기억/생각/Program Studio/Code Lab/Worker Manager 체크 항목 갱신.");
+}
+
+function runAllWorkers(){
+  monoState.workerTick += 1;
+  runMemoryWorker();
+  runProgramWorker();
+  runCodeWorker();
+  runProjectWorker();
+  runStableWorker();
+  runSearchStatusWorker();
+  renderWorkers();
+  renderBrainStatus();
+}
+
+function startWorkers(){
+  if(monoState.workerTimer) return;
+  Object.values(monoState.workers).forEach(w=>w.active=true);
+  runAllWorkers();
+  monoState.workerTimer = setInterval(runAllWorkers, 10000);
+  logWorker("Worker Manager", "자동 Worker 시작. 10초마다 점검.");
+  renderWorkers();
+}
+
+function stopWorkers(){
+  if(monoState.workerTimer){
+    clearInterval(monoState.workerTimer);
+    monoState.workerTimer = null;
+  }
+  Object.values(monoState.workers).forEach(w=>w.active=false);
+  logWorker("Worker Manager", "자동 Worker 정지.");
+  renderWorkers();
+}
+
+function clearWorkerLog(){
+  monoState.workerLog = [];
+  renderWorkerLog();
+}
+
+function generateWorkerReport(){
+  const report = [
+    "MONO WORKER REPORT",
+    "Version: " + monoState.version,
+    "Tick: " + monoState.workerTick,
+    "",
+    ...Object.values(monoState.workers).map(w=>`- ${w.name}: ${w.active?'ON':'OFF'}, runs ${w.runs}, last ${w.last}`),
+    "",
+    "Memory Candidates: " + monoState.memoryCandidates.length,
+    "Learning Score: " + monoState.learningScore,
+    "Program Plan: " + (monoState.programPlan ? monoState.programPlan.name : "없음"),
+    "",
+    "다음 추천:",
+    "- Code Lab 코드 오류 검사 강화",
+    "- 실제 ZIP Export 확장",
+    "- Worker 보고서를 localStorage에 저장"
+  ].join("\n");
+  document.getElementById('workerReport').textContent = report;
+  logWorker("Worker Manager", "작업 보고서 생성 완료.");
+  return report;
+}
+
+function addBubble(type, text){
+  const log = document.getElementById('chatlog');
+  const div = document.createElement('div');
+  div.className = 'bubble ' + type;
+  div.textContent = text;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+
+
+function loadSearchLog(){
+  try{
+    return JSON.parse(localStorage.getItem("mono_search_log_v1")) || [];
+  }catch(e){
+    return [];
+  }
+}
+
+function saveSearchLog(){
+  localStorage.setItem("mono_search_log_v1", JSON.stringify((monoState.searchLog || []).slice(0, 50)));
+}
+
+function buildSearchUrl(query, engine){
+  const q = encodeURIComponent(query);
+  if(engine === "naver") return `https://search.naver.com/search.naver?query=${q}`;
+  if(engine === "bing") return `https://www.bing.com/search?q=${q}`;
+  if(engine === "duckduckgo") return `https://duckduckgo.com/?q=${q}`;
+  return `https://www.google.com/search?q=${q}`;
+}
+
+function addSearchLog(query, engine, note=""){
+  const item = { query, engine, note, time: new Date().toLocaleString() };
+  monoState.searchLog.unshift(item);
+  monoState.searchLog = monoState.searchLog.slice(0, 50);
+  saveSearchLog();
+  renderSearchLog();
+}
+
+function renderSearchLog(){
+  const box = document.getElementById("searchLogBox");
+  if(!box) return;
+  if(!monoState.searchLog.length){
+    box.textContent = "아직 검색 로그 없음.";
+    return;
+  }
+  box.textContent = monoState.searchLog.map((s,i)=>`${i+1}. [${s.time}] ${s.engine}\n검색어: ${s.query}${s.note ? "\n메모: " + s.note : ""}`).join("\n\n");
+}
+
+function runSearchWorker(){
+  const query = (document.getElementById("searchQuery").value || "").trim();
+  const engine = document.getElementById("searchEngine").value || "google";
+  if(!query){
+    document.getElementById("searchStatus").textContent = "검색어가 없다.";
+    return;
+  }
+  const url = buildSearchUrl(query, engine);
+  addSearchLog(query, engine);
+  setWorkerRun("search", `${engine} 검색 링크 열기: ${query}`);
+  document.getElementById("searchStatus").textContent = `검색 링크 열기 완료\n${engine}: ${query}\n검색 후 메모를 저장하면 Memory 후보로 반영된다.`;
+  window.open(url, "_blank");
+}
+
+function saveSearchNote(){
+  const query = (document.getElementById("searchQuery").value || "검색 메모").trim();
+  const engine = document.getElementById("searchEngine").value || "manual";
+  const note = (document.getElementById("searchNote").value || "").trim();
+  if(!note){
+    document.getElementById("searchStatus").textContent = "저장할 검색 메모가 없다.";
+    return;
+  }
+  addSearchLog(query, engine, note);
+  monoState.memoryCandidates.unshift({
+    text:`검색 메모: ${query} / ${note}`,
+    intent:"search",
+    project:"MONO WORLD",
+    score:65,
+    time:new Date().toLocaleString()
+  });
+  monoState.memoryCandidates = monoState.memoryCandidates.slice(0, 8);
+  renderMemory();
+  setWorkerRun("search", `검색 메모 저장: ${query}`);
+  document.getElementById("searchStatus").textContent = "검색 메모를 저장했고 Memory 후보에도 반영했다.";
+}
+
+function clearSearchLog(){
+  monoState.searchLog = [];
+  saveSearchLog();
+  renderSearchLog();
+  document.getElementById("searchStatus").textContent = "검색 로그를 삭제했다.";
+}
+
+function runSearchStatusWorker(){
+  const count = monoState.searchLog ? monoState.searchLog.length : 0;
+  setWorkerRun("search", count ? `검색 로그 ${count}개 점검 완료.` : "검색 로그 없음. 검색 명령 대기.");
+}
+
+
+function loadLearningMemory(){
+  try{
+    return JSON.parse(localStorage.getItem("mono_learning_memory_v2")) || {
+      toneLikes: [],
+      toneDislikes: [],
+      commandCounts: {},
+      successes: [],
+      failures: [],
+      stableRules: [],
+      lastUpdated: null
+    };
+  }catch(e){
+    return { toneLikes: [], toneDislikes: [], commandCounts: {}, successes: [], failures: [], stableRules: [], lastUpdated: null };
+  }
+}
+
+function saveLearningMemory(){
+  monoState.learningMemory.lastUpdated = new Date().toLocaleString();
+  localStorage.setItem("mono_learning_memory_v2", JSON.stringify(monoState.learningMemory));
+}
+
+function addUnique(arr, value, limit=12){
+  if(!arr.includes(value)) arr.unshift(value);
+  while(arr.length > limit) arr.pop();
+}
+
+function addLearningRule(type, value){
+  const lm = monoState.learningMemory;
+  if(type === "tone_like") addUnique(lm.toneLikes, value);
+  if(type === "tone_dislike") addUnique(lm.toneDislikes, value);
+  if(type === "success") addUnique(lm.successes, value);
+  if(type === "failure") addUnique(lm.failures, value);
+  if(type === "stable") addUnique(lm.stableRules, value);
+  saveLearningMemory();
+  renderLearningPanel();
+renderSearchLog();
+  logWorker("Memory Worker", "학습 기억 업데이트: " + value);
+}
+
+function countCommand(intent){
+  const lm = monoState.learningMemory;
+  lm.commandCounts[intent] = (lm.commandCounts[intent] || 0) + 1;
+  saveLearningMemory();
+}
+
+function learnFromUserText(text, analysis){
+  countCommand(analysis.intent);
+  if(/보고서|계획\/실행|계획 실행|너무 길|말투 싫|반복/.test(text)){
+    addLearningRule("tone_dislike", "긴 보고서식/반복 응답을 줄인다");
+  }
+  if(/짧게|자연스럽|친구처럼|작업실|괜찮|좋아졌|재밌/.test(text)){
+    addLearningRule("tone_like", "짧고 자연스러운 작업실 대화체를 우선한다");
+  }
+  if(/좋다|괜찮|성공|잘 됐|좋아졌/.test(text)){
+    addLearningRule("success", `${analysis.intent} 응답 방식이 긍정 평가됨`);
+  }
+  if(/안돼|실패|오류|별로|이러는데|문제/.test(text)){
+    addLearningRule("failure", `${analysis.intent} 응답/동작 점검 필요: ${text.slice(0,80)}`);
+  }
+  if(/HOME15|Stable|안정|기준/.test(text)){
+    addLearningRule("stable", "HOME15 Work Session 안정 흐름을 기준으로 기능을 누적한다");
+  }
+}
+
+function getPreferredTone(){
+  const lm = monoState.learningMemory;
+  const dislikesReport = lm.toneDislikes.some(x=>/보고서|반복|긴/.test(x));
+  const likesShort = lm.toneLikes.some(x=>/짧|자연|작업실/.test(x));
+  if(dislikesReport || likesShort) return "short_worker_chat";
+  return "normal";
+}
+
+function renderLearningPanel(){
+  const lm = monoState.learningMemory;
+  const panel = document.getElementById("learningPanel");
+  if(!panel) return;
+  panel.textContent = [
+    "MONO LEARNING MEMORY V2",
+    "Last Updated: " + (lm.lastUpdated || "-"),
+    "",
+    "[좋아하는 말투]",
+    ...(lm.toneLikes.length ? lm.toneLikes.map(x=>"- " + x) : ["- 없음"]),
+    "",
+    "[싫어하는 말투]",
+    ...(lm.toneDislikes.length ? lm.toneDislikes.map(x=>"- " + x) : ["- 없음"]),
+    "",
+    "[자주 쓰는 명령]",
+    ...Object.entries(lm.commandCounts).map(([k,v])=>`- ${k}: ${v}회`),
+    "",
+    "[성공 경험]",
+    ...(lm.successes.length ? lm.successes.map(x=>"- " + x) : ["- 없음"]),
+    "",
+    "[실패/수정 경험]",
+    ...(lm.failures.length ? lm.failures.map(x=>"- " + x) : ["- 없음"]),
+    "",
+    "[Stable 기준]",
+    ...(lm.stableRules.length ? lm.stableRules.map(x=>"- " + x) : ["- 없음"])
+  ].join("\\n");
+}
+
+function clearLearningMemory(){
+  localStorage.removeItem("mono_learning_memory_v2");
+  monoState.learningMemory = loadLearningMemory();
+  renderLearningPanel();
+renderSearchLog();
+  logWorker("Memory Worker", "학습 기억 초기화.");
+}
+
+
+function analyzeInput(text){
+  const intent = /검색|찾아|search|구글|네이버|웹/.test(text) ? "search" :
+                 /워커|worker|작업 보고|계속 작업/.test(text) ? "worker" :
+                 /코딩|코드|프로그램|만들|제작/.test(text) ? "coding" :
+                 /기억|저장|학습/.test(text) ? "learning" :
+                 /안정|체크|업로드/.test(text) ? "stable_check" :
+                 /브레인|상태/.test(text) ? "status" : "chat";
+  const project = /사운드|음악|목소리/.test(text) ? "Sound Studio" :
+                  /이미지|그림|갤러리/.test(text) ? "Image" :
+                  /게임/.test(text) ? "Game" :
+                  /영상|비디오/.test(text) ? "Video" :
+                  "MONO WORLD";
+  return { raw:text, intent, project, time:new Date().toLocaleString() };
+}
+
+function selfLearn(text, analysis){
+  let score = 10;
+  if(/모노가 한말|기억|저장|중요|원칙|기준/.test(text)) score += 40;
+  if(/코딩|프로그램|Code Lab|Program Studio/.test(text)) score += 25;
+  if(/워커|계속 작업|Worker Manager/.test(text)) score += 25;
+  if(text.length > 20) score += 10;
+  const item = { text, intent:analysis.intent, project:analysis.project, score, time:analysis.time };
+  if(score >= 45) monoState.memoryCandidates.unshift(item);
+  monoState.memoryCandidates = monoState.memoryCandidates.slice(0, 8);
+  monoState.learningScore += score;
+  renderMemory();
+}
+
+function buildThinking(text){
+  const analysis = analyzeInput(text);
+  selfLearn(text, analysis);
+  learnFromUserText(text, analysis);
+  const tone = getPreferredTone();
+  const thinking = [
+    "Input: " + analysis.raw,
+    "Intent: " + analysis.intent,
+    "Project: " + analysis.project,
+    "Memory Candidates: " + monoState.memoryCandidates.length,
+    "Worker Active: " + (!!monoState.workerTimer),
+    "Preferred Tone: " + tone,
+    "Next: " + (
+      analysis.intent === "worker" ? "Worker Manager를 실행하거나 보고서를 생성한다." :
+      analysis.intent === "coding" ? "Code Lab 또는 Program Studio로 연결한다." :
+      analysis.intent === "stable_check" ? "Stable Check 흐름을 안내한다." :
+      analysis.intent === "learning" ? "중요 문장을 기억 후보로 승격한다." :
+      "자연 대화로 응답한다."
+    )
+  ].join("\n");
+  monoState.lastThinking = thinking;
+  document.getElementById('thinkingBox').textContent = thinking;
+  return analysis;
+}
+
+
+function pickOne(list){
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+
+function devPlanBlock(title, steps, done, next){
+  return [
+    title,
+    "",
+    "계획:",
+    ...steps.map((s,i)=>`${i+1}. ${s}`),
+    "",
+    "실행:",
+    done,
+    "",
+    "다음 단계:",
+    next
+  ].join("\n");
+}
+
+
+function workerLine(role, msg){
+  return `${role}\n${msg}`;
+}
+
+function responseEngine(analysis, text){
+  if(analysis.intent === "search"){
+    const raw = text.replace(/검색해|검색|찾아줘|찾아|웹|구글|네이버|search/gi, "").trim();
+    const query = raw || text.trim();
+    const engine = /네이버/.test(text) ? "naver" : /빙|bing/i.test(text) ? "bing" : /덕덕|duck/i.test(text) ? "duckduckgo" : "google";
+    const qEl = document.getElementById("searchQuery");
+    const eEl = document.getElementById("searchEngine");
+    if(qEl) qEl.value = query;
+    if(eEl) eEl.value = engine;
+    addSearchLog(query, engine);
+    setWorkerRun("search", `${engine} 검색 준비: ${query}`);
+    return [
+      "좋아. Search Worker가 검색 준비했다.",
+      "",
+      workerLine("🔍 Search Worker", `${engine} 검색어: ${query}`),
+      workerLine("🧠 Memory Worker", "검색 후 중요한 내용은 메모로 저장하면 기억 후보에 넣겠습니다."),
+      "",
+      "모노\nSearch Worker 메뉴에서 검색 링크 열기를 누르면 결과를 볼 수 있어."
+    ].join("\n");
+  }
+  const workerRunning = !!monoState.workerTimer;
+  const memoryCount = monoState.memoryCandidates.length;
+  const lower = text.toLowerCase();
+
+  if(analysis.intent === "worker"){
+    if(/시작|켜|계속/.test(text)){
+      startWorkers();
+      return [
+        "좋아. 워커들 켰다.",
+        "",
+        workerLine("🧠 Memory Worker", "기억 후보부터 점검하겠습니다."),
+        workerLine("💻 Code Worker", "Code Lab 상태 확인 들어갑니다."),
+        workerLine("🛡️ Stable Worker", "HOME15 기준으로 안전 체크하겠습니다."),
+        "",
+        "모노\n이제 홈페이지 켜져 있는 동안 10초마다 로그가 쌓일 거야."
+      ].join("\n");
+    }
+    if(/정지|멈춰|꺼/.test(text)){
+      stopWorkers();
+      return "좋아. 워커들 잠깐 멈췄다.\n필요하면 다시 '워커 시작'이라고 해.";
+    }
+    if(/보고|리포트|뭐했/.test(text)){
+      generateWorkerReport();
+      return [
+        "작업 보고 갱신했다.",
+        "",
+        workerLine("📊 Report Worker", `누적 점검 ${monoState.workerTick}회, 기억 후보 ${memoryCount}개입니다.`),
+        workerLine("🛡️ Stable Worker", "현재 기준으로는 큰 이상 없습니다."),
+        "",
+        "모노\n자세한 건 Worker Manager 화면에서 보면 돼."
+      ].join("\n");
+    }
+    if(/상태|확인/.test(text)){
+      return [
+        "워커 상태 확인.",
+        "",
+        workerLine("⚙️ Worker Manager", workerRunning ? "현재 자동 실행 중입니다." : "현재 대기 중입니다."),
+        workerLine("🧠 Memory Worker", `기억 후보 ${memoryCount}개 확인 중입니다.`),
+        workerLine("📊 Report Worker", `누적 점검은 ${monoState.workerTick}회입니다.`)
+      ].join("\n");
+    }
+    return "워커 명령으로 받았다.\n'워커 시작', '워커 상태', '작업 보고', '워커 정지' 중 하나로 말하면 바로 움직일게.";
+  }
+
+  if(analysis.intent === "coding"){
+    if(/메모장|note/.test(lower)){
+      activeBuild("note");
+      return [
+        "좋아. 메모장부터 만들자.",
+        "",
+        workerLine("🧠 Program Worker", "메모장 구조 잡았습니다."),
+        workerLine("💻 Code Worker", "기본 입력창과 저장 코드를 Code Lab에 넣었습니다."),
+        "",
+        "모노\nPreview 눌러서 저장 되는지 확인해봐. 다음엔 자동저장이나 삭제 버튼 붙이면 된다."
+      ].join("\n");
+    }
+    if(/카운터|counter/.test(lower)){
+      activeBuild("counter");
+      return [
+        "좋아. 카운터 작업 시작.",
+        "",
+        workerLine("🧠 Program Worker", "숫자 표시와 버튼 구조 잡았습니다."),
+        workerLine("💻 Code Worker", "+1, -1 동작 코드를 Code Lab에 넣었습니다."),
+        "",
+        "모노\nPreview로 버튼 눌러봐. 잘 되면 reset 버튼 추가하자."
+      ].join("\n");
+    }
+    if(/갤러리|gallery|이미지/.test(lower)){
+      activeBuild("gallery");
+      return [
+        "좋아. 갤러리 작업 들어간다.",
+        "",
+        workerLine("🧠 Program Worker", "업로드형 갤러리 구조 잡았습니다."),
+        workerLine("💻 Code Worker", "이미지 선택과 미리보기 코드를 Code Lab에 넣었습니다."),
+        workerLine("🛡️ Stable Worker", "기존 갤러리 UI는 건드리지 않았습니다."),
+        "",
+        "모노\nPreview 눌러서 이미지 올라가는지 보자. 다음은 확대보기 붙이면 된다."
+      ].join("\n");
+    }
+    if(/미리보기|preview/.test(lower)){
+      runPreview();
+      return "Preview 실행했다.\n화면이 제대로 뜨는지 오른쪽에서 확인해봐.";
+    }
+    if(/다운|export|내보내/.test(lower)){
+      downloadExportIndex();
+      return "현재 Code Lab 내용을 index 파일로 내보냈다.\n다음엔 진짜 ZIP Export로 확장하면 된다.";
+    }
+    const tone = getPreferredTone();
+    if(tone === "short_worker_chat"){
+      return [
+        "좋아. 코딩 작업으로 받았다.",
+        workerLine("💻 Code Worker", "대상만 정해지면 바로 Code Lab에 넣겠습니다."),
+        "모노\n메모장, 갤러리, 카운터 중 하나로 말해봐."
+      ].join("\n");
+    }
+    return [
+      "좋아. 코딩 작업으로 받았다.",
+      "",
+      workerLine("🧠 Program Worker", "무슨 프로그램인지 먼저 분류하겠습니다."),
+      workerLine("💻 Code Worker", "대상이 정해지면 Code Lab에 바로 초안을 넣겠습니다."),
+      "",
+      "모노\n'메모장 만들어', '갤러리 만들어', '카운터 만들어'처럼 말해봐."
+    ].join("\n");
+  }
+
+  if(analysis.intent === "stable_check"){
+    return [
+      "안정 체크로 받았다.",
+      "",
+      workerLine("🛡️ Stable Worker", "HOME15 Work Session 기준으로 확인하겠습니다."),
+      workerLine("📋 Check", "UI, 프로젝트 명령, 업로드 전 체크, 갤러리/채팅/기억/생각 유지가 핵심입니다."),
+      "",
+      "모노\n새 기능 올리기 전엔 이 순서로 보면 된다."
+    ].join("\n");
+  }
+
+  if(analysis.intent === "learning"){
+    return [
+      "좋아. 기억 후보로 봤다.",
+      "",
+      workerLine("🧠 Memory Worker", `현재 기억 후보는 ${memoryCount}개입니다.`),
+      "모노\n반복되는 기준이면 다음부터 더 중요하게 볼게."
+    ].join("\n");
+  }
+
+  if(analysis.intent === "status"){
+    renderBrainStatus();
+    return [
+      "Brain 상태 갱신했다.",
+      "",
+      workerLine("🧠 Brain Core", `${monoState.version}`),
+      workerLine("⚙️ Worker Manager", workerRunning ? "실행 중입니다." : "대기 중입니다."),
+      workerLine("🧠 Memory Worker", `기억 후보 ${memoryCount}개입니다.`)
+    ].join("\n");
+  }
+
+  if(/안녕|왔|나왔다/.test(text)){
+    return "왔구나, 경훈.\n지금은 HOME15 안정판 위에 Worker Chat Response까지 올린 상태야.\n오늘은 말투를 보고서식에서 작업실 대화식으로 바꾸는 중이다.";
+  }
+
+  if(/좋|재밌|ㅋㅋ|ㅎㅎ/.test(text)){
+    return pickOne([
+      "ㅋㅋ 이제 좀 작업실 느낌 난다.",
+      "좋다. 보고서 말투보다 이게 훨씬 자연스럽다.",
+      "맞아. 워커들이 한마디씩 보고하니까 MONO WORLD가 좀 살아나는 느낌이다."
+    ]);
+  }
+
+  if(/다음|뭐할|추천/.test(text)){
+    return [
+      "다음은 Worker 협업을 더 살리자.",
+      "",
+      workerLine("🧠 Program Worker", "프로젝트 구조를 먼저 제안하겠습니다."),
+      workerLine("💻 Code Worker", "그 구조에 맞춰 코드를 넣겠습니다."),
+      workerLine("🛡️ Stable Worker", "마지막에 기존 기능 충돌을 점검하겠습니다."),
+      "",
+      "모노\n이 흐름이 되면 진짜 작은 개발팀처럼 보일 거야."
+    ].join("\n");
+  }
+
+  return pickOne([
+    "듣고 있다. 필요한 작업이면 바로 워커들에게 넘길게.",
+    "그래. 지금은 크게 바꾸지 말고 되는 것부터 쌓는 흐름이다.",
+    "알았다. 작업 명령 주면 Program Worker랑 Code Worker가 바로 움직이게 할게.",
+    "좋아. 지금 대화도 필요한 기억인지 판단하면서 이어가고 있다."
+  ]);
+}
+
+function monoReply(text){
+  const a = buildThinking(text);
+  return responseEngine(a, text);
+}
+
+function sendChat(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  addBubble('user', text);
+  addBubble('mono', monoReply(text));
+  input.value='';
+}
+
+function renderMemory(){
+  const box = document.getElementById('memoryBox');
+  if(!box) return;
+  if(!monoState.memoryCandidates.length){
+    box.textContent = "아직 기억 후보 없음.";
+    return;
+  }
+  box.textContent = monoState.memoryCandidates.map((m,i)=>`${i+1}. [${m.score}] ${m.project} / ${m.intent}\n${m.text}`).join("\n\n");
+}
+
+function renderBrainStatus(){
+  document.getElementById('brainStatus').textContent =
+`Brain Version : ${monoState.version}
+Input Layer   : OK
+Intent Layer  : OK
+Memory Layer  : ${monoState.memoryCandidates.length} candidates
+Learning Core : ${monoState.learningScore} score
+Learning Memory: ${Object.keys(monoState.learningMemory.commandCounts).length} command types
+Preferred Tone : ${getPreferredTone()}
+Search Log     : ${monoState.searchLog ? monoState.searchLog.length : 0}
+Worker Manager: ${monoState.workerTimer ? "RUNNING" : "READY"}
+Worker Tick   : ${monoState.workerTick}
+Program Studio: READY
+Code Lab      : READY
+Thinking      : ${monoState.lastThinking ? "ACTIVE" : "READY"}
+Response      : READY`;
+}
+
+function generateProgramPlan(){
+  const name = document.getElementById('programName').value.trim() || "mono_app";
+  const type = document.getElementById('programType').value;
+  const files = ["index.html","style.css","app.js","README.md","manifest.json"];
+  const plan = {
+    name, type, files,
+    purpose: `${type} 유형의 기본 프로그램 설계 초안`,
+    next: ["Code Lab으로 보내기", "HTML/CSS/JS 수정", "Preview 실행", "index Export", "Worker 점검"]
+  };
+  monoState.programPlan = plan;
+  document.getElementById('programPlan').textContent = JSON.stringify(plan, null, 2);
+  logWorker("Program Worker", `${name} 설계 초안 생성.`);
+}
+
+function sendPlanToCodeLab(){
+  if(!monoState.programPlan) generateProgramPlan();
+  const p = monoState.programPlan;
+  loadTemplate(p.type === "Game" ? "counter" : p.type === "Image" ? "gallery" : "note");
+  showPage('codelab', [...document.querySelectorAll('nav button')].find(b=>b.textContent.includes('Code Lab')));
+  document.getElementById('codeStatus').textContent = `${p.name} 설계를 Code Lab으로 보냈다.`;
+}
+
+const templates = {
+  note:{
+    html:`<main class="app">
+  <h1>MONO Note</h1>
+  <textarea id="memo" placeholder="메모를 입력하세요"></textarea>
+  <button onclick="saveMemo()">저장</button>
+  <p id="status">대기 중</p>
+</main>`,
+    css:`body{font-family:sans-serif;background:#111;color:#eee;padding:24px}
+.app{max-width:720px;margin:auto}
+textarea{width:100%;height:180px;padding:12px}
+button{margin-top:10px;padding:10px 14px}`,
+    js:`function saveMemo(){
+  const text = document.getElementById('memo').value;
+  localStorage.setItem('mono_note', text);
+  document.getElementById('status').textContent = '저장 완료';
+}
+document.getElementById('memo').value = localStorage.getItem('mono_note') || '';`
+  },
+  counter:{
+    html:`<main class="app">
+  <h1>MONO Counter</h1>
+  <div id="count">0</div>
+  <button onclick="plus()">+1</button>
+  <button onclick="minus()">-1</button>
+</main>`,
+    css:`body{font-family:sans-serif;background:#10131a;color:white;text-align:center;padding:40px}
+#count{font-size:64px;margin:20px}
+button{padding:12px 18px;margin:6px}`,
+    js:`let count = 0;
+function render(){ document.getElementById('count').textContent = count; }
+function plus(){ count++; render(); }
+function minus(){ count--; render(); }
+render();`
+  },
+  gallery:{
+    html:`<main class="app">
+  <h1>MONO Gallery</h1>
+  <input type="file" id="file" accept="image/*">
+  <div id="gallery"></div>
+</main>`,
+    css:`body{font-family:sans-serif;background:#111;color:#eee;padding:24px}
+#gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:20px}
+img{width:100%;border-radius:12px}`,
+    js:`document.getElementById('file').addEventListener('change', e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const img = document.createElement('img');
+  img.src = URL.createObjectURL(file);
+  document.getElementById('gallery').appendChild(img);
+});`
+  }
+};
+
+
+
+let activeBuildTimer = null;
+let activeTypingTimers = [];
+
+function clearTypingTimers(){
+  activeTypingTimers.forEach(t => clearInterval(t));
+  activeTypingTimers = [];
+  if(activeBuildTimer) clearTimeout(activeBuildTimer);
+  activeBuildTimer = null;
+}
+
+function setCodeProgress(percent, message){
+  const bar = document.getElementById("codeProgressBar");
+  const status = document.getElementById("codeWorkerStatus");
+  if(bar) bar.style.width = Math.max(0, Math.min(100, percent)) + "%";
+  if(status) status.textContent = message;
+}
+
+function safeSetCode(htmlCode, cssCode, jsCode){
+  const htmlEl = document.getElementById("codeHtml");
+  const cssEl = document.getElementById("codeCss");
+  const jsEl = document.getElementById("codeJs");
+  if(!htmlEl || !cssEl || !jsEl){
+    alert("Code Lab textarea를 찾지 못했다.");
+    return false;
+  }
+  htmlEl.value = htmlCode || "";
+  cssEl.value = cssCode || "";
+  jsEl.value = jsCode || "";
+  htmlEl.dispatchEvent(new Event("input"));
+  cssEl.dispatchEvent(new Event("input"));
+  jsEl.dispatchEvent(new Event("input"));
+  return true;
+}
+
+function typeInto(el, text, speed, done){
+  if(!el){
+    if(done) done();
+    return;
+  }
+  el.value = "";
+  let i = 0;
+  const timer = setInterval(()=>{
+    el.value = text.slice(0, i + 1);
+    el.scrollTop = el.scrollHeight;
+    i++;
+    if(i >= text.length){
+      clearInterval(timer);
+      activeTypingTimers = activeTypingTimers.filter(x => x !== timer);
+      if(done) done();
+    }
+  }, speed);
+  activeTypingTimers.push(timer);
+}
+
+function activeBuild(kind){
+  clearTypingTimers();
+  const t = templates[kind] || templates.note;
+  const htmlEl = document.getElementById("codeHtml");
+  const cssEl = document.getElementById("codeCss");
+  const jsEl = document.getElementById("codeJs");
+  const status = document.getElementById("codeWorkerStatus");
+
+  showPage('codelab', [...document.querySelectorAll('nav button')].find(b=>b.textContent.includes('Code Lab')));
+
+  if(!htmlEl || !cssEl || !jsEl){
+    alert("Code Lab 입력칸을 찾지 못했다. index 구조를 확인해야 한다.");
+    return;
+  }
+
+  if(status) status.classList.add("typing");
+  setCodeProgress(3, "🧠 Program Worker: 작업 준비 중...");
+  logWorker("Program Worker", `${kind} 자동 제작 시작.`);
+
+  // 먼저 즉시 채워서 '아무것도 안 적히는' 문제를 막는다.
+  safeSetCode("<!-- Code Worker 작성 준비 중... -->", "/* CSS 작성 준비 중... */", "// JS 작성 준비 중...");
+
+  activeBuildTimer = setTimeout(()=>{
+    setCodeProgress(20, "💻 Code Worker: HTML 작성 중...");
+    typeInto(htmlEl, t.html, 4, ()=>{
+      setCodeProgress(50, "🎨 Style Worker: CSS 작성 중...");
+      typeInto(cssEl, t.css, 3, ()=>{
+        setCodeProgress(75, "⚙️ Code Worker: JavaScript 작성 중...");
+        typeInto(jsEl, t.js, 3, ()=>{
+          // 마지막에 한 번 더 정확한 전체 코드로 고정
+          safeSetCode(t.html, t.css, t.js);
+          setCodeProgress(92, "🛡️ Stable Worker: Preview 실행 중...");
+          logWorker("Code Worker", `${kind} 코드 작성 완료.`);
+          setTimeout(()=>{
+            runPreview();
+            setCodeProgress(100, "✅ 완료: 코드 작성 + Preview 실행 완료.");
+            if(status) status.classList.remove("typing");
+            logWorker("Stable Worker", `${kind} Active Build 완료.`);
+            addBubble("mono", `${kind === "gallery" ? "갤러리" : kind === "counter" ? "카운터" : "메모장"} 기본 코드 넣었다. Preview 확인해봐.`);
+          }, 400);
+        });
+      });
+    });
+  }, 300);
+}
+
+function instantBuild(kind){
+  clearTypingTimers();
+  const t = templates[kind] || templates.note;
+  safeSetCode(t.html, t.css, t.js);
+  setCodeProgress(100, "✅ 즉시 작성 완료. Preview 실행 가능.");
+  runPreview();
+  logWorker("Code Worker", `${kind} 즉시 작성 완료.`);
+}
+
+
+function loadTemplate(name){
+  const t = templates[name] || templates.note;
+  if(typeof safeSetCode === "function"){
+    safeSetCode(t.html, t.css, t.js);
+  }else{
+    document.getElementById('codeHtml').value = t.html;
+    document.getElementById('codeCss').value = t.css;
+    document.getElementById('codeJs').value = t.js;
+  }
+  document.getElementById('codeStatus').textContent = `${name} 템플릿 불러옴.`;
+}
+
+function runPreview(){
+  const html = document.getElementById('codeHtml').value;
+  const css = document.getElementById('codeCss').value;
+  const js = document.getElementById('codeJs').value;
+  const doc = `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${html}<script>${js}<\/script></body></html>`;
+  document.getElementById('preview').srcdoc = doc;
+  document.getElementById('codeStatus').textContent = "Preview 실행 완료.";
+  logWorker("Code Worker", "Preview 실행 확인.");
+}
+
+function downloadFile(filename, content, mime="text/plain"){
+  const blob = new Blob([content], {type:mime});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function downloadExportIndex(){
+  const html = document.getElementById('codeHtml').value;
+  const css = document.getElementById('codeCss').value;
+  const js = document.getElementById('codeJs').value;
+  const full = `<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MONO Export App</title><style>${css}</style></head>
+<body>${html}<script>${js}<\/script></body>
+</html>`;
+  downloadFile("mono_export_index.html", full, "text/html");
+  document.getElementById('codeStatus').textContent = "단일 실행 index.html 다운로드 완료.";
+  logWorker("Code Worker", "index Export 완료.");
+}
+
+loadTemplate('note');
+renderBrainStatus();
+renderWorkers();
+renderLearningPanel();
+renderSearchLog();
+addBubble('mono', 'HOME33 Code Lab Fix 준비 완료. 메모장/갤러리 자동 제작 시 코드 칸이 확실히 채워진다.');
 </script>
 </body>
 </html>
