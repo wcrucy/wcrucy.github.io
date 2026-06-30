@@ -1,52 +1,88 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MONO Sound Studio V02</title>
-<style>
-:root{--bg:#101116;--panel:#181a22;--line:#2b2f3a;--text:#e8e8e8;--muted:#a9adba;--accent:#9aa4ff;}
-*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#0d0e13,#171923);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;}
-header{padding:28px 24px;border-bottom:1px solid var(--line)} h1{margin:0;font-size:28px} p{color:var(--muted);line-height:1.6}
-main{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:20px;max-width:1200px;margin:auto}.card{background:rgba(24,26,34,.92);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-label{display:block;margin:14px 0 6px;color:#cdd1df;font-weight:700} select,input,textarea,button{width:100%;border-radius:12px;border:1px solid var(--line);background:#0f1118;color:var(--text);padding:12px;font-size:15px}textarea{min-height:170px;resize:vertical}button{cursor:pointer;background:#262b3f;font-weight:800;margin-top:10px}button:hover{background:#303756}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.small{font-size:13px;color:var(--muted)}pre{white-space:pre-wrap;background:#0c0e14;border:1px solid var(--line);border-radius:12px;padding:12px;color:#dfe3ff}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);margin:3px}.warn{color:#ffd28a}</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MONO WORLD</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header><h1>MONO Sound Studio V02</h1><p>빠른 제작용: 대사·감정·캐릭터 설정을 만들고, 윈도우 기본 TTS 스크립트로 WAV 목소리 파일을 생성한다.</p></header>
-<main>
-<section class="card">
-<h2>Voice Line Builder</h2>
-<div class="row"><div><label>캐릭터</label><select id="character"><option>아키</option><option>아렌</option><option>루엔</option><option>예린</option><option>카일</option><option>브릭</option><option>로웰</option><option>베인</option></select></div><div><label>감정</label><select id="emotion"><option>조용함</option><option>불안</option><option>슬픔</option><option>분노</option><option>절규</option><option>속삭임</option></select></div></div>
-<div class="row"><div><label>속도</label><input id="rate" type="range" min="-10" max="10" value="-1" /></div><div><label>볼륨</label><input id="volume" type="range" min="0" max="100" value="100" /></div></div>
-<label>대사</label><textarea id="line">잠깐... 이 기억은 이상해.
-누군가가... 덧씌웠어.
-만지지 마. 아직 분석이 끝나지 않았어.</textarea>
-<button onclick="previewBrowserVoice()">브라우저 음성 미리듣기</button>
-<button onclick="downloadText()">voice_line.txt 저장</button>
-<button onclick="downloadProject()">sound_project.json 저장</button>
-<p class="small warn">실제 WAV 생성은 압축파일 안의 scripts/generate_voice.bat를 실행하면 된다.</p>
-</section>
-<section class="card">
-<h2>Generated Prompt</h2>
-<pre id="prompt"></pre>
-<h2>빠른 사용 순서</h2>
-<p><span class="pill">1</span> 대사 작성 <span class="pill">2</span> voice_line.txt 저장 <span class="pill">3</span> scripts 폴더에 넣기 <span class="pill">4</span> generate_voice.bat 실행 <span class="pill">5</span> output_voice.wav 사용</p>
-<p class="small">윈도우에 한국어 음성이 설치되어 있으면 한국어 음성을 우선 사용한다. 없으면 기본 음성으로 생성된다.</p>
-</section>
-</main>
-<script>
-const $=id=>document.getElementById(id);
-function buildPrompt(){
- const c=$('character').value,e=$('emotion').value,r=$('rate').value,v=$('volume').value,t=$('line').value;
- $('prompt').textContent=`캐릭터: ${c}\n감정: ${e}\n속도: ${r}\n볼륨: ${v}\n\n대사:\n${t}\n\n연기 지시:\n${c}는 잿빛기억의 인물이다. ${e} 감정을 유지하되 과장하지 말고, 호흡과 침묵을 살려 말한다.`;
-}
-['character','emotion','rate','volume','line'].forEach(id=>$(id).addEventListener('input',buildPrompt)); buildPrompt();
-function previewBrowserVoice(){
- const u=new SpeechSynthesisUtterance($('line').value); u.lang='ko-KR'; u.rate=1+(Number($('rate').value)/20); u.volume=Number($('volume').value)/100; speechSynthesis.cancel(); speechSynthesis.speak(u);
-}
-function dl(name,content,type='text/plain'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
-function downloadText(){dl('voice_line.txt',$('line').value)}
-function downloadProject(){dl('sound_project.json',JSON.stringify({character:$('character').value,emotion:$('emotion').value,rate:$('rate').value,volume:$('volume').value,line:$('line').value,createdAt:new Date().toISOString()},null,2),'application/json')}
-</script>
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>MONO WORLD</h1>
+      <p>Stories, Art, and Worlds<br/>Created by MONO</p>
+    </div>
+
+    <button class="nav active" data-view="home">⌂ 홈</button>
+
+    <p class="nav-title">프로젝트</p>
+    <button class="project-btn" data-project="memory"><span class="avatar red"></span>기억파수꾼 <b>⌄</b></button>
+    <button class="project-btn" data-project="enkara"><span class="avatar gold"></span>엔카라 <b>⌄</b></button>
+
+    <button class="nav" data-view="gallery">▧ 갤러리</button>
+    <button class="nav" data-view="music">♫ 음악</button>
+    <button class="nav" data-view="note">▤ 작업노트</button>
+    <button class="nav" data-view="settings">⚙ 설정</button>
+    <button class="nav" data-view="notice">♧ 공지사항</button>
+    <button class="nav" data-view="contact">☏ 문의하기</button>
+
+    <div class="profile">
+      <div class="profile-img">M</div>
+      <div><strong>MONO</strong><span>Creator</span></div>
+      <button>내 프로필</button>
+    </div>
+    <footer>© 2024 MONO WORLD<br/>All rights reserved.</footer>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div><h2 id="pageTitle">어서오세요, MONO님 ✨</h2><p>오늘도 새로운 이야기를 만들어가요.</p></div>
+      <input placeholder="⌕ 검색..." />
+      <span class="bell">♢</span>
+    </header>
+
+    <section id="home" class="view active-view">
+      <div class="layout">
+        <section class="center">
+          <div class="hero">
+            <h3>MONO WORLD</h3>
+            <p>“이야기가 있는 곳, 우리가 함께 만드는 세계”</p>
+            <button>더 알아보기</button>
+          </div>
+
+          <h3 class="section-title">작품 둘러보기</h3>
+          <div class="cards">
+            <article class="card" data-project="memory"><div class="art a1"></div><h4>기억파수꾼 <em>연재중</em></h4><p>최신화 3화 · 2024.05.20</p></article>
+            <article class="card" data-project="enkara"><div class="art a2"></div><h4>엔카라 <em>작업중</em></h4><p>세계관 · 캐릭터 · 원고</p></article>
+            <article class="card"><div class="art a3"></div><h4>MONO STUDIO</h4><p>아트워크 · 음악 · 작업노트</p></article>
+            <article class="card"><div class="art a4"></div><h4>GALLERY</h4><p>일러스트 · 배경 · 기타</p></article>
+          </div>
+
+          <section class="project-panel">
+            <div class="project-list">
+              <button class="selected" data-project="memory">기억파수꾼</button>
+              <button data-project="enkara">엔카라</button>
+              <button>＋ 새 프로젝트 만들기</button>
+            </div>
+            <div class="project-detail">
+              <div class="tabs"><h3 id="projectName">기억파수꾼 <em>연재중</em></h3><nav><button class="tab active" data-tab="dash">대시보드</button><button class="tab" data-tab="files">파일 관리</button><button class="tab" data-tab="concept">컨셉아트</button><button class="tab" data-tab="setting">설정</button></nav></div>
+              <div class="tab-content" id="tabContent"></div>
+            </div>
+          </section>
+        </section>
+
+        <aside class="rightbar">
+          <div class="panel upload"><h3>빠른 업로드</h3><div class="drop">☁<br/>여기에 파일을 드롭하세요<br/><button>파일 선택</button><small>여러 파일도 한 번에 업로드 가능합니다.</small></div></div>
+          <div class="panel"><h3>컨셉아트 최근 업데이트 <a>더보기 ›</a></h3><div class="thumbs"><span></span><span></span><span></span><span></span></div></div>
+          <div class="panel activity"><h3>최근 활동 <a>더보기 ›</a></h3><p>▣ 3화 원고.pdf 업로드 <small>2시간 전</small></p><p>▣ 캐릭터_하린.png 업로드 <small>어제</small></p><p>♫ BGM_Theme1.mp3 업로드 <small>3일 전</small></p></div>
+          <div class="panel shortcuts"><h3>바로가기</h3><button>작업노트</button><button>음악</button><button>갤러리</button><button>설정</button></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="pageView" class="view page-view"></section>
+  </main>
+
+<script src="script.js"></script>
 </body>
 </html>
