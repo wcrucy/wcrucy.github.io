@@ -1,88 +1,84 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MONO WORLD</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MONO WORLD</title>
+<style>
+:root{
+  --bg:#070b12;--panel:#111720;--panel2:#151b25;--line:rgba(255,255,255,.08);
+  --text:#f4f6fb;--muted:#9ba4b4;--purple:#7c4dff;--purple2:#a873ff;--soft:rgba(124,77,255,.18)
+}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% 0,#111d31 0,#070b12 45%,#05070b 100%);color:var(--text);font-family:Arial,'Noto Sans KR',sans-serif} button,input{font:inherit} .app{display:grid;grid-template-columns:260px 1fr 360px;gap:28px;min-height:100vh;padding:26px} .side{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border-right:1px solid var(--line);padding:10px 14px;position:sticky;top:0;height:calc(100vh - 52px)} .logo{font-size:27px;font-weight:900;letter-spacing:-1px}.tag{color:#c9ced8;font-size:13px;line-height:1.5;margin:10px 0 28px}.nav-title{color:#cfd4df;margin:18px 0 10px;font-size:14px}.nav button,.project-btn{width:100%;display:flex;align-items:center;gap:12px;background:transparent;color:#e9edf5;border:0;border-radius:12px;padding:14px 16px;margin:7px 0;cursor:pointer;text-align:left}.nav button:hover,.project-btn:hover{background:rgba(255,255,255,.07)}.nav button.active,.project-btn.active{background:linear-gradient(90deg,#6d3fe0,#4b2b86);box-shadow:0 0 22px rgba(124,77,255,.22)}.avatar{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#222,#ad7bff);display:grid;place-items:center}.profile{position:absolute;left:14px;right:24px;bottom:86px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:15px}.social{position:absolute;bottom:36px;color:#9ba4b4;font-size:12px}.main{min-width:0}.top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}.hello h1{margin:0;font-size:27px}.hello p{color:var(--muted);margin:8px 0}.search{display:flex;gap:18px;align-items:center}.search input{width:210px;background:#0d121b;border:1px solid var(--line);border-radius:10px;color:#fff;padding:12px 16px}.bell{font-size:23px}.hero{height:260px;border-radius:18px;overflow:hidden;position:relative;border:1px solid var(--line);background:linear-gradient(90deg,rgba(6,10,18,.78),rgba(14,22,40,.3)), radial-gradient(circle at 55% 12%,#cdd6ff 0 6%,#335c96 7% 14%,transparent 15%), linear-gradient(135deg,#13243d,#1b2747 42%,#111827 100%)}.hero:after{content:"";position:absolute;inset:auto 0 0 0;height:95px;background:linear-gradient(transparent,rgba(0,0,0,.65))}.castle{position:absolute;right:160px;bottom:0;width:210px;height:190px;background:linear-gradient(#1d2942,#0b0f18);clip-path:polygon(42% 0,50% 12%,53% 0,61% 35%,70% 15%,76% 45%,86% 28%,91% 75%,100% 78%,100% 100%,0 100%,0 76%,18% 70%,24% 42%,33% 55%);filter:drop-shadow(0 0 20px rgba(125,90,255,.55))}.hero-text{position:absolute;left:40px;top:62px;z-index:2}.hero h2{font-size:38px;margin:0 0 14px}.hero p{font-size:18px}.primary{background:linear-gradient(90deg,#7c4dff,#9d68ff);border:0;color:white;border-radius:8px;padding:12px 22px;cursor:pointer}.section-title{margin:28px 0 14px;font-size:18px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{min-height:190px;background:#151b25;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-3px);border-color:rgba(150,110,255,.45)}.thumb{height:115px;background:linear-gradient(135deg,#2d1621,#8c2b38)}.card:nth-child(2) .thumb{background:linear-gradient(135deg,#406a92,#e9ecff)}.card:nth-child(3) .thumb{background:linear-gradient(135deg,#27364d,#a28670)}.card:nth-child(4) .thumb{background:linear-gradient(135deg,#111,#e5e0d7)}.card-body{padding:13px}.card h3{margin:0 0 8px}.badge{background:#7c4dff;color:white;font-size:12px;border-radius:6px;padding:4px 8px;margin-left:6px}.muted{color:var(--muted);font-size:14px}.project-area{display:grid;grid-template-columns:160px 1fr;gap:18px;margin-top:22px}.project-list button{background:#121821;border:1px solid var(--line);border-radius:10px;color:#eee;padding:14px;width:100%;margin-bottom:10px;text-align:left;cursor:pointer}.project-list button.active{background:linear-gradient(90deg,#683bd0,#3b245f)}.work-panel{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;overflow:hidden}.work-head{padding:22px 26px;border-bottom:1px solid var(--line)}.work-head h2{margin:0 0 8px}.tabs button{background:transparent;border:0;color:#cbd2df;padding:12px 18px;cursor:pointer}.tabs button.active{color:#fff;border-bottom:3px solid var(--purple)}.work-body{display:grid;grid-template-columns:1fr 1.15fr 1.25fr;gap:14px;padding:14px}.box{background:rgba(0,0,0,.16);border:1px solid var(--line);border-radius:12px;padding:16px}.uploadbox{height:140px;border:1px dashed rgba(255,255,255,.25);display:grid;place-items:center;text-align:center;border-radius:12px;color:#c7cedb}.file{display:flex;gap:10px;justify-content:space-between;border-bottom:1px solid var(--line);padding:9px 0;color:#d9deea}.grid-art{display:grid;grid-template-columns:1fr 1fr;gap:10px}.art{height:74px;border-radius:8px;background:linear-gradient(135deg,#223555,#777)}.art:nth-child(2){background:linear-gradient(135deg,#554432,#1b1b1d)}.art:nth-child(3){background:linear-gradient(135deg,#ddd,#333)}.art:nth-child(4){background:linear-gradient(135deg,#1a1b22,#941b1b)}.right{display:flex;flex-direction:column;gap:18px}.rbox{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:18px}.rtitle{display:flex;justify-content:space-between;margin-bottom:14px;font-weight:700}.big-upload{height:185px;border:1px dashed rgba(255,255,255,.24);border-radius:14px;display:grid;place-items:center;text-align:center}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{height:85px;border-radius:8px;background:linear-gradient(135deg,#111,#777)}.activity{display:flex;justify-content:space-between;padding:10px 0;color:#dbe0eb}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick button{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;color:white;padding:16px 8px;cursor:pointer}.page{display:none}.page.active{display:block}.full-page{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:28px;min-height:550px}.comic-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.episode{background:#131924;border:1px solid var(--line);border-radius:14px;padding:16px}.episode .thumb{border-radius:10px;margin-bottom:12px}
+@media(max-width:1200px){.app{grid-template-columns:230px 1fr}.right{display:none}.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.app{display:block;padding:14px}.side{position:relative;height:auto;margin-bottom:20px}.profile,.social{position:static;margin-top:20px}.work-body,.project-area{grid-template-columns:1fr}.cards,.comic-list{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand">
-      <h1>MONO WORLD</h1>
-      <p>Stories, Art, and Worlds<br/>Created by MONO</p>
-    </div>
-
-    <button class="nav active" data-view="home">⌂ 홈</button>
-
-    <p class="nav-title">프로젝트</p>
-    <button class="project-btn" data-project="memory"><span class="avatar red"></span>기억파수꾼 <b>⌄</b></button>
-    <button class="project-btn" data-project="enkara"><span class="avatar gold"></span>엔카라 <b>⌄</b></button>
-
-    <button class="nav" data-view="gallery">▧ 갤러리</button>
-    <button class="nav" data-view="music">♫ 음악</button>
-    <button class="nav" data-view="note">▤ 작업노트</button>
-    <button class="nav" data-view="settings">⚙ 설정</button>
-    <button class="nav" data-view="notice">♧ 공지사항</button>
-    <button class="nav" data-view="contact">☏ 문의하기</button>
-
-    <div class="profile">
-      <div class="profile-img">M</div>
-      <div><strong>MONO</strong><span>Creator</span></div>
-      <button>내 프로필</button>
-    </div>
-    <footer>© 2024 MONO WORLD<br/>All rights reserved.</footer>
+<div class="app">
+  <aside class="side">
+    <div class="logo">MONO WORLD</div><div class="tag">Stories, Art, and Worlds<br>Created by MONO</div>
+    <nav class="nav">
+      <button class="active" data-page="home">⌂ 홈</button>
+      <div class="nav-title">프로젝트</div>
+      <button data-project="memory"> <span class="avatar">🖤</span> 기억파수꾼 <span style="margin-left:auto">⌄</span></button>
+      <button data-project="enkara"> <span class="avatar">🌙</span> 엔카라 <span style="margin-left:auto">⌄</span></button>
+      <button data-page="gallery">▧ 갤러리</button>
+      <button data-page="music">♫ 음악</button>
+      <button data-page="notes">▤ 작업노트</button>
+      <button data-page="settings">⚙ 설정</button>
+      <button data-page="notice">♧ 공지사항</button>
+      <button data-page="contact">☏ 문의하기</button>
+    </nav>
+    <div class="profile"><b>MONO</b><br><span class="muted">Creator</span><br><br><button class="primary" style="width:100%;padding:9px">내 프로필</button></div>
+    <div class="social">© 2024 MONO WORLD<br>All rights reserved.</div>
   </aside>
 
-  <main>
-    <header class="topbar">
-      <div><h2 id="pageTitle">어서오세요, MONO님 ✨</h2><p>오늘도 새로운 이야기를 만들어가요.</p></div>
-      <input placeholder="⌕ 검색..." />
-      <span class="bell">♢</span>
-    </header>
-
-    <section id="home" class="view active-view">
-      <div class="layout">
-        <section class="center">
-          <div class="hero">
-            <h3>MONO WORLD</h3>
-            <p>“이야기가 있는 곳, 우리가 함께 만드는 세계”</p>
-            <button>더 알아보기</button>
-          </div>
-
-          <h3 class="section-title">작품 둘러보기</h3>
-          <div class="cards">
-            <article class="card" data-project="memory"><div class="art a1"></div><h4>기억파수꾼 <em>연재중</em></h4><p>최신화 3화 · 2024.05.20</p></article>
-            <article class="card" data-project="enkara"><div class="art a2"></div><h4>엔카라 <em>작업중</em></h4><p>세계관 · 캐릭터 · 원고</p></article>
-            <article class="card"><div class="art a3"></div><h4>MONO STUDIO</h4><p>아트워크 · 음악 · 작업노트</p></article>
-            <article class="card"><div class="art a4"></div><h4>GALLERY</h4><p>일러스트 · 배경 · 기타</p></article>
-          </div>
-
-          <section class="project-panel">
-            <div class="project-list">
-              <button class="selected" data-project="memory">기억파수꾼</button>
-              <button data-project="enkara">엔카라</button>
-              <button>＋ 새 프로젝트 만들기</button>
-            </div>
-            <div class="project-detail">
-              <div class="tabs"><h3 id="projectName">기억파수꾼 <em>연재중</em></h3><nav><button class="tab active" data-tab="dash">대시보드</button><button class="tab" data-tab="files">파일 관리</button><button class="tab" data-tab="concept">컨셉아트</button><button class="tab" data-tab="setting">설정</button></nav></div>
-              <div class="tab-content" id="tabContent"></div>
-            </div>
-          </section>
-        </section>
-
-        <aside class="rightbar">
-          <div class="panel upload"><h3>빠른 업로드</h3><div class="drop">☁<br/>여기에 파일을 드롭하세요<br/><button>파일 선택</button><small>여러 파일도 한 번에 업로드 가능합니다.</small></div></div>
-          <div class="panel"><h3>컨셉아트 최근 업데이트 <a>더보기 ›</a></h3><div class="thumbs"><span></span><span></span><span></span><span></span></div></div>
-          <div class="panel activity"><h3>최근 활동 <a>더보기 ›</a></h3><p>▣ 3화 원고.pdf 업로드 <small>2시간 전</small></p><p>▣ 캐릭터_하린.png 업로드 <small>어제</small></p><p>♫ BGM_Theme1.mp3 업로드 <small>3일 전</small></p></div>
-          <div class="panel shortcuts"><h3>바로가기</h3><button>작업노트</button><button>음악</button><button>갤러리</button><button>설정</button></div>
-        </aside>
+  <main class="main">
+    <section id="home" class="page active">
+      <div class="top"><div class="hello"><h1>어서오세요, MONO님 ✨</h1><p>오늘도 새로운 이야기를 만들어가요.</p></div><div class="search"><input placeholder="⌕ 검색..."><span class="bell">♧</span></div></div>
+      <div class="hero"><div class="castle"></div><div class="hero-text"><h2>MONO WORLD</h2><p>“이야기가 있는 곳, 우리가 함께 만드는 세계”</p><button class="primary">더 알아보기</button></div></div>
+      <h3 class="section-title">작품 둘러보기</h3>
+      <div class="cards">
+        <article class="card" data-project="memory"><div class="thumb"></div><div class="card-body"><h3>기억파수꾼 <span class="badge">연재중</span></h3><div class="muted">최신화 3화 · 2024.05.20</div></div></article>
+        <article class="card" data-project="enkara"><div class="thumb"></div><div class="card-body"><h3>엔카라 <span class="badge">작업중</span></h3><div class="muted">세계관 · 캐릭터 · 원고</div></div></article>
+        <article class="card" data-page="studio"><div class="thumb"></div><div class="card-body"><h3>MONO STUDIO</h3><div class="muted">아트워크 · 음악 · 작업노트</div></div></article>
+        <article class="card" data-page="gallery"><div class="thumb"></div><div class="card-body"><h3>GALLERY</h3><div class="muted">일러스트 · 배경 · 기타</div></div></article>
+      </div>
+      <h3 class="section-title">프로젝트</h3>
+      <div class="project-area">
+        <div class="project-list"><button class="active" data-project="memory">🖤 기억파수꾼</button><button data-project="enkara">🌙 엔카라</button><button>＋ 새 프로젝트 만들기</button></div>
+        <div id="homeProjectPanel" class="work-panel"></div>
       </div>
     </section>
 
-    <section id="pageView" class="view page-view"></section>
+    <section id="projectPage" class="page"><div id="projectDetail" class="work-panel"></div></section>
+    <section id="gallery" class="page full-page"><h1>갤러리</h1><p class="muted">컨셉아트와 일러스트를 모아두는 공간.</p><div class="comic-list"><div class="episode"><div class="thumb"></div><h3>배경 컨셉</h3></div><div class="episode"><div class="thumb"></div><h3>캐릭터 컨셉</h3></div><div class="episode"><div class="thumb"></div><h3>소품 디자인</h3></div></div></section>
+    <section id="music" class="page full-page"><h1>음악</h1><p class="muted">BGM, 테마곡, 효과음을 정리하는 공간.</p></section>
+    <section id="notes" class="page full-page"><h1>작업노트</h1><p class="muted">오늘 한 작업, 다음 작업, 아이디어를 기록.</p></section>
+    <section id="settings" class="page full-page"><h1>설정</h1><p class="muted">홈페이지 색상, 프로젝트 정보, 메뉴 구성을 관리.</p></section>
+    <section id="notice" class="page full-page"><h1>공지사항</h1><p class="muted">업데이트 소식과 연재 공지.</p></section>
+    <section id="contact" class="page full-page"><h1>문의하기</h1><p class="muted">연락처와 안내 페이지.</p></section>
+    <section id="studio" class="page full-page"><h1>MONO STUDIO</h1><p class="muted">아트워크, 음악, 제작 기록을 통합 관리.</p></section>
   </main>
 
-<script src="script.js"></script>
+  <aside class="right">
+    <div class="rbox"><div class="rtitle">빠른 업로드</div><div class="big-upload"><div>☁<br><br>여기에 파일을 드롭하세요<br><br><button class="primary">파일 선택</button><br><br><span class="muted">여러 파일도 한 번에 업로드 가능합니다.</span></div></div></div>
+    <div class="rbox"><div class="rtitle">컨셉아트 최근 업데이트 <span class="muted">더보기 〉</span></div><div class="mini-grid"><div class="mini"></div><div class="mini"></div><div class="mini"></div><div class="mini"></div></div></div>
+    <div class="rbox"><div class="rtitle">최근 활동 <span class="muted">더보기 〉</span></div><div class="activity">▣ 3화 원고.pdf 업로드 <span class="muted">2시간 전</span></div><div class="activity">▣ 캐릭터_하린.png 업로드 <span class="muted">어제</span></div><div class="activity">♫ BGM_Theme1.mp3 업로드 <span class="muted">3일 전</span></div></div>
+    <div class="rbox"><div class="rtitle">바로가기</div><div class="quick"><button>▤<br>작업노트</button><button>♫<br>음악</button><button>▧<br>갤러리</button><button>⚙<br>설정</button></div></div>
+  </aside>
+</div>
+<script>
+const projects={
+ memory:{title:'기억파수꾼',status:'연재중',desc:'기억을 지키는 사람들의 이야기',date:'2024.05.20',files:['3화 원고.pdf','3화 콘티.jpg','캐릭터_하린.png'],episodes:['1화 시작의 별','2화 균열의 도시','3화 파수꾼의 약속']},
+ enkara:{title:'엔카라',status:'작업중',desc:'아난타, 삼사라, 나라카의 이야기',date:'2024.05.18',files:['엔카라_세계관.pdf','니란_설정.jpg','아난타_배경.jpg'],episodes:['세계관 설정','캐릭터','원고 / 스토리']}
+};
+function panel(p,detail=false){return `<div class="work-head"><h2>${p.title} <span class="badge">${p.status}</span></h2><div class="muted">${p.desc}</div><div class="tabs"><button class="active">대시보드</button><button>파일 관리</button><button>컨셉아트</button><button>설정</button></div></div><div class="work-body"><div class="box"><b>파일 올리기</b><div class="uploadbox">☁<br>파일을 드래그 하거나<br><button class="primary">파일 선택</button><br><span class="muted">이미지, PDF, ZIP 지원</span></div></div><div class="box"><b>${detail?'회차 목록':'최근 업로드'}</b>${(detail?p.episodes:p.files).map(x=>`<div class="file"><span>▣ ${x}</span><span class="muted">${p.date}</span></div>`).join('')}<button class="primary" style="width:100%;margin-top:12px">모두 보기</button></div><div class="box"><b>컨셉아트</b><span style="float:right" class="muted">더보기 〉</span><div class="grid-art" style="margin-top:14px"><div class="art"></div><div class="art"></div><div class="art"></div><div class="art"></div></div></div></div>`}
+const homeProjectPanel=document.getElementById('homeProjectPanel'); const detail=document.getElementById('projectDetail');
+homeProjectPanel.innerHTML=panel(projects.memory); detail.innerHTML=panel(projects.memory,true);
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));}
+function openProject(key){homeProjectPanel.innerHTML=panel(projects[key]); detail.innerHTML=panel(projects[key],true); showPage('projectPage');}
+document.addEventListener('click',e=>{const page=e.target.closest('[data-page]')?.dataset.page; const project=e.target.closest('[data-project]')?.dataset.project; if(page)showPage(page); if(project)openProject(project);});
+</script>
 </body>
 </html>
