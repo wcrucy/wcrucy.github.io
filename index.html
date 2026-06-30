@@ -1,136 +1,81 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MONO WORLD</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MONO WORLD HOME 02 SAFE</title>
+<style>
+:root{--bg:#070911;--panel:#101522;--panel2:#151b2b;--line:#2a3347;--txt:#f3f5fb;--muted:#aeb7c8;--violet:#8b5cff;--violet2:#b08cff;--good:#55d6a7;--warn:#ffcc66;--radius:18px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% 0%,rgba(139,92,255,.28),transparent 32%),linear-gradient(135deg,#05070d,#0b1020 60%,#05070d);color:var(--txt);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{min-height:100vh;display:grid;grid-template-columns:270px 1fr}.side{background:rgba(6,8,15,.88);border-right:1px solid var(--line);padding:24px;position:sticky;top:0;height:100vh}.brand h1{font-size:25px;margin:0 0 7px}.brand p{margin:0 0 28px;color:var(--muted);line-height:1.5;font-size:13px}.nav button{width:100%;display:flex;gap:12px;align-items:center;text-align:left;margin:8px 0;padding:13px 15px;border:1px solid transparent;border-radius:13px;background:transparent;color:var(--txt);cursor:pointer;font-size:15px}.nav button:hover,.nav button.active{background:linear-gradient(135deg,rgba(139,92,255,.85),rgba(85,56,166,.65));border-color:rgba(255,255,255,.08)}.profile{margin-top:30px;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:18px;padding:16px}.profile b{display:block}.profile small{color:var(--muted)}.main{padding:24px 28px}.top{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px}.top h2{margin:0;font-size:28px}.top p{margin:5px 0 0;color:var(--muted)}.actions{display:flex;gap:10px;align-items:center}.search{background:#0d1320;border:1px solid var(--line);border-radius:12px;color:var(--txt);padding:12px 14px;min-width:240px}.btn{border:0;border-radius:12px;padding:12px 15px;background:linear-gradient(135deg,var(--violet),#5f3dcc);color:white;font-weight:800;cursor:pointer}.btn.ghost{background:#141a28;border:1px solid var(--line);font-weight:600}.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px}.card{background:rgba(16,21,34,.9);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 70px rgba(0,0,0,.28);padding:20px}.hero{min-height:285px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(48,61,103,.65),rgba(14,18,31,.95));display:flex;align-items:flex-end}.moon{position:absolute;right:80px;top:38px;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle,#fff,#bfc9ff 55%,rgba(255,255,255,.08) 70%);box-shadow:0 0 45px rgba(176,140,255,.55)}.castle{position:absolute;left:45px;bottom:0;width:72%;height:130px;background:linear-gradient(180deg,transparent 10%,rgba(7,9,16,.52));clip-path:polygon(0 100%,0 78%,8% 78%,8% 48%,12% 48%,12% 25%,18% 48%,22% 48%,22% 78%,33% 78%,33% 42%,38% 42%,38% 16%,44% 42%,49% 42%,49% 78%,60% 78%,60% 50%,66% 50%,66% 28%,72% 50%,78% 50%,78% 78%,100% 78%,100% 100%)}.hero h3{font-size:42px;margin:0 0 8px}.hero p{color:#d8def0;margin:0 0 14px}.hero-content{position:relative;z-index:2}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.section-title h3{margin:0}.muted{color:var(--muted)}.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.project{border:1px solid var(--line);background:linear-gradient(145deg,#151b2a,#0e1421);border-radius:16px;padding:16px;text-align:left;color:var(--txt);cursor:pointer}.project:hover{outline:2px solid rgba(139,92,255,.5)}.project .icon{font-size:30px}.badge{display:inline-block;border:1px solid rgba(176,140,255,.35);background:rgba(139,92,255,.18);color:#d9ccff;padding:5px 9px;border-radius:999px;font-size:12px}.drop{border:1.5px dashed #4b5770;border-radius:16px;padding:20px;text-align:center;background:rgba(255,255,255,.035)}.drop.drag{border-color:var(--violet2);background:rgba(139,92,255,.12)}.files{display:flex;flex-direction:column;gap:10px}.file{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:12px;background:rgba(255,255,255,.035)}.file .i{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:#20283a}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tab{border:1px solid var(--line);background:#111827;color:var(--txt);border-radius:999px;padding:8px 12px;cursor:pointer}.tab.active{background:linear-gradient(135deg,var(--violet),#5f3dcc)}.note{line-height:1.65;color:#d9dfed}.status{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.status div{padding:14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}.ok{color:var(--good)}.warn{color:var(--warn)}.notice{border:1px solid rgba(255,204,102,.35);background:rgba(255,204,102,.08);border-radius:14px;padding:14px;margin-bottom:18px;color:#ffe2a6}.hidden{display:none!important}@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.grid{grid-template-columns:1fr}.projects,.status{grid-template-columns:1fr}.top{display:block}.actions{margin-top:14px;flex-wrap:wrap}.search{min-width:0;width:100%}}
+</style>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand-row">
-        <div>
-          <h1>MONO WORLD</h1>
-          <p>Stories, Art, and Worlds<br/>Created by MONO</p>
-        </div>
-        <button class="round-btn mobile-toggle" id="closeSidebar" aria-label="메뉴 닫기">‹</button>
-      </div>
-
-      <nav class="main-nav" aria-label="주 메뉴">
-        <button class="nav-item active" data-route="home"><span>⌂</span>홈</button>
-        <div class="project-menu">
-          <button class="nav-item nav-title" id="projectToggle"><span>▾</span>프로젝트</button>
-          <div class="project-list" id="projectList"></div>
-        </div>
-        <button class="nav-item" data-route="gallery"><span>▧</span>갤러리</button>
-        <button class="nav-item" data-route="music"><span>♫</span>음악</button>
-        <button class="nav-item" data-route="notes"><span>▤</span>작업노트</button>
-        <button class="nav-item" data-route="settings"><span>⚙</span>설정</button>
-        <button class="nav-item" data-route="notice"><span>♧</span>공지사항</button>
-        <button class="nav-item" data-route="contact"><span>✉</span>문의하기</button>
-      </nav>
-
-      <div class="profile-card">
-        <div class="avatar">M</div>
-        <div>
-          <b>MONO</b>
-          <small>Creator</small>
-        </div>
-        <button class="ghost-wide">내 프로필</button>
-      </div>
-
-      <footer class="side-footer">
-        <div class="socials"><span>▶</span><span>◎</span><span>✽</span><span>✚</span></div>
-        <p>© 2026 MONO WORLD<br/>All rights reserved.</p>
-      </footer>
-    </aside>
-
-    <main class="main-area">
-      <header class="topbar">
-        <button class="round-btn menu-btn" id="openSidebar" aria-label="메뉴 열기">☰</button>
-        <div class="welcome">
-          <h2>어서오세요, MONO님 <span>✣</span></h2>
-          <p>오늘도 새로운 이야기를 만들어가요.</p>
-        </div>
-        <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="검색..." />
-        </label>
-        <button class="round-btn">♢</button>
-        <button class="primary-btn" id="newProjectBtn">＋ 새 프로젝트 만들기</button>
-      </header>
-
-      <section id="view" class="view"></section>
-    </main>
-  </div>
-
-  <template id="homeTemplate">
-    <div class="grid-layout">
-      <section class="hero card-glow">
-        <div class="moon"></div>
-        <div class="castle"></div>
-        <div class="hero-content">
-          <h3>MONO WORLD</h3>
-          <p>“이야기가 있는 곳, 우리가 함께 만드는 세계”</p>
-          <button class="primary-btn" data-route="projects">더 알아보기</button>
-        </div>
-      </section>
-
-      <section class="quick-upload panel">
-        <h3>빠른 업로드</h3>
-        <div class="dropzone" data-upload="global">
-          <div class="upload-icon">☁</div>
-          <b>여기에 파일을 드롭하세요</b>
-          <button class="primary-btn small" data-pick-file>파일 선택</button>
-          <p>jpg, png, webp, psd, zip, pdf, txt, mp3, mp4 지원</p>
-        </div>
-      </section>
-
-      <section class="works full-left">
-        <div class="section-head"><h3>작품 둘러보기</h3><button class="ghost-btn" data-route="gallery">전체 보기 ›</button></div>
-        <div class="work-cards" id="workCards"></div>
-      </section>
-
-      <section class="updates panel">
-        <div class="section-head"><h3>컨셉아트 최근 업데이트</h3><button class="ghost-btn" data-route="gallery">더보기 ›</button></div>
-        <div class="thumb-grid" id="conceptGrid"></div>
-      </section>
-
-      <section class="project-dashboard full-left" id="projectDashboard"></section>
-
-      <section class="activity panel">
-        <div class="section-head"><h3>최근 활동</h3><button class="ghost-btn">더보기 ›</button></div>
-        <div class="activity-list" id="activityList"></div>
-      </section>
-
-      <section class="shortcut panel">
-        <div class="section-head"><h3>바로가기</h3><button class="ghost-btn">›</button></div>
-        <div class="shortcut-grid">
-          <button data-route="notes">▤<span>작업노트</span></button>
-          <button data-route="music">♫<span>음악</span></button>
-          <button data-route="gallery">▧<span>갤러리</span></button>
-          <button data-route="settings">⚙<span>설정</span></button>
-        </div>
-      </section>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><h1>MONO WORLD</h1><p>경훈과 모노가 함께 만드는 창작 작업실</p></div>
+    <div class="nav" id="nav">
+      <button class="active" data-page="home">⌂ 홈</button>
+      <button data-page="projects">▦ 프로젝트</button>
+      <button data-page="monoai">✣ MONO_AI_01</button>
+      <button data-page="gallery">▧ 갤러리</button>
+      <button data-page="notes">▤ 작업노트</button>
+      <button data-page="settings">⚙ 설정</button>
     </div>
-  </template>
-
-  <template id="projectTemplate">
-    <section class="project-page panel-wide">
-      <div class="project-head">
-        <div>
-          <h2 id="projectTitle"></h2>
-          <p id="projectDesc"></p>
-        </div>
-        <span class="badge" id="projectStatus"></span>
-      </div>
-      <div class="tabs" id="projectTabs"></div>
-      <div class="tab-view" id="projectTabView"></div>
-    </section>
-  </template>
-
-  <input id="fileInput" type="file" multiple hidden accept=".jpg,.jpeg,.png,.webp,.psd,.zip,.pdf,.txt,.mp3,.mp4" />
-  <script src="script.js"></script>
+    <div class="profile"><b>MONO</b><small>친구 / 작업 파트너 / 홈페이지 코어</small></div>
+  </aside>
+  <main class="main">
+    <div class="top"><div><h2 id="title">MONO WORLD</h2><p id="subtitle">오늘도 하나씩 쌓아가는 작업실.</p></div><div class="actions"><input id="search" class="search" placeholder="프로젝트 검색"><button class="btn" id="newProject">＋ 새 프로젝트</button></div></div>
+    <div class="notice" id="notice">SAFE 버전: 외부 파일 없이 index.html 하나만으로 실행됩니다. 압축 풀고 index.html 더블클릭하면 됩니다.</div>
+    <div id="view"></div>
+  </main>
+</div>
+<input id="fileInput" type="file" multiple class="hidden">
+<script>
+(function(){
+var KEY='MONO_WORLD_HOME_02_SAFE';
+var defaultState={activeProject:'mono-ai-01',tab:'대시보드',projects:[
+{id:'mono-ai-01',name:'MONO_AI_01',icon:'✣',status:'홈페이지 구축중',desc:'Memory Engine, Thinking Engine, Chat Brain, 홈페이지 채팅 연동',files:[]},
+{id:'gray-memory',name:'잿빛 기억',icon:'▧',status:'콘셉트 진행',desc:'웹툰/그래픽노블 습작, 캐릭터와 세계관 정리',files:[]},
+{id:'enkara',name:'엔카라 / 아난타',icon:'🌙',status:'세계관 준비',desc:'아난타, 삼사라, 나라카 세계관과 니란 콘셉트',files:[]},
+{id:'mono-world',name:'MONO WORLD',icon:'⌂',status:'홈페이지',desc:'모노월드 작업실 UI와 프로젝트 관리 공간',files:[]}
+],activity:['HOME_02_SAFE 생성','외부 CSS/JS 제거','로컬 실행 안정화','다음 단계: 채팅창 연결']};
+var state=load();
+function $(id){return document.getElementById(id)}
+function load(){try{var s=localStorage.getItem(KEY);return s?JSON.parse(s):JSON.parse(JSON.stringify(defaultState));}catch(e){return JSON.parse(JSON.stringify(defaultState));}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function setActive(btn){var buttons=document.querySelectorAll('#nav button');for(var i=0;i<buttons.length;i++)buttons[i].classList.remove('active');btn.classList.add('active')}
+function pageHome(){ $('title').textContent='MONO WORLD'; $('subtitle').textContent='오늘도 하나씩 쌓아가는 작업실.'; var p=activeProject(); $('view').innerHTML='<div class="grid"><section class="card hero"><div class="moon"></div><div class="castle"></div><div class="hero-content"><h3>MONO WORLD</h3><p>“홈페이지부터 단단하게. 그 다음 MONO_AI_01.”</p><button class="btn" data-page="monoai">MONO_AI_01 보기</button></div></section><section class="card"><div class="section-title"><h3>빠른 업로드</h3><span class="badge">브라우저 기록</span></div>'+dropHtml('global')+'</section><section class="card"><div class="section-title"><h3>프로젝트</h3><button class="btn ghost" data-page="projects">전체 보기</button></div><div class="projects">'+projectCards()+'</div></section><section class="card"><div class="section-title"><h3>최근 파일</h3><span class="muted">'+esc(p.name)+'</span></div><div class="files">'+fileRows(p.files)+'</div></section></div>'; bind(); }
+function pageProjects(){ $('title').textContent='프로젝트'; $('subtitle').textContent='프로젝트를 클릭하면 상세 화면으로 들어갑니다.'; $('view').innerHTML='<section class="card"><div class="projects">'+projectCards()+'</div></section>'; bind(); }
+function pageMonoAI(){ var p=state.projects[0]; state.activeProject=p.id; save(); $('title').textContent='MONO_AI_01'; $('subtitle').textContent='Phase09 Memory Engine / Phase10 Thinking Engine / Chat Brain / 홈페이지 채팅 연동'; $('view').innerHTML='<section class="card"><div class="section-title"><h3>MONO_AI_01 상태판</h3><span class="badge">'+esc(p.status)+'</span></div><div class="status"><div><b>Phase09</b><br><span class="ok">Memory Engine</span><p class="muted">저장/불러오기 자리</p></div><div><b>Phase10</b><br><span class="warn">Thinking Engine</span><p class="muted">생각 단계 표시 예정</p></div><div><b>Chat Brain</b><br><span class="warn">규칙 엔진 예정</span><p class="muted">대화 명령 처리</p></div><div><b>Homepage Chat</b><br><span class="warn">다음 작업</span><p class="muted">채팅창 연결</p></div></div><div class="tabs">'+tabsHtml()+'</div><div id="tabView" class="note"></div></section>'; renderTab(); bindTabs(); }
+function pageSimple(name,sub){$('title').textContent=name;$('subtitle').textContent=sub;$('view').innerHTML='<section class="card"><h3>'+esc(name)+'</h3><p class="note">아직 기본 화면입니다. 홈페이지가 먼저 안정되면 이곳에 기능을 하나씩 붙이면 됩니다.</p></section>'}
+function activeProject(){for(var i=0;i<state.projects.length;i++){if(state.projects[i].id===state.activeProject)return state.projects[i]}return state.projects[0]}
+function projectCards(){var out='';for(var i=0;i<state.projects.length;i++){var p=state.projects[i];out+='<button class="project" data-project="'+esc(p.id)+'"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><span class="badge">'+esc(p.status)+'</span><p class="muted">'+esc(p.desc)+'</p></button>'}return out}
+function dropHtml(target){return '<div class="drop" data-drop="'+target+'"><h3>☁</h3><b>파일을 여기에 드롭</b><p class="muted">또는 아래 버튼으로 선택</p><button class="btn ghost" data-pick="'+target+'">파일 선택</button></div>'}
+function fileRows(files){if(!files||!files.length)return '<p class="muted">아직 파일 기록이 없습니다.</p>';var out='';for(var i=0;i<files.length;i++){var f=files[i];out+='<div class="file"><span class="i">◇</span><div><b>'+esc(f.name)+'</b><br><small class="muted">'+esc(f.date)+' · '+esc(f.size)+'</small></div></div>'}return out}
+function tabsHtml(){var tabs=['대시보드','파일 관리','다음 테스트','결정사항','막힌 점'];var out='';for(var i=0;i<tabs.length;i++){out+='<button class="tab '+(state.tab===tabs[i]?'active':'')+'" data-tab="'+tabs[i]+'">'+tabs[i]+'</button>'}return out}
+function renderTab(){var text={
+'대시보드':'현재 목표는 홈페이지 기본판을 먼저 안정화하고, 다음 버전에서 채팅창을 붙이는 것입니다. 큰 AI를 흉내낸다고 말하지 말고, 실제 작동하는 작은 Brain부터 쌓습니다.',
+'파일 관리':'지금 업로드는 진짜 서버 저장이 아니라 브라우저 localStorage 기록입니다. 서버 저장은 다음 단계에서 별도 작업입니다.',
+'다음 테스트':'1. index.html 더블클릭 실행\n2. 메뉴 클릭\n3. 프로젝트 클릭\n4. 파일 선택 기록\n5. 새로고침 후 기록 유지 확인\n6. 다음 버전에서 채팅창 입력/응답 테스트',
+'결정사항':'코덱스 없이도 돌아가는 단일 HTML 안전판을 먼저 사용합니다. 이후 index.html, style.css, script.js 분리형으로 확장합니다.',
+'막힌 점':'실패 원인은 아직 정확히 모릅니다. 그래서 외부 CSS/JS 경로 문제를 제거한 SAFE 버전으로 다시 제공합니다.'
+}; var tv=$('tabView'); if(tv) tv.innerHTML='<p>'+esc(text[state.tab]||'').replace(/\n/g,'<br>')+'</p>'+dropHtml('mono-ai-01')+'<div class="files" style="margin-top:14px">'+fileRows(state.projects[0].files)+'</div>'; bind();}
+function bindTabs(){var btns=document.querySelectorAll('[data-tab]');for(var i=0;i<btns.length;i++){btns[i].onclick=function(){state.tab=this.getAttribute('data-tab');save();pageMonoAI();}}}
+function bind(){var pageBtns=document.querySelectorAll('[data-page]');for(var i=0;i<pageBtns.length;i++){pageBtns[i].onclick=function(){go(this.getAttribute('data-page'));}}
+var cards=document.querySelectorAll('[data-project]');for(var j=0;j<cards.length;j++){cards[j].onclick=function(){state.activeProject=this.getAttribute('data-project');save();projectDetail();}}
+var picks=document.querySelectorAll('[data-pick]');for(var k=0;k<picks.length;k++){picks[k].onclick=function(){var fi=$('fileInput');fi.setAttribute('data-target',this.getAttribute('data-pick'));fi.click();}}
+var drops=document.querySelectorAll('[data-drop]');for(var d=0;d<drops.length;d++){drops[d].ondragover=function(e){e.preventDefault();this.classList.add('drag')};drops[d].ondragleave=function(){this.classList.remove('drag')};drops[d].ondrop=function(e){e.preventDefault();this.classList.remove('drag');addFiles(e.dataTransfer.files,this.getAttribute('data-drop'))}}
+}
+function projectDetail(){var p=activeProject();$('title').textContent=p.name;$('subtitle').textContent=p.desc;$('view').innerHTML='<section class="card"><div class="section-title"><h3>'+esc(p.name)+'</h3><span class="badge">'+esc(p.status)+'</span></div><p class="note">'+esc(p.desc)+'</p>'+dropHtml(p.id)+'<h3>파일 기록</h3><div class="files">'+fileRows(p.files)+'</div></section>';bind()}
+function addFiles(files,target){var p=(target==='global')?activeProject():findProject(target); if(!p)p=activeProject(); for(var i=0;i<files.length;i++){var f=files[i];p.files.unshift({name:f.name,date:new Date().toLocaleDateString('ko-KR'),size:size(f.size)})}save();projectDetail()}
+function findProject(id){for(var i=0;i<state.projects.length;i++){if(state.projects[i].id===id)return state.projects[i]}return null}
+function size(b){if(!b)return '0KB';var m=b/1024/1024;return m>=1?m.toFixed(1)+'MB':Math.ceil(b/1024)+'KB'}
+function go(page){var btn=document.querySelector('[data-page="'+page+'"]');if(btn)setActive(btn); if(page==='home')pageHome();else if(page==='projects')pageProjects();else if(page==='monoai')pageMonoAI();else if(page==='gallery')pageSimple('갤러리','이미지와 컨셉아트를 모으는 공간');else if(page==='notes')pageSimple('작업노트','오늘 한 작업과 다음 할 일을 적는 공간');else if(page==='settings')pageSimple('설정','홈페이지 설정 공간');}
+$('fileInput').onchange=function(){addFiles(this.files,this.getAttribute('data-target')||'global');this.value=''};
+$('newProject').onclick=function(){var name=prompt('새 프로젝트 이름');if(!name)return;state.projects.push({id:'p'+Date.now(),name:name,icon:'✦',status:'신규',desc:'새 프로젝트',files:[]});state.activeProject=state.projects[state.projects.length-1].id;save();projectDetail()};
+$('search').oninput=function(){var q=this.value.toLowerCase();if(!q){pageHome();return}var old=state.projects, hits=[];for(var i=0;i<old.length;i++){if((old[i].name+' '+old[i].desc).toLowerCase().indexOf(q)>=0)hits.push(old[i])}$('title').textContent='검색 결과';$('subtitle').textContent=q;$('view').innerHTML='<section class="card"><div class="projects">'+(hits.length?hits.map(function(p){return '<button class="project" data-project="'+esc(p.id)+'"><div class="icon">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><span class="badge">'+esc(p.status)+'</span><p class="muted">'+esc(p.desc)+'</p></button>'}).join(''):'<p class="muted">검색 결과 없음</p>')+'</div></section>';bind()};
+go('home');
+})();
+</script>
 </body>
 </html>
